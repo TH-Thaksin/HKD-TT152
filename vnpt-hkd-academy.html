@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VNPT HKD Academy — Nghiệp vụ Kế toán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFBF9;
+  --paper-2:#F1F5F2;
+  --card:#FFFFFF;
+  --ink:#14211B;
+  --ink-soft:#3E4A42;
+  --ink-faint:#7C897F;
+  --rule:#DCE8DF;
+  --rule-strong:#BBD3C2;
+  --green:#0F7A4E;
+  --green-deep:#0B5C3B;
+  --green-soft:#E3F0E8;
+  --seal:#A3271E;
+  --seal-soft:#F5DEDA;
+  --font-body:'Be Vietnam Pro',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --radius:8px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.6;
+}
+::selection{background:#CDEBD9;}
+button,input{font-family:inherit;}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  background:var(--ink);
+  color:var(--paper);
+  padding:16px 32px 0;
+}
+.topbar-main{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.14);
+}
+.brand{display:flex;align-items:baseline;gap:10px;}
+.brand .mark{font-weight:800;font-size:21px;letter-spacing:0.2px;}
+.brand .sub{
+  font-size:11px;color:#9FCBB0;letter-spacing:1.4px;
+  text-transform:uppercase;font-family:var(--font-mono);
+}
+.doc-meta{
+  font-family:var(--font-mono);font-size:11px;color:#7E9A8C;
+  padding:7px 0 9px;display:flex;gap:20px;flex-wrap:wrap;
+}
+.doc-meta b{color:#CFE9DA;font-weight:600;}
+.mode-switch{
+  display:flex;background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.16);border-radius:8px;padding:3px;gap:3px;
+}
+.mode-switch button{
+  border:none;background:transparent;color:#B9C7BF;
+  font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:6px;
+  cursor:pointer;transition:all .15s ease;display:flex;align-items:center;gap:7px;
+}
+.mode-switch button .ic{width:7px;height:7px;border-radius:2px;background:currentColor;flex:none;}
+.mode-switch button.active.gv{background:var(--green-deep);color:#EAF5EE;}
+.mode-switch button.active.dtv{background:var(--green);color:#EAF5EE;}
+
+/* ===== SEAL BANNER ===== */
+.seal-banner{
+  background:var(--seal-soft);border-bottom:1px solid #E3B9B2;
+  padding:10px 32px;font-size:13px;color:#6B1D15;font-weight:500;
+  display:flex;align-items:center;gap:12px;
+}
+.stamp{
+  font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:var(--seal);
+  border:1.5px solid var(--seal);border-radius:4px;padding:3px 8px;
+  transform:rotate(-2deg);letter-spacing:1px;flex:none;background:#fff;
+}
+
+/* ===== LAYOUT ===== */
+.layout{
+  display:grid;grid-template-columns:240px 1fr;
+  max-width:1220px;margin:0 auto;min-height:70vh;
+}
+.rail{padding:26px 0 40px;border-right:1px solid var(--rule);position:relative;}
+.rail-title{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--ink-faint);padding:0 22px 10px;
+}
+.tab{
+  display:block;width:100%;text-align:left;background:none;border:none;
+  border-left:3px solid transparent;padding:11px 20px;font-size:14px;font-weight:500;
+  color:var(--ink-soft);cursor:pointer;display:flex;gap:10px;align-items:flex-start;line-height:1.35;
+}
+.tab .num{
+  font-family:var(--font-mono);font-weight:700;color:var(--green);font-size:13px;
+  width:16px;flex:none;
+}
+.tab:hover{background:var(--paper-2);}
+.tab.active{background:var(--card);border-left-color:var(--green);color:var(--ink);font-weight:700;}
+
+.rail-search{position:relative;margin:0 20px 18px;}
+.rail-search input{
+  width:100%;border:1px solid var(--rule-strong);background:var(--card);
+  border-radius:7px;padding:10px 12px;font-size:13px;color:var(--ink);
+}
+.rail-search input:focus{outline:2px solid var(--green);outline-offset:1px;}
+.search-results{
+  position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--card);
+  border:1px solid var(--rule-strong);border-radius:8px;
+  box-shadow:0 10px 24px rgba(20,33,27,0.14);max-height:360px;overflow-y:auto;
+  z-index:30;display:none;
+}
+.search-results.show{display:block;}
+.search-result-item{padding:10px 12px;border-bottom:1px solid var(--rule);cursor:pointer;}
+.search-result-item:last-child{border-bottom:none;}
+.search-result-item:hover{background:var(--green-soft);}
+.search-result-item .srm{
+  font-family:var(--font-mono);font-size:10px;text-transform:uppercase;
+  color:var(--green-deep);letter-spacing:.5px;margin-bottom:3px;font-weight:600;
+}
+.search-result-item .srs{font-size:12.5px;color:var(--ink);}
+.search-result-item mark{background:#CDEBD9;color:var(--ink);padding:0 1px;border-radius:2px;}
+.search-empty{padding:14px;font-size:12.5px;color:var(--ink-faint);font-style:italic;}
+
+.content{padding:32px 40px 60px;}
+
+/* ===== HEADERS ===== */
+.module-head{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--rule);}
+.module-eyebrow{
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:1px;color:var(--green-deep);
+  text-transform:uppercase;margin-bottom:6px;font-weight:600;
+}
+.module-title{font-size:25px;font-weight:800;margin:0 0 8px;letter-spacing:-0.2px;}
+.module-goal{color:var(--ink-soft);font-size:14px;margin:0;}
+
+.gv-note{
+  display:none;background:var(--green-soft);border:1px solid #BFE0CC;
+  border-left:4px solid var(--green);border-radius:0 8px 8px 0;
+  padding:14px 16px;margin:16px 0;
+}
+body.mode-gv .gv-note{display:block;}
+.gv-note .gv-head{
+  font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;
+  letter-spacing:1px;color:var(--green-deep);font-weight:700;margin-bottom:10px;
+}
+.gv-row{font-size:13px;margin-bottom:9px;color:#1E3226;}
+.gv-row:last-child{margin-bottom:0;}
+.gv-row b{
+  font-family:var(--font-mono);font-size:10px;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--green-deep);display:block;margin-bottom:2px;font-weight:700;
+}
+
+section.block{margin-bottom:28px;scroll-margin-top:20px;}
+.block h3{font-size:16.5px;margin:0 0 12px;display:flex;align-items:center;gap:8px;font-weight:700;}
+.block h3::before{content:'';width:8px;height:8px;background:var(--green);border-radius:2px;flex:none;}
+.card{
+  background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--green);
+  border-radius:6px;padding:14px 16px;margin-bottom:10px;
+}
+.card p{margin:0 0 8px;font-size:14px;}
+.card p:last-child{margin-bottom:0;}
+.card strong{color:var(--ink);}
+
+.attitude-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:600px){.attitude-grid{grid-template-columns:1fr;}}
+.attitude-col{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;}
+.attitude-col.good{border-left:4px solid var(--green);}
+.attitude-col.bad{border-left:4px solid var(--seal);}
+.attitude-col h5{
+  margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+  font-family:var(--font-mono);font-weight:700;
+}
+.attitude-col.good h5{color:var(--green-deep);}
+.attitude-col.bad h5{color:var(--seal);}
+.attitude-col ul{margin:0;padding-left:18px;font-size:13.5px;}
+.attitude-col li{margin-bottom:6px;}
+
+.reftable-wrap{overflow-x:auto;margin-bottom:14px;border-left:3px double var(--green);border-radius:0 var(--radius) var(--radius) 0;}
+table.reftable{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;}
+table.reftable th{
+  background:var(--green-soft);text-align:left;padding:10px 14px;
+  font-family:var(--font-mono);font-weight:700;font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.4px;color:var(--green-deep);border-bottom:2px solid var(--rule-strong);
+}
+table.reftable td{padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top;}
+table.reftable tr:nth-child(even) td{background:#FAFCFA;}
+table.reftable tr:last-child td{border-bottom:none;}
+table.reftable td.num{font-family:var(--font-mono);text-align:right;}
+
+/* ===== ERROR LOOKUP (Module 4) ===== */
+.err-search{display:flex;gap:10px;margin-bottom:18px;}
+.err-search input{
+  flex:1;border:1px solid var(--rule-strong);background:var(--card);border-radius:7px;
+  padding:12px 16px;font-size:14px;
+}
+.err-search input:focus{outline:2px solid var(--green);outline-offset:1px;}
+.err-count{font-size:12.5px;color:var(--ink-faint);margin:-8px 0 14px;font-family:var(--font-mono);}
+.err-card{
+  background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--seal);
+  border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-bottom:14px;
+  scroll-margin-top:20px;
+}
+.err-card .tag{
+  display:inline-block;font-family:var(--font-mono);font-size:10.5px;font-weight:700;
+  letter-spacing:.5px;border:1.5px solid var(--seal);color:var(--seal);padding:2px 8px;
+  border-radius:3px;margin-bottom:9px;text-transform:uppercase;background:#fff;
+}
+.err-card h4{margin:0 0 8px;font-size:15.5px;font-weight:700;}
+.err-card .lbl{
+  font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);
+  font-family:var(--font-mono);margin:10px 0 4px;font-weight:600;
+}
+.err-card ul{margin:0;padding-left:18px;font-size:14px;}
+.err-card li{margin-bottom:4px;}
+.no-result{text-align:center;color:var(--ink-faint);padding:30px;font-style:italic;}
+.err-filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.err-filter-btn{
+  font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.3px;
+  border:1px solid var(--rule-strong);background:var(--card);color:var(--ink-soft);
+  padding:6px 12px;border-radius:16px;cursor:pointer;transition:all .15s ease;
+}
+.err-filter-btn:hover{background:var(--paper-2);}
+.err-filter-btn.active{background:var(--green-deep);border-color:var(--green-deep);color:#EAF5EE;}
+.err-card ol{margin:0;padding-left:20px;font-size:14px;}
+.err-card ol li{margin-bottom:5px;}
+.err-images{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.err-images img{
+  max-width:280px;width:100%;border:1px solid var(--rule-strong);border-radius:6px;
+  display:block;box-shadow:0 2px 6px rgba(20,33,27,0.08);
+}
+@media (max-width:600px){.err-images img{max-width:100%;}}
+
+/* ===== CALL SCRIPT (Module 5) ===== */
+.call-step{
+  display:flex;gap:16px;background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;align-items:flex-start;
+  scroll-margin-top:20px;
+}
+.call-step input[type=checkbox]{margin-top:3px;width:17px;height:17px;accent-color:var(--green);flex:none;}
+.call-step .step-num{
+  font-family:var(--font-mono);font-weight:700;color:var(--green);font-size:19px;flex:none;width:22px;
+}
+.call-step h4{margin:0 0 5px;font-size:15px;font-weight:700;}
+.call-step p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+.call-step .example{
+  margin-top:8px;background:var(--green-soft);color:var(--green-deep);
+  padding:8px 12px;border-radius:6px;font-size:13px;font-family:var(--font-mono);
+}
+.attitude-title{font-size:16.5px;font-weight:700;margin:26px 0 12px;display:flex;align-items:center;gap:8px;}
+.attitude-title::before{content:'';width:8px;height:8px;background:var(--green);border-radius:2px;flex:none;}
+
+/* ===== QUIZ (Module 6) ===== */
+.quiz-q{
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:14px;scroll-margin-top:20px;
+}
+.quiz-q p.qtext{font-weight:700;margin:0 0 10px;font-size:14.5px;}
+.quiz-q label{
+  display:block;padding:8px 12px;border:1px solid var(--rule);border-radius:7px;
+  margin-bottom:7px;font-size:13.5px;cursor:pointer;
+}
+.quiz-q label:hover{background:var(--paper-2);}
+.quiz-q input{margin-right:8px;}
+.quiz-result{
+  display:none;background:var(--green-soft);color:var(--green-deep);padding:14px 18px;
+  border-radius:var(--radius);font-weight:700;margin-top:8px;
+}
+.btn{
+  background:var(--ink);color:var(--paper);border:none;padding:11px 22px;border-radius:7px;
+  font-weight:700;font-size:13.5px;cursor:pointer;
+}
+.btn:hover{background:#0A140F;}
+
+.flash{animation:flashbg 1.6s ease;}
+@keyframes flashbg{0%{background:#CDEBD9;}100%{background:inherit;}}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr;}
+  .rail{border-right:none;border-bottom:1px solid var(--rule);padding:18px 0;}
+  .content{padding:24px 20px 50px;}
+  .topbar{padding:14px 18px 0;}
+  .seal-banner{padding:10px 18px;}
+}
+</style>
+</head>
+<body class="mode-dtv">
+
+<div class="topbar">
+  <div class="topbar-main">
+    <div class="brand">
+      <span class="mark">VNPT HKD Academy</span>
+      <span class="sub">Nghiệp vụ kế toán</span>
+    </div>
+    <div class="mode-switch">
+      <button class="gv" id="btn-gv" onclick="setMode('gv')"><span class="ic"></span>Giảng dạy (GV)</button>
+      <button class="active dtv" id="btn-dtv" onclick="setMode('dtv')"><span class="ic"></span>Tra cứu (ĐTV)</button>
+    </div>
+  </div>
+  <div class="doc-meta">
+    <span>Mã tài liệu: <b>VNPT-HKD-KT.01</b></span>
+    <span>Phiên bản: <b>2026.1</b></span>
+    <span>Cập nhật: <b>22/07/2026</b></span>
+  </div>
+</div>
+<div class="seal-banner">
+  <span class="stamp">TT 152/2025</span>
+  Thông tư 152/2025/TT-BTC — hiệu lực từ 01/01/2026, thay thế hoàn toàn Thông tư 88/2021/TT-BTC
+</div>
+
+<div class="layout">
+  <div class="rail">
+    <div class="rail-search">
+      <input type="text" id="global-search" placeholder="Tìm nhanh: lỗi, mẫu sổ, quy trình…" oninput="onGlobalSearchInput(this.value)" autocomplete="off">
+      <div class="search-results" id="search-results"></div>
+    </div>
+    <div class="rail-title">6 module đào tạo</div>
+    <button class="tab active" data-m="m1" onclick="showModule('m1')"><span class="num">I</span> Nền tảng pháp lý</button>
+    <button class="tab" data-m="m2" onclick="showModule('m2')"><span class="num">II</span> Tổng quan nghiệp vụ</button>
+    <button class="tab" data-m="m3" onclick="showModule('m3')"><span class="num">III</span> Hướng dẫn thao tác</button>
+    <button class="tab" data-m="m4" onclick="showModule('m4')"><span class="num">IV</span> Lỗi thường gặp</button>
+    <button class="tab" data-m="m5" onclick="showModule('m5')"><span class="num">V</span> Kịch bản cuộc gọi</button>
+    <button class="tab" data-m="m6" onclick="showModule('m6')"><span class="num">VI</span> Kiểm tra & tổng kết</button>
+  </div>
+
+  <div class="content" id="content"></div>
+</div>
+
+<script>
+const DATA = {
+m1:{
+  eyebrow:"Module I",
+  title:"Nền tảng pháp lý — TT 152/2025/TT-BTC",
+  goal:"ĐTV nắm rõ nội dung cốt lõi của Thông tư 152/2025/TT-BTC để giải thích cho khách hàng",
+  gv:{
+    giang:"Nhấn mạnh ranh giới trước/sau 01/01/2026: trước đây thuế khoán ấn định cố định theo tháng, nay HKD tự kê khai theo sổ sách thực tế — đây là thay đổi tư duy lớn nhất khách hàng cần hiểu.",
+    hoi:"Vì sao Nhà nước chọn nguyên tắc \"thuế quản lý đến đâu, mở sổ đến đó\" thay vì bắt tất cả HKD mở đủ 7 loại sổ?",
+    thuchanh:"Phát 4 hồ sơ khách hàng khác nhau (bán lẻ không hóa đơn, dịch vụ có hóa đơn, hộ có hàng tồn kho, hộ chịu thêm thuế TTĐB) — yêu cầu học viên xác định đúng mẫu sổ áp dụng cho từng hồ sơ."
+  },
+  blocks:[
+    {h:"Điểm cốt lõi", body:`
+      <div class="card"><p><strong>Bãi bỏ thuế khoán:</strong> từ 01/01/2026, tất cả hộ kinh doanh phải tự kê khai, tự nộp thuế dựa trên sổ sách — không còn việc cơ quan thuế ấn định mức cố định hàng tháng.</p></div>
+      <div class="card"><p><strong>Nguyên tắc mới:</strong> "Thuế quản lý đến đâu, mở sổ đến đó" — thay vì bắt buộc mọi HKD mở đủ 7 loại sổ phức tạp, nhằm giảm tối đa chi phí hành chính.</p></div>`},
+    {h:"Bảng mẫu sổ sách theo đối tượng", body:`
+      <div class="reftable-wrap"><table class="reftable">
+      <tr><th>Đối tượng</th><th>Tên mẫu sổ</th></tr>
+      <tr><td>Không chịu thuế GTGT, không nộp thuế TNCN</td><td>S1a-HKD (Sổ chi tiết doanh thu)</td></tr>
+      <tr><td>Nộp thuế GTGT + TNCN theo % trên doanh thu</td><td>S2a-HKD (Sổ chi tiết doanh thu theo ngành nghề)</td></tr>
+      <tr><td>Nộp GTGT theo % doanh thu và TNCN trên thu nhập tính thuế</td><td>S2b, S2c, S2d, S2e-HKD (Bộ sổ Kho, Chi phí, Lương, Tiền mặt/Tiền gửi)</td></tr>
+      <tr><td>Chịu thêm thuế khác (TTĐB, tài nguyên, phí, lệ phí…)</td><td>S3a-HKD (Sổ theo dõi nghĩa vụ thuế khác)</td></tr>
+      </table></div>`}
+  ]
+},
+m2:{
+  eyebrow:"Module II",
+  title:"Tổng quan nghiệp vụ kế toán trên VNPT HKD",
+  goal:"Hiểu tập hợp công việc ghi chép, xử lý chứng từ và báo cáo phục vụ kê khai thuế",
+  gv:{
+    giang:"Cho học viên tự vẽ sơ đồ 3 dòng nghiệp vụ (Doanh thu → Chi phí/Kho → Dòng tiền/Thuế) trước khi chiếu đáp án để tăng khả năng ghi nhớ.",
+    hoi:"Một khách hàng chỉ xuất hóa đơn nhưng không bao giờ nhập chứng từ chi phí — báo cáo thuế của họ sẽ lệch theo hướng nào và vì sao?",
+    thuchanh:"Đóng vai 3 vị trí (mua hàng, bán hàng, thủ kho) trong cùng một tình huống nhập-xuất hàng, để học viên tự phân biệt vai trò và chứng từ cốt lõi của từng vị trí."
+  },
+  blocks:[
+    {h:"1. Quản lý doanh thu (đầu ra)", body:`
+      <div class="card"><p>Xuất hóa đơn điện tử ngay khi giao hàng/cung cấp dịch vụ.</p></div>
+      <div class="card"><p>Ghi nhận doanh thu vào <strong>Sổ doanh thu (S1a / S2a / S2b)</strong>.</p></div>
+      <div class="card"><p>Phân loại doanh thu theo ngành nghề để áp đúng tỷ lệ % thuế suất.</p></div>`},
+    {h:"2. Quản lý chi phí, vật tư và kho (đầu vào)", body:`
+      <div class="card"><p>Kiểm tra tính hợp pháp của hóa đơn mua hàng, tiền thuê, điện, lương.</p></div>
+      <div class="card"><p>Hạch toán chi phí vào <strong>Sổ chi tiết chi phí (S2c)</strong> để làm căn cứ giảm trừ thuế.</p></div>
+      <div class="card"><p>Theo dõi Nhập – Xuất – Tồn vào <strong>Sổ vật tư (S2d)</strong>.</p></div>`},
+    {h:"3. Quản lý dòng tiền và thuế (kê khai & báo cáo)", body:`
+      <div class="card"><p>Ghi chép Thu – Chi tiền mặt/ngân hàng vào <strong>Sổ tiền (S2e)</strong>.</p></div>
+      <div class="card"><p>Kê khai thuế định kỳ (Mẫu 01/CNKD) theo Tháng hoặc Quý.</p></div>
+      <div class="card"><p>Nộp Thông báo doanh thu trước 15/1 (hộ &lt;1 tỷ) hoặc Quyết toán TNCN trước 31/3 (hộ lớn).</p></div>`},
+    {h:"4. Phân biệt Kế toán Mua hàng / Bán hàng / Kho", body:`
+      <div class="reftable-wrap"><table class="reftable">
+      <tr><th>Tiêu chí</th><th>Kế toán mua hàng</th><th>Kế toán bán hàng</th><th>Kế toán kho</th></tr>
+      <tr><td>Bản chất</td><td>Quản lý dòng tiền ra và hàng hóa đầu vào</td><td>Quản lý dòng tiền vào và hàng hóa đầu ra</td><td>Quản lý biến động và an toàn hàng trong kho</td></tr>
+      <tr><td>Đối tượng tương tác</td><td>Nhà cung ứng, bộ phận thu mua</td><td>Khách hàng, nhân viên kinh doanh</td><td>Thủ kho, bộ phận sản xuất/giao nhận</td></tr>
+      <tr><td>Chứng từ cốt lõi</td><td>Hóa đơn đầu vào</td><td>Hóa đơn bán ra</td><td>Phiếu nhập/xuất, phiếu kiểm kê</td></tr>
+      <tr><td>Mục tiêu lớn nhất</td><td>Kiểm soát chi phí, công nợ phải trả</td><td>Đảm bảo doanh thu, công nợ phải thu</td><td>Tránh thất thoát, kiểm soát tồn kho</td></tr>
+      </table></div>`},
+    {h:"5. Phân biệt \"Báo cáo kế toán\" và \"Báo cáo hóa đơn\"", body:`
+      <div class="reftable-wrap"><table class="reftable">
+      <tr><th>Tiêu chí</th><th>Báo cáo kế toán</th><th>Báo cáo hóa đơn</th></tr>
+      <tr><td>Bản chất</td><td>Số liệu quản trị theo đúng chế độ sổ sách của Thông tư 152/2025/TT-BTC</td><td>Thống kê thuần túy các hóa đơn điện tử đã xuất/nhận</td></tr>
+      <tr><td>Mục đích</td><td>Phục vụ kê khai thuế và quản trị dòng tiền, hàng hóa nội bộ</td><td>Tra cứu, đối chiếu nhanh số lượng và giá trị hóa đơn</td></tr>
+      <tr><td>Khi khách hàng hỏi</td><td>"Số doanh thu trên báo cáo thuế của tôi lấy từ đâu?"</td><td>"Tháng này tôi xuất bao nhiêu hóa đơn, tổng tiền bao nhiêu?"</td></tr>
+      </table></div>
+      <div class="card"><p>ĐTV cần phân biệt rõ hai loại báo cáo này để không hướng dẫn nhầm khách hàng tra cứu sai chỗ khi họ hỏi về số liệu thuế.</p></div>`}
+  ]
+},
+m3:{
+  eyebrow:"Module III",
+  title:"Hướng dẫn thao tác các chức năng cốt lõi",
+  goal:"ĐTV hiểu và hướng dẫn được quy trình chuẩn, tránh thao tác sai dẫn đến lệch số liệu",
+  gv:{
+    giang:"Demo trực tiếp trên máy một tình huống lập chứng từ bán hàng, cố tình chọn sai ngày để học viên tự phát hiện hệ quả (chứng từ \"biến mất\" khỏi danh sách).",
+    hoi:"Tại sao hệ thống bắt phải nhập kho trước rồi mới cho xuất bán, kể cả với hộ bán lẻ nhỏ?",
+    thuchanh:"Cho học viên thực hành chuỗi thao tác đầy đủ: khai báo danh mục → nhập số dư đầu kỳ → lập phiếu nhập → lập chứng từ bán → chạy Tính lại giá vốn, trên một bộ dữ liệu mẫu."
+  },
+  blocks:[
+    {h:"Quy trình tổng thể", body:`
+      <div class="card"><p>Thiết lập kế toán → Khai báo danh mục (khách hàng, NCC, nhóm hàng...) → Nhập số dư đầu kỳ → Hạch toán hàng ngày.</p></div>`},
+    {h:"Bảng phân hệ nghiệp vụ", body:`
+      <div class="reftable-wrap"><table class="reftable">
+      <tr><th>Phân hệ</th><th>Quy trình chuẩn</th><th>Lưu ý cốt lõi</th></tr>
+      <tr><td>Mua/Bán hàng</td><td>Lập chứng từ mua hàng (có hóa đơn); lập bảng kê mua hàng nếu không có hóa đơn; lập chứng từ bán hàng</td><td>Ngày chứng từ xuất kho bán hàng phải chuẩn xác, không lệch niên độ hoặc trong tương lai</td></tr>
+      <tr><td>Tiền tệ & công nợ</td><td>Lập phiếu thu/chi tiền mặt và chuyển khoản; nghiệp vụ nội bộ (rút/nộp tiền)</td><td>Bắt buộc chọn đúng "Lý do thu/chi" để lên đúng sổ công nợ</td></tr>
+      <tr><td>Tính giá vốn</td><td>Rà soát chứng từ mua/bán/nhập/xuất/thu/chi trong kỳ; vào chức năng Tính lại giá vốn</td><td>Thực hiện khi: xuất hàng xong mới nhập hàng; sửa/xóa chứng từ nhập xuất; trước khi báo cáo thuế</td></tr>
+      </table></div>`},
+    {h:"Kế toán kho — 4 phân hệ chức năng", body:`
+      <div class="card"><p><strong>Kiểm kê kho:</strong> kiểm tra thực tế hàng tồn kho để xác định chính xác số lượng, chất lượng, giá trị và phát hiện chênh lệch so với sổ sách.</p></div>
+      <div class="card"><p><strong>Nhập kho:</strong> ghi tăng kho cho các trường hợp như xử lý thiếu sau kiểm kê, nhận biếu tặng, khuyến mãi — ngoài các nghiệp vụ mua hàng thông thường.</p></div>
+      <div class="card"><p><strong>Xuất kho:</strong> ghi giảm kho cho các trường hợp như xử lý thừa sau kiểm kê, giảm do thiên tai, từ thiện, mất, hủy — ngoài việc xuất bán hàng hóa.</p></div>
+      <div class="card"><p><strong>Chuyển kho:</strong> ghi nhận và quản lý việc chuyển nguyên vật liệu nội bộ giữa các kho.</p></div>
+      <div class="card"><p>4 chức năng này giúp quản lý chặt chẽ, minh bạch và chính xác hàng tồn kho, đảm bảo đồng bộ giữa sổ sách và thực tế.</p></div>`}
+  ]
+},
+m4:{
+  eyebrow:"Module IV",
+  title:"Các tình huống lỗi nghiệp vụ thường gặp",
+  goal:"ĐTV học cách \"bắt bệnh\" dựa trên tình huống lỗi thực tế — phần trọng tâm để tra cứu khi đang hỗ trợ khách hàng",
+  gv:{
+    giang:"Chia nhóm đóng vai: 1 người mô tả hiện tượng lỗi như khách hàng thật (chỉ nói triệu chứng, không nói nguyên nhân), 1 người tra bảng lỗi bên dưới để chẩn đoán trong 2 phút/case.",
+    hoi:"Lỗi \"Unknown column Tongtien\" và lỗi \"không sửa được phiếu nhập\" đều liên quan đến chứng từ kho bị can thiệp — điểm chung này gợi ý ĐTV nên luôn hỏi khách câu hỏi loại trừ nào đầu tiên?",
+    thuchanh:"Cho học viên tự kể 1 ca lỗi thực tế họ từng gặp khi trực tổng đài, cả lớp cùng phân loại lại theo đúng khuôn hiện tượng / nguyên nhân / xử lý."
+  },
+  isErrorModule:true,
+  errors:[
+ {
+  "tag": "Chứng từ",
+  "group": "n1",
+  "title": "Nhập sai ngày chứng từ (lỗi phổ biến)",
+  "hien_tuong": [
+   "Lưu thành công chứng từ bán hàng/mua hàng hoặc phiếu thu/chi nhưng không tìm thấy trên danh sách"
+  ],
+  "nguyen_nhan": [
+   "Khách hàng nhập sai ngày chứng từ ở quá khứ hoặc tương lai xa"
+  ],
+  "xu_ly": [
+   "Kiểm tra lại bộ lọc ngày trên danh sách chứng từ",
+   "Yêu cầu khách xác nhận ngày thực tế lập chứng từ và sửa lại đúng niên độ"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kho & giá vốn",
+  "group": "n2",
+  "title": "Hàng còn tồn nhưng báo không bán được / hết tồn kho",
+  "hien_tuong": [
+   "Hàng hóa còn tồn kho nhưng báo không bán được hoặc báo hết tồn kho"
+  ],
+  "nguyen_nhan": [
+   "Do người dùng thực hiện bán hàng trong tương lai",
+   "Chọn không đúng kho bán hàng (nếu người dùng có nhiều kho)"
+  ],
+  "xu_ly": [
+   "B1: Truy cập menu HKD - Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa",
+   "B2: Nhập thời gian tìm kiếm từ 1/1/1899 đến ngày 1/1/3000, và chọn 1 vật tư cần kiểm tra",
+   "B3: Nhấn xem báo cáo và kiểm tra từng bản ghi",
+   "B4: Truy cập phiếu chứng từ sai ngày và sửa lại ngày chứng từ đúng",
+   "B5: Thực hiện tính lại giá vốn để cập nhật dữ liệu"
+  ],
+  "xu_ly_ordered": true,
+  "images": [
+   "images/err-sochitiet-vattu.png",
+   "images/err-xuatkho-tuonglai.png"
+  ]
+ },
+ {
+  "tag": "Ràng buộc dữ liệu",
+  "group": "n3",
+  "title": "Không xóa/sửa được chứng từ có ràng buộc",
+  "hien_tuong": [
+   "Không xóa được tồn kho đầu kỳ, lệnh sản xuất hoặc lệnh phân tách đã phát sinh xuất kho"
+  ],
+  "nguyen_nhan": [
+   "Chứng từ đang bị ràng buộc bởi các phát sinh xuất kho phía sau nó"
+  ],
+  "xu_ly": [
+   "Xác định và xử lý/hủy các phát sinh liên quan theo đúng trình tự thời gian trước khi xóa/sửa chứng từ gốc"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Công nợ",
+  "group": "n1",
+  "title": "Báo cáo hiển thị số tiền còn phải thu bị ÂM",
+  "hien_tuong": [
+   "Chứng từ bán hàng đã thanh toán nhưng số tiền còn phải thu hiển thị số ÂM"
+  ],
+  "nguyen_nhan": [
+   "Số tiền đã thu đang lớn hơn số tiền phải thanh toán của chứng từ bán hàng, dẫn đến số tiền còn phải thu hiển thị âm mặc dù trạng thái chứng từ là Đã thanh toán"
+  ],
+  "xu_ly": [
+   "Kiểm tra lại tổng số tiền phải thu của chứng từ bán hàng",
+   "Kiểm tra các phiếu thu đã liên kết với chứng từ",
+   "Xóa hoặc điều chỉnh các phiếu thu không chính xác để đảm bảo tổng số tiền đã thu ≤ tổng số tiền phải thanh toán"
+  ],
+  "xu_ly_ordered": false,
+  "images": [
+   "images/err-phieuthu-lienket.png",
+   "images/err-giatri-hanghoa-banra.png"
+  ]
+ },
+ {
+  "tag": "Giá vốn",
+  "group": "n2",
+  "title": "Tính lại giá vốn báo lỗi \"Unknown column 'Tongtien'\"",
+  "hien_tuong": [
+   "Khi bấm chức năng Tính lại giá vốn cuối kỳ, hệ thống báo lỗi kỹ thuật dạng \"Unknown column 'Tongtien' in field list\""
+  ],
+  "nguyen_nhan": [
+   "Do người dùng thực hiện xoá phiếu xuất/phiếu nhập của lệnh sản xuất hoặc lệnh phân tách"
+  ],
+  "xu_ly": [
+   "B1: Truy cập menu HKD - Danh sách lệnh phân tách hoặc HKD - Danh sách lệnh sản xuất",
+   "B2: Tìm kiếm trong khoảng thời gian: 1/1/1899 - 1/1/3000",
+   "B3: Kiểm tra cột Số phiếu nhập hoặc cột Số phiếu xuất, nếu trống giá trị thì nhấn sửa LSX hoặc LPT tương ứng",
+   "B4: Nhấn lưu để hệ thống sinh lại số phiếu nhập hoặc xuất đã bị xoá",
+   "B5: Thực hiện tính lại giá vốn",
+   "Lưu ý: nếu lưu lại LSX/LPT báo lỗi \"xuất nguyên vật liệu vượt quá tồn kho\", vào Thiết lập kế toán tắt tạm thời \"Cảnh báo khi xuất âm kho\", lặp lại B3-B5 rồi bật lại cảnh báo ngay sau đó"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Phiếu nhập kho",
+  "group": "n2",
+  "title": "Không sửa được số lượng trên phiếu nhập kho cũ",
+  "hien_tuong": [
+   "Sửa số lượng trên một Phiếu nhập kho cũ, hệ thống báo lỗi dạng \"Hàng hoá trong phiếu nhập đã phát sinh xuất kho...\""
+  ],
+  "nguyen_nhan": [
+   "Hàng hóa trên phiếu nhập đó đã được xuất bán ở các chứng từ sau, hệ thống chặn sửa để tránh làm âm tồn kho tại các mốc thời gian đã xuất"
+  ],
+  "xu_ly": [
+   "Vào Thiết lập kế toán, chuyển \"Cảnh báo khi xuất âm kho\" sang \"Không cảnh báo\" rồi Lưu",
+   "Vào Kế toán mua hàng/Kế toán bán hàng, sửa lại phiếu nhập kho theo đúng số lượng thực tế",
+   "Quay lại Thiết lập kế toán, bật lại \"Có cảnh báo\" ngay sau khi hoàn tất, tránh để tắt lâu dài",
+   "Vào Kế toán → Tiện ích → Tính lại giá vốn để cập nhật lại toàn bộ giá trị tồn kho và doanh số",
+   "Nếu hệ thống báo âm tồn kho do xuất trước khi chưa có nhập: kiểm tra Sổ chi tiết vật liệu, dụng cụ, hàng hoá (Sổ sách - Báo cáo) từ 01/01/1900 đến ngày hiện tại để xác định đúng thời điểm bị âm, sau đó nhập bù số lượng đã xuất âm (ngày nhập bù phải trước thời điểm xuất âm) và tính lại giá vốn từ thời điểm đó"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Quy trình",
+  "group": "n2",
+  "title": "Quên tính lại giá vốn sau khi sửa hàng loạt chứng từ cũ",
+  "hien_tuong": [
+   "Sau khi sửa nhiều chứng từ mua/bán của các tháng trước, báo cáo thuế hoặc báo cáo tồn kho ở kỳ hiện tại vẫn không khớp với thực tế"
+  ],
+  "nguyen_nhan": [
+   "Sửa chứng từ ở kỳ quá khứ không tự động cập nhật giá vốn cho các kỳ sau đó; hệ thống cần được yêu cầu tính lại"
+  ],
+  "xu_ly": [
+   "Sau bất kỳ đợt sửa/xóa hàng loạt chứng từ mua/bán/nhập/xuất nào, luôn chạy lại chức năng Tính lại giá vốn trước khi xuất báo cáo thuế hoặc gửi số liệu cho khách"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 2 · Kho, giá vốn",
+  "group": "n2",
+  "title": "Tạo chứng từ bán hàng báo lỗi server",
+  "nguyen_nhan": [
+   "Do kho mặc định đang ngừng sử dụng",
+   "Do không có kho mặc định"
+  ],
+  "xu_ly": [
+   "Vào danh mục kho, kiểm tra kho mặc định hiện tại có đang ở trạng thái Ngừng theo dõi hay không.",
+   "Nếu có, chọn một kho khác đang hoạt động và thiết lập làm kho mặc định",
+   "Nếu chưa thiết lập kho mặc định, thực hiện cấu hình kho mặc định rồi tạo lại chứng từ"
+  ],
+  "xu_ly_ordered": false,
+  "images": [
+   "images/err-khomacdinh-ngungtheodoi.png"
+  ]
+ },
+ {
+  "tag": "Nhóm 2 · Kho, giá vốn",
+  "group": "n2",
+  "title": "Tính giá vốn hàng bán là tự động hay thủ công? Quy tắc tính và các bước thao tác",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Tính giá vốn do người dùng tự tính",
+   "Cách tính: Dựa vào phương pháp tính giá xuất kho mà người dùng thiết lập trong https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan",
+   "Cách thực hiện:",
+   "- Bước 1: Người dùng truy cập menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon",
+   "- Bước 2: Nhập thời gian tính giá vốn cần tính",
+   "- Bước 3: Nhấn tổng hợp lại, hệ thống tự động tính giá vốn",
+   "- Bước 4: Nhấn cập nhật trạng thái để xem trạng thái tính giá vốn đã hoàn thành hay chưa"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Hộ kinh doanh không có hoá đơn đầu vào thì phải làm sao?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Nếu hộ kinh doanh không có hoá đơn đầu vào, cần thực hiện lập như sau:",
+   "1.Lập bảng kê mua hàng không có hoá đơn",
+   "Thao tác trên VNPT HKD:",
+   "- Bước 1: Truy cập menu HKD - Chứng từ mua hàng nhập thông tin hàng hoá và thông tin nhà cung cấp",
+   "- Bước 2: Tại mục Loại hoá đơn, chọn không có hoá đơn",
+   "- Bước 3: Trường hợp nếu có biên bản kèm khi mua hàng (biên bản giao nhận hàng, phiếu chi,...) có thể đính kèm để lưu trữ tại thông tin mở rộng của phiếu nhập",
+   "- Bước 4: Nhấn Lưu để lưu lại thông tin phiếu nhập",
+   "- Bước 5: Hệ thống sẽ tổng hợp Bảng kê mua hàng không có hoá đơn",
+   "2.Ghi chép sổ sách kế toán khi thực hiện bán hàng và xuất hoá đơn bán hàng (theo quy định đối với hộ kinh doanh)"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 3 · Ràng buộc & báo cáo âm",
+  "group": "n3",
+  "title": "Một số chứng từ không thể xoá do ràng buột hoặc lỗi hệ thống.Vui lòng kiểm tra lại",
+  "nguyen_nhan": [
+   "Do chứng từ đã có hàng hóa phát sinh dữ liệu hoặc giao dịch kế toán"
+  ],
+  "xu_ly": [
+   "B1: Truy cập menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan sửa cảnh báo khi xuất âm kho = KHÔNG CẢNH BÁO",
+   "B2: Truy cập menu https://hkd.vnpt.vn/VatTu/ChungTuBanHang thực hiện xóa chứng từ",
+   "B3: Tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon",
+   "B4: Truy cập menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan sửa cảnh báo khi xuất âm kho = CÓ CẢNH BÁO"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 3 · Ràng buộc & báo cáo âm",
+  "group": "n3",
+  "title": "Xoá tồn kho đầu kỳ đã phát sinh xuất kho --> Hiện lỗi: “Hàng hoá trong phiếu nhập đã phát sinh xuất kho. Vui lòng kiểm tra lại”",
+  "nguyen_nhan": [
+   "Khách hàng muốn xoá và sửa chứng từ đã phát sinh."
+  ],
+  "xu_ly": [
+   "B1: Tại menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan. Nhấn nút Thiết lập",
+   "B2: Tại mục Cảnh báo khi xuất âm kho chuyển Có cảnh báo sang Không cảnh báo và nhấn Lưu",
+   "B3: Tại menu HKD - Thông tin số dư đầu kỳ hàng hóa. Tìm đến chứng từ mua cần sửa/xoá chứng từ",
+   "B4: Sau khi xoá chứng từ mua, tại menu HKD - Thiết lập kế toán. Thiết lập lại cảnh báo âm: chuyển không cảnh báo về có cảnh báo và nhấn Lưu",
+   "B5: Tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon để thực hiện tính lại giá vốn",
+   "Lưu ý: Đối với sửa, xóa tồn kho đầu kỳ (số dư đầu kỳ) khách hàng cần tính lại giá vốn từ năm 1900 (do dữ liệu này là tồn kho khi KH bắt đầu sử dụng phần mềm, hệ thống đang mặc định hạch toán vào năm 1900)"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Xoá lệnh sản xuất đã phát sinh xuất kho  --> Hiện lỗi: “Hàng hoá trong phiếu nhập đã phát sinh xuất kho. Vui lòng kiểm tra lại”",
+  "nguyen_nhan": [
+   "Khách hàng muốn xoá và sửa chứng từ đã phát sinh."
+  ],
+  "xu_ly": [
+   "B1: Tại menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan. Nhấn nút Thiết lập",
+   "B2: Tại mục Cảnh báo khi xuất âm kho chuyển Có cảnh báo sang Không cảnh báo và nhấn Lưu",
+   "B3: Tại menu HKD - Danh sách lệnh sản xuất Tìm đến chứng từ cần sửa/xoá chứng từ",
+   "B4: Sau khi xoá chứng từ, tại menu HKD - Thiết lập kế toán. Thiết lập lại cảnh báo âm: chuyển không cảnh báo về có cảnh báo và nhấn Lưu",
+   "B5: Tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon để thực hiện tính lại giá vốn",
+   "** Lưu ý: Đối với sửa, xóa tồn kho đầu kỳ (số dư đầu kỳ) khách hàng cần tính lại giá vốn từ năm 1900 (do dữ liệu này là tồn kho khi KH bắt đầu sử dụng phần mềm, hệ thống đang mặc định hạch toán vào năm 1900)"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 3 · Ràng buộc & báo cáo âm",
+  "group": "n3",
+  "title": "Xoá lệnh phân tách đã phát sinh xuất kho --> Hiện lỗi: “Hàng hoá trong phiếu nhập đã phát sinh xuất kho. Vui lòng kiểm tra lại”",
+  "nguyen_nhan": [
+   "Khách hàng muốn xoá và sửa chứng từ đã phát sinh."
+  ],
+  "xu_ly": [
+   "B1: Tại menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThietLapKeToan. Nhấn nút Thiết lập",
+   "B2: Tại mục Cảnh báo khi xuất âm kho chuyển Có cảnh báo sang Không cảnh báo và nhấn Lưu",
+   "B3: Tại menu HKD - Danh sách lệnh phân tách Tìm đến chứng từ cần sửa/xoá chứng từ",
+   "B4: Sau khi xoá chứng từ, tại menu HKD - Thiết lập kế toán. Thiết lập lại cảnh báo âm: chuyển không cảnh báo về có cảnh báo và nhấn Lưu",
+   "B5: Tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon để thực hiện tính lại giá vốn",
+   "***Lưu ý: Đối với sửa, xóa tồn kho đầu kỳ (số dư đầu kỳ) khách hàng cần tính lại giá vốn từ năm 1900 (do dữ liệu này là tồn kho khi KH bắt đầu sử dụng phần mềm, hệ thống đang mặc định hạch toán vào năm 1900)"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công phiếu thu tiền chuyển khoản nhưng không lên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu HKD - Thu tiền Chuyển khoản",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu nhập ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công phiếu thu tiền mặt nhưng không lên trên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu HKD - Thu tiền mặt",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu nhập ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công phiếu chi tiền mặt nhưng không thấy trên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu HKD - Chi tiền mặt",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu nhập ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công chứng từ mua hàng nhưng không thấy trên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu https://hkd.vnpt.vn/VatTu/ChungTu",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu nhập ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công chứng từ bán hàng nhưng không thấy trên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu https://hkd.vnpt.vn/VatTu/ChungTuBanHang",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu bán ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Lưu thành công phiếu chi tiền chuyển khoản nhưng không thấy trên danh sách",
+  "nguyen_nhan": [
+   "Do ngày chứng từ người dùng nhập sai ở trong quá khứ hoặc tương lai"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu HKD - Chi tiền chuyển khoản",
+   "Bước 2: Tìm kiếm từ ngày 01/01/1899 đến ngày 01/01/3000 và nhấn tìm kiếm",
+   "Bước 3: Người dùng kiểm tra dữ liệu của ngày chứng từ, nếu có phiếu nhập ở trong tương lai hoặc quá khứ thì người dùng thực hiện sửa lại đúng ngày chứng từ",
+   "Bước 4: Thực hiện tính lại giá vốn tại menu https://hkd.vnpt.vn/VatTu/TinhLaiGiaVon"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "NSD làm phiếu chi/phiếu thu tiền từ hoạt động mua/bán với NCC/KH nhưng lên sổ công nợ không được đổi trừ",
+  "nguyen_nhan": [
+   "Do khách hàng nhập sai lý do thu/chi"
+  ],
+  "xu_ly": [
+   "1. Đối với phiếu thu, chọn đúng loại lý do thu là: Thu tiền thanh toán hàng hóa, dịch vụ của KH trả sau",
+   "2. Đối với phiếu chi, chọn đúng loại lý do chi là: Chi thanh toán mua hàng hóa, dịch vụ trả sau"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Lý thuyết / FAQ",
+  "group": "theory",
+  "title": "Phân biệt kế toán bán hàng, kế toán mua hàng, kế toán kho",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Kế toán mua hàng: nhập chứng từ mua hàng, phục vụ cho việc xuất kho bán hàng",
+   "Kế toán bán hàng: nhập chứng từ bán hàng, phục vụ cho việc xuất kho bán hàng",
+   "Kế toán kho: nhập chứng từ kiểm kê hàng hóa, phục vụ cho việc đối soát giữa số lượng hàng hóa thực tế, và số lượng hàng hóa có trên sổ sách"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Báo cáo kế toán bị âm số lượng/âm tiền",
+  "nguyen_nhan": [
+   "Do KH thực hiện xuất âm dẫn đến âm số lượng tồn kho"
+  ],
+  "xu_ly": [
+   "1/ Cách kiểm tra: Kiểm tra Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hoá để xác định thời gian bị âm số lượng tồn kho",
+   "B1: Tại menu https://hkd.vnpt.vn/SoSach/SoChiTietVTHH",
+   "B2: Chọn thông tin vật tư, hàng hoá âm số lượng tồn kho. Thời gian từ ngày 01/01/1900 (đến ngày hiện tại)",
+   "B3: Tại bảng báo cáo, kiểm tra thời gian bị âm số lượng tồn kho",
+   "2/ Hướng xử lý:",
+   "B1: Thông tin đến KH nhập bù số lượng xuất âm (Lưu ý: Ngày nhập bù < Ngày xuất âm)",
+   "B2: Hướng dẫn KH tính lại giá vốn (Lưu ý: Thời gian tính từ thời điểm sai, cập nhật)"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 3 · Ràng buộc & báo cáo âm",
+  "group": "n3",
+  "title": "Báo cáo bị âm số lượng/âm tiền hoặc số lượng bằng 0 nhưng thành tiền vẫn còn\n\nCác báo cáo kế toán báo gồm: S2a-HKD, Sổ báo cáo nhập xuất tồn vật tư\nHiện trạng:\nCác báo cáo có tình trạng âm tiền/âm số lượng\nCác báo cáo có số lượng bằng 0 nhưng thành tiền vẫn còn\nCác báo cáo còn tồn kho, nhưng xuất thì báo âm kho/âm tiền hoặc âm số lượng",
+  "nguyen_nhan": [
+   "- Do khách hàng thực hiện xuất âm dẫn đến âm lượng tồn kho (Kiểm tra kỹ nếu khách hàng có nhiều kho hàng hoá)",
+   "- Do khách hàng thực hiện chỉnh sửa dữ liệu chứng từ kế toán (chứng từ bán hàng, chứng từ mua hàng, tồn kho đầu kỳ)",
+   "- Do hàng hoá sửa đơn vị tính của hàng hoá không khớp với danh mục hàng hoá (ví dụ danh mục hàng hoá nhập đơn vị tính \"Cái\" nhưng khi nhập hàng lại chọn đơn vị tính \"Kg\") => Nguyên nhân này xuất hiện nhiều khi đồng bộ chứng từ từ hệ thống thứ 3 ngoài VNPT HKD"
+  ],
+  "xu_ly": [
+   "B1: Truy cập vào sổ HKD - Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa",
+   "B2: Nhập thời gian tìm kiếm từ 1/1/1899 đến ngày 1/1/3000, và chọn 1 vật tư cần kiểm tra",
+   "B3: Nhấn xem báo cáo và kiểm tra từng bản ghi",
+   "B4: Nhấn chọn vào phiếu nhập có liên quan đến bản ghi bị lệch và xem lịch sử để kiểm tra khách hàng có chỉnh sửa chứng từ không",
+   "B5: Xử lý bằng cách thực hiện tính lại giá vốn",
+   "** Thời gian từ thời điểm ngày chứng từ bị sai (ví dụ ngày chứng từ sửa là ngày 1/4/2022 thì phải tính lại giá vốn từ ngày 1/4/2022)"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 3 · Ràng buộc & báo cáo âm",
+  "group": "n3",
+  "title": "Doanh thu trên báo cáo kế toán không khớp với báo cáo hoá đơn",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Báo cáo kế toán: Sổ sách, báo cáo theo thông tư; Sổ sách báo cáo quản trị (Mẫu S1-HKD, Sổ chi tiết bán hàng, Phiếu xuất tại chứng từ bán hàng)",
+   "Báo cáo hóa đơn: Bảng kê hóa đơn bán hàng, Thống kê chi tiết hóa đơn, Bảng kê hóa đơn bán hàng, Báo cáo doanh thu theo sản phẩm",
+   "Báo cáo kế toán được tổng hợp từ các dữ liệu chứng từ bán hàng của Kế toán",
+   "Báo cáo hóa đơn được tổng hợp từ dữ liệu hóa đơn",
+   "Vì vậy để dữ liệu 2 báo cáo trên có tổng doanh thu bằng nhau thì dữ liệu hóa đơn và chứng từ cần phải khớp nhau:",
+   "+ Mọi hóa đơn KH đều lập chứng từ bán tương ứng",
+   "+ Khi thực hiện hủy hóa đơn KH cần xóa chứng từ, hoặc lập lại một hóa đơn mới có giá trị giống HĐ cũ",
+   "+ Khi thực hiện điều chỉnh thay thế hóa đơn=> KH cần điều chỉnh lại giá trị trên chứng từ bán khớp với hóa đơn điều chỉnh hoặc thay thế",
+   "Lưu ý:",
+   "+ Tổng doanh thu trên tờ khai thuế là doanh thu tổng hợp từ các hóa đơn",
+   "+ Khi so sánh đối chiếu cần ktra tổng tiền trên báo cáo là tổng thanh toán( đã trừ giảm thuế,giảm trừ khác..) hay tổng doanh thu."
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Rút tiền mặt gửi vào ngân hàng",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Vào menu Kế toán tiền mặt/Phiếu chi. Lý do chi chọn: Rút tiền mặt gửi vào ngân hàng",
+   "Bước 2: Kiểm tra chứng từ và nhấn lưu"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 1 · Chứng từ, công nợ",
+  "group": "n1",
+  "title": "Rút tiền ngân hàng về quỹ tiền mặt",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Vào menu https://hkd.vnpt.vn/TienTe/ChungTuCGV. Lý do chi chọn: Rút tiền ngân hàng về quỹ tiền mặt",
+   "Bước 2: Kiểm tra chứng từ và nhấn lưu"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Nhập tồn số lượng hàng hoá, khi xem báo cáo xuất/nhập tồn để kiểm tra thì không khớp với số lượng nhập tồn",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Vào báo cáo nhập xuất tồn, kiểm tra khoảng thời gian báo cáo ( từ ngày đến ngày ) và đồng thời kiểm tra các ngày trước đó KH có xuất kho không",
+   "Bước 2: Kiểm tra lịch sử của phiếu nhập trong bảng dữ liệu.",
+   "Nếu người dùng chỉnh sửa dữ liệu của phiếu nhập (xem từ ngày 1/1/1899 - hiện tại), bắt buộc phải tính lại giá vốn để cập nhật lại dữ liệu đúng (hệ thống cũng đã cảnh báo tính giá vốn nếu người dùng sửa bất kỳ chứng từ kế toán nào)",
+   "Bước 3: Sau khi tính giá vốn, kiểm tra lại dữ liệu"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Lỗi 1đ, 0đ, -1đ tại sổ chi tiết nguyên vật liệu, báo cáo nhập xuất tồn",
+  "nguyen_nhan": [
+   "Do cấu hình thập phân làm tròn"
+  ],
+  "xu_ly": [
+   "Bước 1: Truy cập menu https://hkd.vnpt.vn/ThongTinHoKinhDoanh/ThongTinHoKD/Thiết lập cấu hình số thập phân hóa đơn",
+   "Bước 2: Thiết lập số thập phân thành tiền = 0 và thực hiện tính lại giá vốn (từ 1/1/1899) để hệ thống cập nhật lại dữ liệu"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Báo cáo kế toán số lượng bằng 0 nhưng thành tiền vẫn còn/ không còn thành tiền",
+  "nguyen_nhan": [
+   "Do KH thực hiện xuất và quay lại sửa chứng từ mua"
+  ],
+  "xu_ly": [
+   "Cách kiểm tra: Kiểm tra Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hoá",
+   "B1: Tại menu https://hkd.vnpt.vn/SoSach/SoChiTietVTHH",
+   "B2: Chọn thông tin vật tư, hàng hoá số lượng = 0 nhưng còn thành tiền. Thời gian từ ngày 01/01/1900 (đến ngày hiện tại)",
+   "B3: Chọn phiếu nhập và nhấn vào lịch sử để kiểm tra các thao tác của KH",
+   "Hướng xử lý:",
+   "B1: Hướng dẫn KH tự tính lại giá vốn (Lưu ý: Thời gian tính từ thời điểm sai, cập nhật)",
+   "B2: Trường hợp KH chỉ muốn tính lại giá vốn của một mã hàng thì gửi task lên onebss yêu cầu ghi rõ:",
+   "Thời gian tính giá vốn",
+   "Mã hàng cần tính",
+   "Thông tin confirm của KH: Sau khi tính lại giá vốn dữ liệu kế toán sẽ bị thay đổi, KH cần rà soát kê khai bổ sung nếu có chênh lệch"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Cách nhập tổng chiết khấu trên chứng từ mua hàng",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Truy cập menu https://hkd.vnpt.vn/VatTu/ChungTu",
+   "Bước 2: Nhấn thêm mới",
+   "Bước 3: Người dùng nhập đầy đủ các thông tin của nhà cung cấp và thông tin hàng hóa như bình thường",
+   "Bước 4: Tại ô nhập Chiết khấu - Giá trị, người dùng nhập thông tin tổng chiết khấu của Hóa đơn đầu vào hoặc đơn nhập hàng",
+   "Bước 5: Người dùng tiếp tục nhấn nút Phân bổ chiết khấu, hệ thống sẽ thực hiện phân bổ số tiền chiết khấu cho tất cả hàng hóa trên lưới thông tin chi tiết hàng hóa"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Lỗi chuyển hoá đơn giấy sang hoá đơn điện tử",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Người dùng truy cập chức năng HKD - Chứng từ bán hàng",
+   "Chọn Loại hóa đơn từ hoá đơn giấy sang không có hoá đơn và nhấn Lưu",
+   "Sau đó chọn lại Loại hoá đơn từ không có hoá đơn sang Có hóa đơn điện tử và nhấn Lưu"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Tính giá vốn lỗi \"Column 'ChungTuld' cannot be null\"",
+  "nguyen_nhan": [
+   "Do người dùng thực hiện xoá phiếu xuất/phiếu nhập của lệnh sản xuất hoặc lệnh phân tách"
+  ],
+  "xu_ly": [
+   "B1: Truy cập menu HKD - Danh sách lệnh phân tách hoặc HKD - Danh sách lệnh sản xuất",
+   "B2: Tìm kiếm trong khoảng thời gian: 1/1/1899 - 1/1/3000",
+   "B3: Kiểm tra cột Số phiếu nhập hoặc cột Số phiếu xuất, nếu trống giá trị thực hiện nhấn sửa LSX hoặc LPT tương ứng",
+   "B4: Nhấn lưu để hệ thống sinh lại số phiếu nhập hoặc xuất đã bị xoá",
+   "B5: Thực hiện tính lại giá vốn"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Trả hàng cho nhà cung cấp (Do hỏng, không đáp ứng được chất lượng hàng hoá)",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "VNPT HKD hiện chưa có chức năng trả lại hàng cho nhà cung cấp, khách hàng xử lý như sau:",
+   "1. Trường hợp KH tự nhập thông tin tại menu chứng từ mua hàng HKD - Chứng từ mua hàng:",
+   "B1: Tìm số chứng từ của nhà cung cấp cần trả hàng:",
+   "Nếu trả toàn bộ hàng hoá cho NCC thì thực hiện xoá chứng từ mua hàng",
+   "Nếu trả một phần, sửa số lượng của hàng hoá.",
+   "B2: Sau khi sửa, thực hiện tính lại giá vốn tại menu HKD - Tính lại giá vốn hàng bán.",
+   "Thời gian tính = ngày chứng từ đã sửa (ví dụ sửa chứng từ ngày 1/10/2024 thì phải tính giá vốn ngày 1/10/2024)",
+   "2. Trường hợp KH tạo chứng từ mua hàng từ hoá đơn đầu vào",
+   "B1: Vào menu HKD - Quản lý hóa đơn đầu vào, tìm kiếm hoá đơn tương ứng",
+   "B2: Nhấn xoá chứng từ liên quan tại từng dòng",
+   "B3: Sau khi sửa, thực hiện tính lại giá vốn tại menu HKD - Tính lại giá vốn hàng bán.",
+   "Thời gian tính = ngày chứng từ đã sửa (ví dụ sửa chứng từ ngày 1/10/2024 thì phải tính giá vốn ngày 1/10/2024)",
+   "Lưu ý: Nếu xoá chứng từ báo lỗi xuất âm kho, thực hiện như sau",
+   "B1: Truy cập menu HKD - Thiết lập kế toán",
+   "B2: Tại thông tin Cảnh báo khi xuất âm kho, tích chọn Không cảnh báo",
+   "B3: Nhấn lưu thiết lập",
+   "B4: Thực hiện xoá lại chứng từ",
+   "B5: Quay lại màn hình HKD - Thiết lập kế toán, tích chọn Có cảnh báo khi xuất âm kho và lưu lại thiết lập"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Khi làm điều chỉnh/thay thế hóa đơn thì phiếu xuất/nhập kho có cần điều chỉnh không và chỉnh như thế nào ?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Khi thực hiện điều chỉnh hoặc thay thế hóa đơn, việc điều chỉnh phiếu xuất/nhập kho cần được cập nhật để đảm bảo sự khớp nối giữa dữ liệu hóa đơn và chứng từ kế toán, tránh sai lệch số liệu tồn kho và doanh thu.",
+   "1/ Nếu hóa đơn bị **thay thế hoặc điều chỉnh làm thay đổi số lượng, giá trị hàng hóa**, khách hàng cần: Điều chỉnh lại chứng từ bán hàng** tương ứng (tại phân hệ Kế toán bán hàng) để phản ánh đúng thông tin sau điều chỉnh.",
+   "2/ Nếu việc điều chỉnh ảnh hưởng đến số lượng hàng hóa xuất bán (tăng/giảm), cần **kiểm tra và điều chỉnh phiếu xuất kho** (nếu có) hoặc thực hiện thêm **phiếu nhập kho điều chỉnh** (trường hợp hoàn trả hàng) để đảm bảo số liệu tồn kho chính xác.",
+   "3/ Sau khi điều chỉnh, cần **tính lại giá vốn** để cập nhật đúng giá thành và doanh thu.",
+   "Lưu ý: Việc điều chỉnh cần được thực hiện cẩn trọng, đảm bảo tính nhất quán giữa hóa đơn, chứng từ bán hàng và số liệu kho."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Nhập hàng hóa theo đơn vị tính chuyển đổi thì các bước làm phiếu nhập/xuất như thế nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Để xử lý nghiệp vụ nhập hàng theo đơn vị tính chuyển đổi, hệ thống cần được thiết lập đơn vị tính quy đổi trong danh mục hàng hóa. Khi đó, các bước thực hiện phiếu nhập/xuất sẽ được thực hiện như sau:",
+   "1/ Đối với Phiếu nhập kho",
+   "- Bước 1: Tạo phiếu nhập kho như bình thường.",
+   "- Bước 2: Chọn hàng hóa cần nhập và chọn **đơn vị tính nhập** (ví dụ: thùng).",
+   "- Bước 3: Nhập số lượng theo đơn vị đã chọn.",
+   "- Bước 4: Hệ thống sẽ tự động quy đổi sang đơn vị cơ bản (nếu đã thiết lập trong danh mục hàng hóa), ví dụ: 1 thùng = 24 chai → nhập 1 thùng = 24 chai được cộng dồn vào tồn kho.",
+   "- Bước 5: Nhập các thông tin cần thiết khác (kho, đối tượng, hóa đơn gốc, thuế, chi phí liên quan...) và nhấn **Lưu**.",
+   "2/ Đối với Phiếu xuất kho",
+   "- Bước 1: Tạo phiếu xuất kho.",
+   "- Bước 2: Chọn hàng hóa và chọn **đơn vị tính xuất** (có thể là đơn vị cơ bản hoặc đơn vị chuyển đổi).",
+   "- Bước 3: Nhập số lượng xuất.",
+   "- Bước 4: Hệ thống sẽ tính toán dựa trên tồn kho đã được cập nhật theo đơn vị cơ bản, đảm bảo không xuất vượt mức tồn.",
+   "- Bước 5: Hoàn thiện thông tin và nhấn **Lưu**.\""
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Lý thuyết / FAQ",
+  "group": "theory",
+  "title": "Phân hệ Kho của VNPT HKD có những chức năng chính nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Phân hệ Kho bao gồm 4 module chức năng chính:",
+   "- Kiểm kê kho: Kiểm tra thực tế hàng tồn kho để xác định chính xác số lượng, chất lượng, giá trị và phát hiện chênh lệch so với sổ sách.",
+   "- Nhập kho: Ghi tăng kho cho các trường hợp như xử lý thiếu sau kiểm kê, nhận biếu tặng, khuyến mãi, ngoài các nghiệp vụ mua hàng thông thường.",
+   "- Xuất kho: Ghi giảm kho cho các trường hợp như xử lý thừa sau kiểm kê, giảm do thiên tai, từ thiện, mất, hủy, ngoài việc xuất bán hàng hóa.",
+   "- Chuyển kho: Ghi nhận và quản lý việc chuyển nguyên vật liệu nội bộ giữa các kho.",
+   "Các chức năng này giúp người dùng quản lý chặt chẽ, minh bạch và chính xác hàng tồn kho, đảm bảo sự đồng bộ giữa sổ sách và thực tế.\""
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Quy trình thêm mới một chứng từ kiểm kê được thực hiện như thế nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Tại màn hình danh sách chứng từ kiểm kê, nhấn nút \"+ Thêm\". Màn hình thêm mới chứng từ sẽ hiện ra.",
+   "Bước 2: Nhập các thông tin chung (Trạng thái, Diễn giải, Ngày chứng từ, Số chứng từ, Ngày kiểm kê) và thông tin chi tiết cho từng hàng hóa có chênh lệch (Mã kho, Hàng hóa, Số lượng theo sổ, Số lượng kiểm kê).",
+   "Hệ thống sẽ tự động tính toán Chênh lệch và đề xuất Xử lý (Nhập kho nếu thừa, Xuất kho nếu thiếu).",
+   "Bước 3: Sau khi nhập xong, nhấn nút \"\"Lưu\"\" để hoàn tất."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để sửa một chứng từ kiểm kê đã tạo?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Trên màn hình danh sách, nhấn vào biểu tượng chỉnh sửa (cây bút) ở dòng chứng từ bạn muốn sửa.",
+   "Bước 2: Chỉnh sửa các thông tin cần thiết.",
+   "Bước 3: Nhấn nút \"Lưu\" để cập nhật thay đổi.",
+   "Lưu ý: Nếu chứng từ đã được xử lý chênh lệch (đã tạo phiếu nhập/xuất kho), hệ thống sẽ hiện cảnh báo để bạn xác nhận trước khi sửa."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để xóa một chứng từ kiểm kê?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Trên màn hình danh sách, nhấn vào biểu tượng xóa (thùng rác) ở dòng chứng từ bạn muốn xóa.",
+   "Bước 2: Một hộp thoại xác nhận sẽ hiện ra. Nhấn \"Đồng ý\" để xóa.",
+   "Lưu ý: Nếu chứng từ đã phát sinh phiếu nhập/xuất kho để xử lý chênh lệch, việc xóa chứng từ kiểm kê sẽ không xóa các phiếu nhập/xuất liên quan đó."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để lập phiếu xuất kho tự động từ một chứng từ kiểm kê (để xử lý hàng hóa bị thiếu)?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Mở chứng từ kiểm kê có chênh lệch thiếu (tức là số lượng kiểm kê thực tế nhỏ hơn số lượng ghi sổ kế toán)",
+   "Bước 2: Nhấn vào nút \"Lập phiếu xuất kiểm kê\".",
+   "Bước 3: Hệ thống sẽ tự động tạo một phiếu xuất kho với các thông tin tương ứng. Khách hàng có thể điều chỉnh lại nếu cần rồi nhấn \"Lưu\".",
+   "Thao tác này giúp ghi nhận việc xuất kho để điều chỉnh số lượng hàng hóa tồn kho phù hợp với số liệu kiểm kê thực tế."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để lập phiếu nhập kho tự động từ một chứng từ kiểm kê (để xử lý hàng hóa bị thừa)?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Mở chứng từ kiểm kê có chênh lệch thừa (tức là số lượng kiểm kê lớn hơn số lượng theo sổ sách).",
+   "Bước 2: Nhấn vào nút \"Lập phiếu nhập kiểm kê\".",
+   "Bước 3: Hệ thống sẽ tự động tạo một phiếu nhập kho với các thông tin tương ứng. Khách hàng có thể điều chỉnh lại nếu cần rồi nhấn \"Lưu\"",
+   "Sau khi thực hiện, phiếu nhập kho sẽ được ghi nhận hợp lệ và cập nhật vào số dư hàng tồn kho. Bạn đã xử lý xong phần hàng hóa bị thừa thông qua chứng từ kiểm kê"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Phân hệ Kế toán Khác trong VNPT HKD dùng để làm gì?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Phân hệ Kế toán Khác giúp người dùng lập các chứng từ hạch toán cho những bút toán không thuộc các phân hệ chuyên biệt như Quỹ, Ngân hàng, Mua hàng, Bán hàng. Chức năng chính hiện tại là để ghi nhận nghiệp vụ Thuế môn bài phải nộp"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Quy trình thêm mới một chứng từ khác (ví dụ: ghi nhận thuế môn bài) được thực hiện như thế nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Tại màn hình danh sách, nhấn vào nút \"+\" (Thêm).",
+   "Bước 2: Nhập các thông tin chung (Ngày chứng từ, Số chứng từ) và thông tin chi tiết cho bút toán:",
+   "- Nghiệp vụ: Mặc định là “Ghi nhận thuế môn bài phải nộp”.",
+   "- Số tiền: Nhập số tiền cần ghi nhận.",
+   "- Thuế GTGT(%), Thuế TNCN(%): Nhập tỷ lệ thuế nếu có.",
+   "- Đối tượng: Chọn đối tượng liên quan (khách hàng, nhà cung cấp).",
+   "- Lý do: Mặc định là “Nộp tiền thuế môn bài”.",
+   "Bước 3: Sau khi nhập xong, nhấn nút \"\"Lưu\"\" để hoàn tất."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để xóa nhiều chứng từ cùng một lúc?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Tại màn hình danh sách của loại chứng từ muốn xóa (ví dụ: Chứng từ bán hàng), tích vào các ô checkbox ở đầu mỗi dòng chứng từ cần xóa.",
+   "Bước 2: Nhấn vào nút \"\"Xóa dữ liệu\"\".",
+   "Bước 3: Một hộp thoại xác nhận sẽ hiện ra. Nhấn \"\"Đồng ý\"\" để hoàn tất việc xóa.",
+   "Lưu ý: thao tác này chỉ thực hiện được với các chứng từ chưa phát sinh hoặc chưa bị ràng buộc bởi các chứng từ khác (như đã tạo liên kết, đã đồng bộ...). Nếu chứng từ đã có liên kết, bạn cần xóa liên kết trước mới có thể thực hiện xóa được."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Quy trình phát hành hóa đơn từ một Chứng từ bán hàng đã đồng bộ như thế nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Vào Kế toán → Chứng từ bán hàng.",
+   "Bước 2: Mở chứng từ bán hàng tương ứng với đơn hàng đã đồng bộ.",
+   "Bước 3: Nhấn nút \"\"Phát hành hóa đơn\"\".",
+   "Bước 4: Kiểm tra lại thông tin trên hóa đơn (chọn \"\"Có hóa đơn điện tử\"\", chọn mẫu số, ký hiệu...).",
+   "Bước 5: Nhấn \"\"Lưu\"\" để hoàn tất chứng từ.",
+   "Bước 6: Quay lại menu Quản lý hóa đơn, tìm hóa đơn vừa tạo và nhấn \"\"Phát hành\"\".",
+   "Bước 7 (Đối với hóa đơn máy tính tiền): Vào menu Dữ liệu hóa đơn từ máy tính tiền, chọn hóa đơn và nhấn \"\"Gửi dữ liệu\"\" lên cơ quan thuế."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để tạo chứng từ mua hàng liên kết từ một hóa đơn đầu vào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Bước 1: Tại màn hình \"Quản lý hóa đơn đầu vào\", nhấn vào biểu tượng Sửa (hình cây bút) ở dòng hóa đơn cần chỉnh sửa.",
+   "Bước 2: Một popup sẽ hiện ra. Người dùng cần nhập các thông tin bắt buộc còn thiếu như Mã khách hàng, Hình thức thanh toán, Tính chất, Mã hàng.",
+   "Bước 3: Sau khi điền đầy đủ thông tin, nhấn nút \"Lưu\" để cập nhật.",
+   "Bước 4: Nhấn vào biểu tượng tạo chứng từ (+) ở cuối dòng.",
+   "Bước 5: Một cảnh báo xác nhận sẽ hiện ra. Chọn \"Có\" để hệ thống tự động tạo một chứng từ mua hàng liên kết.",
+   "Bước 6: Trạng thái của hóa đơn sẽ chuyển thành \"Đã tạo chứng từ\"."
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Làm thế nào để xem hoặc xóa chứng từ mua hàng đã được tạo liên kết?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Xem chi tiết: Tại dòng hóa đơn có trạng thái \"\"Đã tạo chứng từ\"\", nhấn vào biểu tượng xem chứng từ (hình trang giấy) để mở chi tiết chứng từ mua hàng.",
+   "Xóa liên kết: Nhấn vào biểu tượng xóa chứng từ liên quan (dấu X). Hệ thống sẽ xóa chứng từ mua hàng đã tạo và chuyển trạng thái về \"\"Chưa tạo chứng từ\"\".",
+   "Sau khi xóa liên kết, nếu cần, bạn có thể tạo lại chứng từ sau khi điều chỉnh thông tin nếu cần thiết."
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Xoá dữ liệu kế toán",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "- Hướng dẫn KH Thực hiện theo mẫu biểu cam kết sau: https://docs.google.com/document/d/1XnZdrkpVtEizlvveqE7y2gW6bb0EhbKN/edit?usp=sharing&ouid=105634492182729157329&rtpof=true&sd=true",
+   "- Tạo phiếu trên hệ thống ONEBSS kèm phiếu cam kết của KH\""
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Hộ kinh doanh chọn phương pháp tính giá xuât kho tại Chức năng Thiết lập kế toán trên hệ thống VNPT HKD năm 2026 thực hiện như thế nào?",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Vào Menu Kế toán/Tiện ích/Thiết lập kế toán. Từ năm 2026, tại mục Phương pháp tính giá xuất kho, Hộ kinh doanh chọn Bình quân gia quyền cả kỳ dự trữ (theo quy định tại Thông tư 152/2025/TT-BTC)",
+   "Sau khi thực hiện xong, người dùng cần thực hiện thêm thao tác Tính lại giá vốn xuất kho cho năm 2026"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Không thể cập nhật chứng từ này vì sẽ khiến hàng hoá trong kho bị âm do đã phát sinh các phiếu xuất liên quan",
+  "nguyen_nhan": [
+   "Do chưa thiết lập kế toán"
+  ],
+  "xu_ly": [
+   "B1: Truy cập menu HKD - Thiết lập kế toán",
+   "B2: Tại thông tin Cảnh báo khi xuất âm kho, tích chọn Không cảnh báo",
+   "B3: Nhấn lưu thiết lập",
+   "B4: Thực hiện nhập lại thông tin",
+   "B5: Quay lại màn hình HKD - Thiết lập kế toán, tích chọn Có cảnh báo khi xuất âm kho và lưu lại thiết lập"
+  ],
+  "xu_ly_ordered": true,
+  "images": []
+ },
+ {
+  "tag": "Kế toán",
+  "group": "other",
+  "title": "Tính lại giá vốn, nhưng giá vốn chưa đúng",
+  "nguyen_nhan": [
+   "Chức năng tính giá vốn trung bình dữ trữ theo kỳ -> Nếu KH chọn kỳ dự trữ theo tháng thì phải lấy giá nhập trung bình trong tháng sẽ ra được giá vốn. KH chọn kỳ dự trữ theo quý thì tương tự lấy giá nhập TB theo quý.",
+   "VD: Tháng 4 nhập kho 2 lần: Lần 1 nhập kho Số lượng = 2, đơn giá 40; Lần 2 nhập kho số lượng 1, đơn giá: 10",
+   "==> Giá vốn được tính bằng: (2*40 + 1*10)/3 =30"
+  ],
+  "xu_ly": [
+   "Chức năng tính giá vốn trung bình dữ trữ theo kỳ -> Nếu KH chọn kỳ dự trữ theo tháng thì phải lấy giá nhập trung bình trong tháng sẽ ra được giá vốn. KH chọn kỳ dự trữ theo quý thì tương tự lấy giá nhập TB theo quý.",
+   "VD: Tháng 4 nhập kho 2 lần: Lần 1 nhập kho Số lượng = 2, đơn giá 40; Lần 2 nhập kho số lượng 1, đơn giá: 10",
+   "==> Giá vốn được tính bằng: (2*40 + 1*10)/3 =30"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Thuế",
+  "group": "thue",
+  "title": "Sửa tờ khai thuế trên VNPT HKD",
+  "nguyen_nhan": [],
+  "xu_ly": [
+   "Mục đích:",
+   "- Tờ khai thuế hiện tại có 2 trạng thái: TK gốc và TK chỉnh sửa",
+   "- Trong mỗi kỳ kê khai, KH có thể tạo 1 TK gốc và nhiều TK chỉnh sửa",
+   "- TK gốc là Tờ khai do hệ thống tự động hợp dữ liệu của KH => Do đó KH không thể chỉnh sửa dữ liệu gì của tờ khai gốc này",
+   "- TK chỉnh sửa là Tờ khai KH có thể thêm mới hoặc sao chép từ tờ khai gốc, và được chỉnh sửa dữ liệu trên tờ khai này",
+   "Ví dụ:",
+   "- Nếu đơn vị tạo tờ khai Quý 2/2025 mà chưa có TK gốc nào nhưng lại muốn chỉnh sửa dữ liệu => Hệ thống sẽ không cho phép chỉnh sửa.",
+   "- Đơn vị cần lưu lại đúng và đủ các thông tin trên TK gốc và chỉnh sửa trên tờ khai chỉnh sửa",
+   "Bước thực hiện:",
+   "- Bước 1: Chọn thêm mới tờ khai",
+   "- Bước 2: Nhập các thông tin trên kỳ tính thuế",
+   "- Bước 3: Nhập các thông tin trên form tờ khai và kiểm tra lại",
+   "Lưu ý: Hệ thống sẽ tự động sinh ra một bản ghi TK chỉnh sửa để KH chỉnh sửa",
+   "- Bước 4:",
+   "+ Nếu đơn vị muốn thực hiện chỉnh sửa tờ khai, đơn vị lựa chọn nút sửa tại tờ khai chỉnh sửa:",
+   "+ Nếu đơn vị không chỉnh sửa, thực hiện export TK gốc hoặc TK chỉnh sửa để nộp thuế"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Thuế",
+  "group": "thue",
+  "title": "Có lỗi xảy ra trong quá trình ký số đối với CTS Token",
+  "nguyen_nhan": [
+   "Do bản plugin không phù hợp với hệ thống Invoice saas"
+  ],
+  "xu_ly": [
+   "Cài lại bản plugin 1.0.4.10 https://smartca.vnpt.vn/download#"
+  ],
+  "xu_ly_ordered": false,
+  "images": []
+ }
+]
+},
+m5:{
+  eyebrow:"Module V",
+  title:"Kỹ năng diễn đạt & kịch bản cuộc gọi",
+  goal:"Giúp ĐTV giao tiếp hiệu quả với khách hàng về nghiệp vụ kế toán",
+  gv:{
+    giang:"Roleplay theo cặp: 1 ĐTV thật – 1 đóng vai khách hàng khó tính, chấm điểm theo đúng 4 bước checklist bên dưới, đặc biệt chú ý bước \"Cô lập nguyên nhân\" có hỏi đúng câu hỏi loại trừ không.",
+    hoi:"Câu \"Thao tác đơn giản thế này sao anh/chị làm mãi không được?\" sai ở điểm nào, cả về nghiệp vụ lẫn thái độ phục vụ?",
+    thuchanh:"Cho học viên viết lại 3 câu \"nên tránh\" thường gặp khi hỗ trợ khách hàng lớn tuổi/ít rành công nghệ, thành phiên bản đồng cảm và dễ hiểu hơn."
+  },
+  isCallScript:true,
+  steps:[
+    {t:"Lắng nghe triệu chứng", d:"Ghi nhận màn hình lỗi hiển thị câu chữ gì hoặc báo cáo đang bị lệch ở dòng nào.", ex:null},
+    {t:"Định vị phân hệ", d:"Xác định lỗi thuộc về Kho, Tiền tệ, Chứng từ Mua/Bán hay do thao tác Báo cáo.", ex:null},
+    {t:"Cô lập nguyên nhân", d:"Hỏi các câu hỏi loại trừ để thu hẹp phạm vi nguyên nhân.", ex:"\"Anh/chị có vừa mới sửa hay xóa phiếu nhập nào trước đó không?\" · \"Anh/chị đã bấm nút Tính lại giá vốn cuối tháng chưa?\""},
+    {t:"Hướng dẫn từng bước (step-by-step)", d:"Đọc rõ tên menu, vị trí nút bấm và hướng dẫn khách hàng thao tác đồng thời trên màn hình máy tính của họ.", ex:null}
+  ],
+  attitude:{
+    title:"Thái độ chuẩn khi hỗ trợ",
+    good:["Lắng nghe kiên nhẫn và đồng cảm với sự bối rối của khách hàng","Chuyển đổi các thuật ngữ chuyên ngành sang ngôn ngữ đời sống dễ hiểu","Đồng hành hướng dẫn từng bước nhỏ cho đến khi khách hàng báo cáo khớp số liệu"],
+    bad:["Tỏ thái độ thiếu kiên nhẫn hoặc dùng câu nói mang tính phán xét, ví dụ: \"Thao tác đơn giản thế này sao anh/chị làm mãi không được?\""]
+  }
+},
+m6:{
+  eyebrow:"Module VI",
+  title:"Kiểm tra & tổng kết",
+  goal:"Bài kiểm tra cuối khoá theo ngân hàng câu hỏi chính thức",
+  gv:{
+    giang:"Dùng bài quiz 10 câu này làm bài kiểm tra nhanh cuối buổi (10–15 phút), kết hợp thêm 2-3 case thực tế để đánh giá thêm kỹ năng \"bắt bệnh\" ngoài trắc nghiệm.",
+    hoi:"Trong 10 câu hỏi, câu nào kiểm tra kiến thức pháp lý thuần túy và câu nào kiểm tra kỹ năng xử lý tình huống? Tỷ lệ này có phù hợp với vai trò ĐTV không?",
+    thuchanh:"Sau khi chấm điểm, yêu cầu học viên giải thích lại bằng lời những câu trả lời sai — nếu giải thích đúng miệng thì coi là đã nắm được, giúp phân biệt lỗi hiểu sai với lỗi bấm nhầm."
+  },
+  isQuiz:true,
+  quiz:[
+    {q:"Thông tư 152/2025/TT-BTC hướng dẫn công tác kế toán cho Hộ kinh doanh bắt đầu có hiệu lực thi hành từ ngày nào?",
+     opts:["01/01/2025","01/07/2025","01/01/2026","01/06/2026"], correct:2},
+    {q:"Đối tượng khách hàng bắt buộc phải áp dụng chế độ kế toán theo Thông tư 152/2025/TT-BTC và sử dụng phần mềm VNPT HKD là ai?",
+     opts:["Tất cả các hộ kinh doanh cá thể trên toàn quốc","Hộ kinh doanh nộp thuế theo phương pháp kê khai","Hộ kinh doanh nộp thuế theo phương pháp khoán","Các doanh nghiệp vừa và nhỏ (SMEs)"], correct:1},
+    {q:"Khi khách hàng HKD hỏi: \"Tôi chỉ bán hàng nhỏ lẻ, tại sao hệ thống lại bắt tôi làm Phiếu nhập kho rồi mới cho làm Phiếu xuất bán?\", ĐTV nên giải thích thế nào cho đúng nguyên lý?",
+     opts:["Đây là lỗi của phần mềm VNPT, anh/chị cứ bỏ qua để xuất bán bình thường.","Phần mềm thiết lập như vậy để thu thêm phí quản lý kho của hộ kinh doanh.","Theo nguyên lý kế toán và quy trình phần mềm, phải có hàng hóa nhập vào kho trước thì mới có hàng để xuất bán ra, tránh việc số lượng tồn kho bị âm và lệch báo cáo","Anh/chị không cần làm phiếu nhập kho, chỉ cần gõ bừa một số lượng bất kỳ khi bán"], correct:2},
+    {q:"Để số liệu giá vốn hàng bán trên các báo cáo cuối kỳ được cập nhật chính xác nhất, khách hàng cần thực hiện thao tác nào cuối mỗi tháng/quý?",
+     opts:["Xóa toàn bộ chứng từ cũ và nhập lại từ đầu","Tắt nguồn máy tính và khởi động lại phần mềm","Truy cập menu Kế toán > Tiện ích > Chọn chức năng \"Tính lại giá vốn\"","Khai báo lại danh mục hàng hóa vật tư"], correct:2},
+    {q:"Khi lập Phiếu thu tiền từ hoạt động bán hàng của khách nợ, lý do thu nào dưới đây bắt buộc phải chọn để hệ thống tự động cấn trừ và cập nhật đúng sổ công nợ phải thu?",
+     opts:["Thu tiền tạm ứng của nhân viên","Thu tiền thanh toán hàng hóa, dịch vụ của KH trả sau","Thu khác bằng tiền mặt","Thu tiền vay, mượn từ cá nhân khác"], correct:1},
+    {q:"Khi khách hàng thực hiện Tính lại giá vốn cuối kỳ và phần mềm báo lỗi: \"Unknown column 'Tongtien' in field list\", nguyên nhân thường do đâu?",
+     opts:["Do trình duyệt web của khách hàng bị lỗi cache","Khách hàng đã xóa phiếu xuất/nhập của lệnh sản xuất hoặc lệnh phân tách, dẫn đến số phiếu bị trống.","Khách hàng chưa nộp tờ khai thuế môn bài.","Khách hàng nhập tiền mặt vượt quá định mức quỹ."], correct:1},
+    {q:"Khách hàng muốn sửa đổi số lượng của một Phiếu nhập kho cũ nhưng phần mềm báo lỗi: \"Hàng hoá trong phiếu nhập đã phát sinh xuất kho...\", ĐTV cần hướng dẫn khách xử lý theo thứ tự nào?",
+     opts:["Xóa hết các phiếu bán hàng sau đó → Sửa phiếu nhập → Lập lại các phiếu bán hàng","Báo khách hàng không thể sửa được nữa, bắt buộc phải tạo mã hàng mới.","Tắt \"Cảnh báo xuất âm kho\" trong Thiết lập → Sửa phiếu nhập → Tính lại giá vốn → Bật lại cảnh báo xuất âm","Gửi yêu cầu lên Admin kỹ thuật VNPT để can thiệp trực tiếp vào database"], correct:2},
+    {q:"Sau khi hướng dẫn khách hàng sửa đổi một loạt chứng từ mua bán cũ từ các tháng trước, ĐTV bắt buộc phải nhắc nhở khách hàng làm gì trước khi xuất báo cáo thuế?",
+     opts:["Thực hiện sao lưu dữ liệu ra file Excel và cài lại phần mềm","Đổi mật khẩu tài khoản VNPT HKD để bảo mật thông tin.","Thực hiện chạy lại chức năng \"Tính lại giá vốn\" để cập nhật chính xác giá trị tồn kho mới nhất","Đăng ký mua thêm gói hóa đơn điện tử mới của VNPT."], correct:2},
+    {q:"Khi gặp tình huống chứng từ bán hàng đã thanh toán đủ tiền nhưng trên Báo cáo công nợ của khách hàng đó lại hiển thị số tiền âm (báo dư nợ có), ĐTV cần hướng dẫn khách kiểm tra điều gì?",
+     opts:["Kiểm tra xem tổng số tiền trên các Phiếu thu liên kết có đang lớn hơn số tiền phải thanh toán trên chứng từ bán hàng hay không (do lập trùng phiếu thu)","Kiểm tra xem khách hàng có đang nợ tiền thuế nhà nước hay không.","Kiểm tra xem khách hàng đã thực hiện xuất hóa đơn điện tử hay chưa","Hướng dẫn khách hàng xóa chứng từ bán hàng đi làm lại từ đầu"], correct:0},
+    {q:"Thái độ phục vụ nào sau đây ĐTV tổng đài 18001260 cần tránh khi hỗ trợ các hộ kinh doanh gặp khó khăn về thao tác kế toán?",
+     opts:["Lắng nghe kiên nhẫn và đồng cảm với sự bối rối của khách hàng.","Chuyển đổi các thuật ngữ chuyên ngành sang ngôn ngữ đời sống dễ hiểu.","Tỏ thái độ thiếu kiên nhẫn hoặc dùng các câu nói mang tính phán xét như \"Thao tác đơn giản thế này sao anh/chị làm mãi không được?\".","Đồng hành hướng dẫn từng bước nhỏ cho đến khi khách hàng báo cáo khớp số liệu."], correct:2}
+  ]
+}
+};
+
+let currentModule = 'm1';
+let SEARCH_INDEX = [];
+
+function normalizeVN(str){
+  return (str||'').toString()
+    .normalize('NFD').replace(/\p{Mn}/gu,'')
+    .replace(/đ/g,'d').replace(/Đ/g,'D')
+    .toLowerCase().trim();
+}
+function stripTags(html){ return (html||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' '); }
+
+function buildIndex(){
+  const idx = [];
+  ['m1','m2','m3'].forEach(mk=>{
+    DATA[mk].blocks.forEach((b,i)=>{
+      idx.push({module:mk, moduleLabel:DATA[mk].title, kind:'block', id:i,
+        snippet:b.h, textN:normalizeVN(b.h+' '+stripTags(b.body))});
+    });
+  });
+  DATA.m4.errors.forEach((e,i)=>{
+    idx.push({module:'m4', moduleLabel:'Module IV — Lỗi thường gặp', kind:'error', id:i,
+      snippet:e.title, textN:normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' '))});
+  });
+  DATA.m5.steps.forEach((s,i)=>{
+    idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'step', id:i,
+      snippet:s.t, textN:normalizeVN(s.t+' '+s.d+' '+(s.ex||''))});
+  });
+  idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'attitude', id:0,
+    snippet:DATA.m5.attitude.title, textN:normalizeVN(DATA.m5.attitude.title+' '+DATA.m5.attitude.good.join(' ')+' '+DATA.m5.attitude.bad.join(' '))});
+  DATA.m6.quiz.forEach((q,i)=>{
+    idx.push({module:'m6', moduleLabel:'Module VI — Kiểm tra', kind:'quiz', id:i,
+      snippet:q.q, textN:normalizeVN(q.q+' '+q.opts.join(' '))});
+  });
+  SEARCH_INDEX = idx;
+}
+
+function setMode(m){
+  document.body.className = 'mode-'+m;
+  document.getElementById('btn-gv').classList.toggle('active', m==='gv');
+  document.getElementById('btn-dtv').classList.toggle('active', m==='dtv');
+}
+
+function gvNoteHTML(gv){
+  return `<div class="gv-note">
+    <div class="gv-head">Dành cho giảng viên</div>
+    <div class="gv-row"><b>Gợi ý giảng dạy</b>${gv.giang}</div>
+    <div class="gv-row"><b>Câu hỏi thảo luận</b>${gv.hoi}</div>
+    <div class="gv-row"><b>Ý tưởng thực hành</b>${gv.thuchanh}</div>
+  </div>`;
+}
+
+function showModule(key, filterTerm){
+  currentModule = key;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.m===key));
+  const d = DATA[key];
+  let html = `<div class="module-head">
+    <div class="module-eyebrow">${d.eyebrow}</div>
+    <h1 class="module-title">${d.title}</h1>
+    <p class="module-goal">${d.goal}</p>
+    ${gvNoteHTML(d.gv)}
+  </div>`;
+
+  if(d.isErrorModule){
+    html += `<div class="err-search"><input type="text" id="err-input" placeholder="Gõ hiện tượng lỗi, ví dụ: 'không tìm thấy chứng từ'…" oninput="renderErrors(this.value)" autocomplete="off"></div>
+             <div class="err-filterbar" id="err-filterbar"></div>
+             <div class="err-count" id="err-count"></div>
+             <div id="err-list"></div>`;
+    document.getElementById('content').innerHTML = html;
+    renderErrFilterBar();
+    renderErrors(filterTerm||'');
+    return;
+  }
+
+  if(d.isCallScript){
+    d.steps.forEach((s,i)=>{
+      html += `<div class="call-step" data-idx="${i}">
+        <div class="step-num">${i+1}</div>
+        <div style="flex:1">
+          <input type="checkbox" id="cs${i}" style="float:left;margin-right:10px;margin-top:2px;">
+          <h4>${s.t}</h4>
+          <p>${s.d}</p>
+          ${s.ex ? `<div class="example">${s.ex}</div>` : ''}
+        </div>
+      </div>`;
+    });
+    html += `<div class="attitude-title">${d.attitude.title}</div>
+      <div class="attitude-grid" data-idx="0">
+        <div class="attitude-col good"><h5>Nên</h5><ul>${d.attitude.good.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="attitude-col bad"><h5>Tránh</h5><ul>${d.attitude.bad.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </div>`;
+    document.getElementById('content').innerHTML = html;
+    return;
+  }
+
+  if(d.isQuiz){
+    d.quiz.forEach((q,i)=>{
+      html += `<div class="quiz-q" data-idx="${i}">
+        <p class="qtext">${i+1}. ${q.q}</p>
+        ${q.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}
+      </div>`;
+    });
+    html += `<button class="btn" onclick="gradeQuiz()">Nộp bài kiểm tra</button>
+             <div class="quiz-result" id="quiz-result"></div>`;
+    document.getElementById('content').innerHTML = html;
+    return;
+  }
+
+  d.blocks.forEach((b,i)=>{
+    html += `<section class="block" data-idx="${i}"><h3>${b.h}</h3>${b.body}</section>`;
+  });
+  document.getElementById('content').innerHTML = html;
+}
+
+const ERR_GROUP_META = [
+  {key:'all', label:'Tất cả'},
+  {key:'n1', label:'Nhóm 1 · Chứng từ, công nợ'},
+  {key:'n2', label:'Nhóm 2 · Kho, giá vốn'},
+  {key:'n3', label:'Nhóm 3 · Ràng buộc & báo cáo âm'},
+  {key:'theory', label:'Lý thuyết / FAQ'},
+  {key:'other', label:'Kế toán khác'},
+  {key:'thue', label:'Thuế'}
+];
+let currentErrGroup = 'all';
+
+function renderErrFilterBar(){
+  const bar = document.getElementById('err-filterbar');
+  if(!bar) return;
+  const counts = {all: DATA.m4.errors.length};
+  DATA.m4.errors.forEach(e=>{ counts[e.group] = (counts[e.group]||0) + 1; });
+  bar.innerHTML = ERR_GROUP_META.filter(g=>g.key==='all' || counts[g.key]).map(g=>`
+    <button class="err-filter-btn${g.key===currentErrGroup?' active':''}" data-g="${g.key}">${escapeHtml(g.label)} (${counts[g.key]||0})</button>
+  `).join('');
+  Array.from(bar.children).forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentErrGroup = btn.dataset.g;
+      renderErrFilterBar();
+      const term = document.getElementById('err-input') ? document.getElementById('err-input').value : '';
+      renderErrors(term);
+    });
+  });
+}
+
+function renderErrors(term){
+  const d = DATA.m4;
+  const t = normalizeVN(term);
+  const filtered = d.errors.filter(e=>{
+    if(currentErrGroup!=='all' && e.group!==currentErrGroup) return false;
+    if(!t) return true;
+    const hay = normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' '));
+    return hay.includes(t);
+  });
+  const list = document.getElementById('err-list');
+  const countEl = document.getElementById('err-count');
+  if(!list) return;
+  if(countEl) countEl.textContent = `${filtered.length}/${d.errors.length} tình huống`;
+  if(filtered.length===0){
+    list.innerHTML = `<div class="no-result">Không tìm thấy tình huống lỗi phù hợp. Thử từ khóa khác.</div>`;
+    return;
+  }
+  list.innerHTML = filtered.map(e=>`
+    <div class="err-card">
+      <span class="tag">${escapeHtml(e.tag)}</span>
+      <h4>${escapeHtml(e.title)}</h4>
+      ${e.hien_tuong && e.hien_tuong.length ? `
+      <div class="lbl">Hiện tượng</div>
+      <ul>${e.hien_tuong.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
+      ${e.nguyen_nhan.length ? `
+      <div class="lbl">Nguyên nhân</div>
+      <ul>${e.nguyen_nhan.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
+      ${e.xu_ly.length ? `
+      <div class="lbl">Hướng xử lý</div>
+      ${e.xu_ly_ordered
+        ? `<ol>${e.xu_ly.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ol>`
+        : `<ul>${e.xu_ly.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`}` : ''}
+      ${e.images && e.images.length ? `
+      <div class="lbl">Ảnh minh hoạ</div>
+      <div class="err-images">${e.images.map(src=>`<img src="${src}" alt="Ảnh minh hoạ thao tác" loading="lazy">`).join('')}</div>` : ''}
+    </div>`).join('');
+}
+
+function gradeQuiz(){
+  const d = DATA.m6.quiz;
+  let score = 0;
+  d.forEach((q,i)=>{
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    if(sel && parseInt(sel.value)===q.correct) score++;
+  });
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  res.textContent = `Kết quả: ${score}/${d.length} câu đúng.`;
+}
+
+/* ===== GLOBAL SIDEBAR SEARCH ===== */
+function onGlobalSearchInput(term){
+  const box = document.getElementById('search-results');
+  const raw = term.trim();
+  if(!raw){ box.classList.remove('show'); box.innerHTML=''; return; }
+  const t = normalizeVN(raw);
+  const matches = SEARCH_INDEX.filter(e=>e.textN.includes(t)).slice(0,8);
+  if(matches.length===0){
+    box.innerHTML = `<div class="search-empty">Không tìm thấy nội dung phù hợp.</div>`;
+    box.classList.add('show');
+    return;
+  }
+  box.innerHTML = matches.map((m,i)=>`
+    <div class="search-result-item" data-i="${i}">
+      <div class="srm">${m.moduleLabel}</div>
+      <div class="srs">${escapeHtml(m.snippet)}</div>
+    </div>`).join('');
+  box.classList.add('show');
+  Array.from(box.children).forEach((el,i)=>{
+    el.addEventListener('click', ()=> navigateToResult(matches[i], raw));
+  });
+}
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function navigateToResult(entry, rawTerm){
+  const box = document.getElementById('search-results');
+  box.classList.remove('show');
+  if(entry.module==='m4'){
+    showModule('m4', rawTerm);
+    return;
+  }
+  showModule(entry.module);
+  requestAnimationFrame(()=>{
+    let sel = null;
+    if(entry.kind==='block') sel = `.block[data-idx="${entry.id}"]`;
+    else if(entry.kind==='step') sel = `.call-step[data-idx="${entry.id}"]`;
+    else if(entry.kind==='attitude') sel = `.attitude-grid[data-idx="${entry.id}"]`;
+    else if(entry.kind==='quiz') sel = `.quiz-q[data-idx="${entry.id}"]`;
+    if(!sel) return;
+    const el = document.querySelector(sel);
+    if(el){
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      el.classList.add('flash');
+      setTimeout(()=>el.classList.remove('flash'), 1600);
+    }
+  });
+}
+document.addEventListener('click', (ev)=>{
+  const box = document.getElementById('search-results');
+  const wrap = document.querySelector('.rail-search');
+  if(wrap && !wrap.contains(ev.target)){ box.classList.remove('show'); }
+});
+
+buildIndex();
+showModule('m1');
+</script>
+</body>
+</html>
