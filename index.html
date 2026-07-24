@@ -173,6 +173,7 @@ section.block{margin-bottom:28px;scroll-margin-top:20px;}
 .card p{margin:0 0 8px;font-size:14px;}
 .card p:last-child{margin-bottom:0;}
 .card strong{color:var(--ink);}
+.diagram-img{max-width:100%;border:1px solid var(--rule-strong);border-radius:8px;display:block;margin:6px 0 10px;box-shadow:0 2px 6px rgba(20,33,27,0.08);}
 
 .attitude-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media (max-width:600px){.attitude-grid{grid-template-columns:1fr;}}
@@ -413,9 +414,10 @@ m3:{
     thuchanh:"Cho học viên thực hành chuỗi thao tác đầy đủ: khai báo danh mục → nhập số dư đầu kỳ → lập phiếu nhập → lập chứng từ bán → chạy Tính lại giá vốn, trên một bộ dữ liệu mẫu."
   },
   blocks:[
-    {h:"Quy trình tổng thể", body:`
-      <div class="card"><p>Thiết lập kế toán → Khai báo danh mục (khách hàng, NCC, nhóm hàng...) → Nhập số dư đầu kỳ → Hạch toán hàng ngày.</p></div>`},
-    {h:"Bảng phân hệ nghiệp vụ", body:`
+    {h:"1. Quy trình nghiệp vụ kế toán trên VNPT HKD", body:`
+      <div class="card"><p>Thiết lập kế toán → Khai báo danh mục (khách hàng, NCC, nhóm hàng...) → Nhập số dư đầu kỳ → Hạch toán hàng ngày.</p>
+      <img class="diagram-img" src="images/quy-trinh-ke-toan-vnpt-hkd.png" alt="Sơ đồ quy trình kế toán trên VNPT HKD" loading="lazy"></div>`},
+    {h:"2. Thao tác các chức năng nghiệp vụ kế toán", body:`
       <div class="reftable-wrap"><table class="reftable">
       <tr><th>Phân hệ</th><th>Quy trình chuẩn</th><th>Lưu ý cốt lõi</th></tr>
       <tr><td>Mua/Bán hàng</td><td>Lập chứng từ mua hàng (có hóa đơn); lập bảng kê mua hàng nếu không có hóa đơn; lập chứng từ bán hàng</td><td>Ngày chứng từ xuất kho bán hàng phải chuẩn xác, không lệch niên độ hoặc trong tương lai</td></tr>
@@ -1338,6 +1340,39 @@ m4:{
   ],
   "xu_ly_ordered": false,
   "images": []
+ },
+ {
+  "tag": "Nhóm 4 · Lệch dữ liệu sổ sách",
+  "group": "n4",
+  "title": "Lệch dữ liệu kế toán trên sổ sách, báo cáo — Chỉnh sửa số liệu",
+  "nguyen_nhan": [
+   "Người dùng chỉnh sửa trực tiếp dữ liệu kế toán sau khi đã hạch toán, làm thay đổi số liệu gốc"
+  ],
+  "xu_ly": [],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 4 · Lệch dữ liệu sổ sách",
+  "group": "n4",
+  "title": "Lệch dữ liệu kế toán trên sổ sách, báo cáo — Hoá đơn thay thế/điều chỉnh",
+  "nguyen_nhan": [
+   "Lập hoá đơn thay thế hoặc điều chỉnh nhưng không cập nhật, điều chỉnh lại dữ liệu trên chứng từ kế toán bán hàng gốc tương ứng"
+  ],
+  "xu_ly": [],
+  "xu_ly_ordered": false,
+  "images": []
+ },
+ {
+  "tag": "Nhóm 4 · Lệch dữ liệu sổ sách",
+  "group": "n4",
+  "title": "Lệch dữ liệu kế toán trên sổ sách, báo cáo — Không đồng nhất đơn vị tính",
+  "nguyen_nhan": [
+   "Người dùng sử dụng VNPT HKD bằng đơn vị tính là A nhưng sử dụng phần mềm khác (Posio, Pharmacy,...) bằng đơn vị tính là B dẫn đến đồng bộ hàng hoá bị sai lệch dữ liệu"
+  ],
+  "xu_ly": [],
+  "xu_ly_ordered": false,
+  "images": []
  }
 ]
 },
@@ -1357,6 +1392,14 @@ m5:{
     {t:"Cô lập nguyên nhân", d:"Hỏi các câu hỏi loại trừ để thu hẹp phạm vi nguyên nhân.", ex:"\"Anh/chị có vừa mới sửa hay xóa phiếu nhập nào trước đó không?\" · \"Anh/chị đã bấm nút Tính lại giá vốn cuối tháng chưa?\""},
     {t:"Hướng dẫn từng bước (step-by-step)", d:"Đọc rõ tên menu, vị trí nút bấm và hướng dẫn khách hàng thao tác đồng thời trên màn hình máy tính của họ.", ex:null}
   ],
+  ticketProcess:{
+    title:"2. Quy trình tạo phiếu trên OneBSS chuyển IT, cần thực hiện",
+    items:[
+      {t:"Thông tin của khách hàng", d:"Cung cấp Mã số thuế (MST) hoặc Căn cước công dân (CCCD) của KH."},
+      {t:"Nội dung hỗ trợ", d:"Yêu cầu khách hàng mô tả chi tiết vấn đề hoặc yêu cầu của người dùng; mô tả thực hiện tiền xử lý."},
+      {t:"Thao tác của khách hàng", d:"Đề nghị khách hàng cung cấp video hoặc hình ảnh các bước đã thực hiện."}
+    ]
+  },
   attitude:{
     title:"Thái độ chuẩn khi hỗ trợ",
     good:["Lắng nghe kiên nhẫn và đồng cảm với sự bối rối của khách hàng","Chuyển đổi các thuật ngữ chuyên ngành sang ngôn ngữ đời sống dễ hiểu","Đồng hành hướng dẫn từng bước nhỏ cho đến khi khách hàng báo cáo khớp số liệu"],
@@ -1425,6 +1468,10 @@ function buildIndex(){
     idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'step', id:i,
       snippet:s.t, textN:normalizeVN(s.t+' '+s.d+' '+(s.ex||''))});
   });
+  DATA.m5.ticketProcess.items.forEach((it,i)=>{
+    idx.push({module:'m5', moduleLabel:'Module V — Phiếu OneBSS chuyển IT', kind:'ticket', id:i,
+      snippet:it.t, textN:normalizeVN(DATA.m5.ticketProcess.title+' '+it.t+' '+it.d)});
+  });
   idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'attitude', id:0,
     snippet:DATA.m5.attitude.title, textN:normalizeVN(DATA.m5.attitude.title+' '+DATA.m5.attitude.good.join(' ')+' '+DATA.m5.attitude.bad.join(' '))});
   DATA.m6.quiz.forEach((q,i)=>{
@@ -1472,6 +1519,7 @@ function showModule(key, filterTerm){
   }
 
   if(d.isCallScript){
+    html += `<div class="attitude-title">1. Quy trình các bước xử lý cuộc gọi hỗ trợ VNPT HKD</div>`;
     d.steps.forEach((s,i)=>{
       html += `<div class="call-step" data-idx="${i}">
         <div class="step-num">${i+1}</div>
@@ -1482,6 +1530,10 @@ function showModule(key, filterTerm){
           ${s.ex ? `<div class="example">${s.ex}</div>` : ''}
         </div>
       </div>`;
+    });
+    html += `<div class="attitude-title">${d.ticketProcess.title}</div>`;
+    d.ticketProcess.items.forEach((it,i)=>{
+      html += `<div class="card" data-idx="${i}"><p><strong>${it.t}:</strong> ${it.d}</p></div>`;
     });
     html += `<div class="attitude-title">${d.attitude.title}</div>
       <div class="attitude-grid" data-idx="0">
@@ -1516,6 +1568,7 @@ const ERR_GROUP_META = [
   {key:'n1', label:'Nhóm 1 · Chứng từ, công nợ'},
   {key:'n2', label:'Nhóm 2 · Kho, giá vốn'},
   {key:'n3', label:'Nhóm 3 · Ràng buộc & báo cáo âm'},
+  {key:'n4', label:'Nhóm 4 · Lệch dữ liệu sổ sách'},
   {key:'theory', label:'Lý thuyết / FAQ'},
   {key:'other', label:'Kế toán khác'},
   {key:'thue', label:'Thuế'}
@@ -1627,6 +1680,7 @@ function navigateToResult(entry, rawTerm){
     let sel = null;
     if(entry.kind==='block') sel = `.block[data-idx="${entry.id}"]`;
     else if(entry.kind==='step') sel = `.call-step[data-idx="${entry.id}"]`;
+    else if(entry.kind==='ticket') sel = `.card[data-idx="${entry.id}"]`;
     else if(entry.kind==='attitude') sel = `.attitude-grid[data-idx="${entry.id}"]`;
     else if(entry.kind==='quiz') sel = `.quiz-q[data-idx="${entry.id}"]`;
     if(!sel) return;
