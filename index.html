@@ -2,342 +2,348 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a5fc4">
 <title>VNPT HKD Academy — Nghiệp vụ Kế toán</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FAFBF9;
-  --paper-2:#F1F5F2;
-  --card:#FFFFFF;
-  --ink:#14211B;
-  --ink-soft:#3E4A42;
-  --ink-faint:#7C897F;
-  --rule:#DCE8DF;
-  --rule-strong:#BBD3C2;
-  --green:#0F7A4E;
-  --green-deep:#0B5C3B;
-  --green-soft:#E3F0E8;
-  --seal:#A3271E;
-  --seal-soft:#F5DEDA;
-  --font-body:'Be Vietnam Pro',sans-serif;
-  --font-mono:'JetBrains Mono',monospace;
-  --radius:8px;
+  --bg:#eef4fc; --surface:#ffffff; --surface2:#e3edf9; --ink:#0d2552; --muted:#51648a; --line:#cfdcef;
+  --blue:#0a5fc4; --blue-ink:#ffffff; --blue-soft:#dbe9fb; --sun:#ffd23f; --sun-ink:#4a3600;
+  --mint:#1f9d62; --mint-soft:#d8f4e5; --amber:#b86a00; --amber-soft:#ffecc7; --coral:#d8412f; --coral-soft:#ffe1dc;
+  --shadow:0 2px 0 rgba(13,37,82,.10); --pop:0 4px 0 rgba(13,37,82,.16);
+  --display:'Baloo 2','Be Vietnam Pro',system-ui,sans-serif;
+  --body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --gut:clamp(14px,3vw,40px); --top:60px;
 }
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--font-body);
-  font-size:15px;
-  line-height:1.6;
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1429; --surface:#121f3a; --surface2:#1a2a4a; --ink:#e9f0fd; --muted:#9db0d3; --line:#26395f;
+    --blue:#5aa7ff; --blue-ink:#06142b; --blue-soft:#16305a; --sun:#ffd23f; --sun-ink:#3a2b00;
+    --mint:#5fd69b; --mint-soft:#10372a; --amber:#ffbd5c; --amber-soft:#3b2a0a; --coral:#ff8a78; --coral-soft:#431a16;
+    --shadow:0 2px 0 rgba(0,0,0,.35); --pop:0 4px 0 rgba(0,0,0,.45); color-scheme:dark;
+  }
 }
-::selection{background:#CDEBD9;}
-button,input{font-family:inherit;}
+:root[data-theme="dark"]{
+  --bg:#0a1429; --surface:#121f3a; --surface2:#1a2a4a; --ink:#e9f0fd; --muted:#9db0d3; --line:#26395f;
+  --blue:#5aa7ff; --blue-ink:#06142b; --blue-soft:#16305a; --sun:#ffd23f; --sun-ink:#3a2b00;
+  --mint:#5fd69b; --mint-soft:#10372a; --amber:#ffbd5c; --amber-soft:#3b2a0a; --coral:#ff8a78; --coral-soft:#431a16;
+  --shadow:0 2px 0 rgba(0,0,0,.35); --pop:0 4px 0 rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + 64px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.65;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:60}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.25;margin:0;text-wrap:balance}
+p{margin:0 0 10px;text-align:justify;text-justify:inter-word;text-wrap:pretty}
+a{color:var(--blue)}
+button,input{font:inherit;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1500px;margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
-/* ===== TOPBAR ===== */
-.topbar{
-  background:var(--ink);
-  color:var(--paper);
-  padding:16px 32px 0;
-}
-.topbar-main{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:14px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,0.14);
-}
-.brand{display:flex;align-items:baseline;gap:10px;}
-.brand .mark{font-weight:800;font-size:21px;letter-spacing:0.2px;}
-.brand .sub{
-  font-size:11px;color:#9FCBB0;letter-spacing:1.4px;
-  text-transform:uppercase;font-family:var(--font-mono);
-}
-.doc-meta{
-  font-family:var(--font-mono);font-size:11px;color:#7E9A8C;
-  padding:7px 0 9px;display:flex;gap:20px;flex-wrap:wrap;
-}
-.doc-meta b{color:#CFE9DA;font-weight:600;}
-.mode-switch{
-  display:flex;background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.16);border-radius:8px;padding:3px;gap:3px;
-}
-.mode-switch button{
-  border:none;background:transparent;color:#B9C7BF;
-  font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:6px;
-  cursor:pointer;transition:all .15s ease;display:flex;align-items:center;gap:7px;
-}
-.mode-switch button .ic{width:7px;height:7px;border-radius:2px;background:currentColor;flex:none;}
-.mode-switch button.active.gv{background:var(--green-deep);color:#EAF5EE;}
-.mode-switch button.active.dtv{background:var(--green);color:#EAF5EE;}
+/* ===== thanh trên ===== */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:2px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;min-height:var(--top);min-width:0}
+.home{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:var(--blue);color:var(--blue-ink);font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:var(--pop);border:0;cursor:pointer}
+.home:active{transform:translateY(3px);box-shadow:none}
+.brand{font-family:var(--display);font-weight:800;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.brand small{font-family:var(--body);font-weight:600;font-size:12px;color:var(--muted);margin-left:8px;letter-spacing:.02em}
+.sp{flex:1}
+.seg{display:flex;background:var(--surface2);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:6px 13px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;color:var(--muted);white-space:nowrap}
+.seg button.on{background:var(--blue);color:var(--blue-ink)}
+.ibtn{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13.5px;white-space:nowrap}
+.ibtn:hover{border-color:var(--blue)}
+.long{display:none}
+@media (min-width:760px){.long{display:inline}}
+@media (max-width:520px){.brand small{display:none}.home span{display:none}.home{padding:8px 11px}.ibtn span{display:none}.ibtn{padding:7px 10px}}
 
-/* ===== SEAL BANNER ===== */
-.seal-banner{
-  background:var(--seal-soft);border-bottom:1px solid #E3B9B2;
-  padding:10px 32px;font-size:13px;color:#6B1D15;font-weight:500;
-  display:flex;align-items:center;gap:12px;
-}
-.stamp{
-  font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:var(--seal);
-  border:1.5px solid var(--seal);border-radius:4px;padding:3px 8px;
-  transform:rotate(-2deg);letter-spacing:1px;flex:none;background:#fff;
-}
+.banner{background:var(--amber-soft);color:var(--amber);border-bottom:2px solid var(--line);font-weight:600;font-size:13.5px}
+.banner .wrap{display:flex;gap:10px;align-items:center;padding-top:8px;padding-bottom:8px}
+.stamp{flex:none;font-family:var(--display);font-weight:800;background:var(--sun);color:var(--sun-ink);padding:1px 10px;border-radius:999px;font-size:13px}
 
-/* ===== LAYOUT ===== */
-.layout{
-  display:grid;grid-template-columns:240px 1fr;
-  max-width:1220px;margin:0 auto;min-height:70vh;
-}
-.rail{padding:26px 0 40px;border-right:1px solid var(--rule);position:relative;}
-.rail-title{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:1.4px;
-  text-transform:uppercase;color:var(--ink-faint);padding:0 22px 10px;
-}
-.tab{
-  display:block;width:100%;text-align:left;background:none;border:none;
-  border-left:3px solid transparent;padding:11px 20px;font-size:14px;font-weight:500;
-  color:var(--ink-soft);cursor:pointer;display:flex;gap:10px;align-items:flex-start;line-height:1.35;
-}
-.tab .num{
-  font-family:var(--font-mono);font-weight:700;color:var(--green);font-size:13px;
-  width:16px;flex:none;
-}
-.tab:hover{background:var(--paper-2);}
-.tab.active{background:var(--card);border-left-color:var(--green);color:var(--ink);font-weight:700;}
+/* ===== tìm kiếm ===== */
+.searchbar{position:relative;margin-top:18px}
+.searchbar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.searchbar input{width:100%;border:2px solid var(--line);background:var(--surface);border-radius:18px;padding:13px 18px 13px 46px;font-size:15px;box-shadow:var(--shadow)}
+.searchbar input:focus{outline:none;border-color:var(--blue)}
+.search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface);border:2px solid var(--line);border-radius:18px;box-shadow:var(--pop);max-height:min(60vh,420px);overflow-y:auto;z-index:45;display:none}
+.search-results.show{display:block}
+.search-result-item{padding:11px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.search-result-item:last-child{border-bottom:0}
+.search-result-item:hover,.search-result-item:focus{background:var(--blue-soft)}
+.srm{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:2px}
+.srs{font-size:14px}
+.search-empty{padding:16px;color:var(--muted)}
 
-.rail-search{position:relative;margin:0 20px 18px;}
-.rail-search input{
-  width:100%;border:1px solid var(--rule-strong);background:var(--card);
-  border-radius:7px;padding:10px 12px;font-size:13px;color:var(--ink);
-}
-.rail-search input:focus{outline:2px solid var(--green);outline-offset:1px;}
-.search-results{
-  position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--card);
-  border:1px solid var(--rule-strong);border-radius:8px;
-  box-shadow:0 10px 24px rgba(20,33,27,0.14);max-height:360px;overflow-y:auto;
-  z-index:30;display:none;
-}
-.search-results.show{display:block;}
-.search-result-item{padding:10px 12px;border-bottom:1px solid var(--rule);cursor:pointer;}
-.search-result-item:last-child{border-bottom:none;}
-.search-result-item:hover{background:var(--green-soft);}
-.search-result-item .srm{
-  font-family:var(--font-mono);font-size:10px;text-transform:uppercase;
-  color:var(--green-deep);letter-spacing:.5px;margin-bottom:3px;font-weight:600;
-}
-.search-result-item .srs{font-size:12.5px;color:var(--ink);}
-.search-result-item mark{background:#CDEBD9;color:var(--ink);padding:0 1px;border-radius:2px;}
-.search-empty{padding:14px;font-size:12.5px;color:var(--ink-faint);font-style:italic;}
-
-.content{padding:32px 40px 60px;}
-
-/* ===== HEADERS ===== */
-.module-head{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--rule);}
-.module-eyebrow{
-  font-family:var(--font-mono);font-size:11.5px;letter-spacing:1px;color:var(--green-deep);
-  text-transform:uppercase;margin-bottom:6px;font-weight:600;
-}
-.module-title{font-size:25px;font-weight:800;margin:0 0 8px;letter-spacing:-0.2px;}
-.module-goal{color:var(--ink-soft);font-size:14px;margin:0;}
-
-.gv-note{
-  display:none;background:var(--green-soft);border:1px solid #BFE0CC;
-  border-left:4px solid var(--green);border-radius:0 8px 8px 0;
-  padding:14px 16px;margin:16px 0;
-}
-body.mode-gv .gv-note{display:block;}
-.gv-note .gv-head{
-  font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;
-  letter-spacing:1px;color:var(--green-deep);font-weight:700;margin-bottom:10px;
-}
-.gv-row{font-size:13px;margin-bottom:9px;color:#1E3226;}
-.gv-row:last-child{margin-bottom:0;}
-.gv-row b{
-  font-family:var(--font-mono);font-size:10px;text-transform:uppercase;
-  letter-spacing:.5px;color:var(--green-deep);display:block;margin-bottom:2px;font-weight:700;
+/* ===== bố cục ===== */
+.layout{display:grid;grid-template-columns:268px minmax(0,1fr);gap:26px;align-items:start;margin-top:18px}
+.rail{position:sticky;top:calc(var(--top) + 16px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:6px}
+.rail-title{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:0 10px 4px}
+.tab{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:2px solid transparent;background:transparent;padding:9px 12px;border-radius:16px;cursor:pointer;font-weight:600;color:var(--ink);line-height:1.3}
+.tab:hover{background:var(--blue-soft)}
+.tab.active{background:var(--surface);border-color:var(--blue);box-shadow:var(--pop)}
+.tab .num{flex:none;min-width:30px;height:30px;padding:0 7px;border-radius:999px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-family:var(--display);font-weight:800;font-size:13px}
+.tab.active .num{background:var(--blue);color:var(--blue-ink)}
+.tab .tk{margin-left:auto;color:var(--mint);display:none}
+.tab.done .tk{display:block}
+.content{min-width:0;padding-bottom:30px}
+@media (max-width:900px){
+  .layout{display:block;margin-top:12px}
+  .rail{position:sticky;top:calc(var(--top) + env(safe-area-inset-top,0px));z-index:40;flex-direction:row;gap:6px;overflow-x:auto;background:var(--bg);margin:0 calc(var(--gut) * -1);padding:8px var(--gut);scrollbar-width:none;border-bottom:2px solid var(--line)}
+  .rail::-webkit-scrollbar{display:none}
+  .rail-title{display:none}
+  .tab{width:auto;flex:none;padding:7px 13px 7px 8px;background:var(--surface);border-color:var(--line);border-radius:999px;font-size:13.5px}
+  .tab .num{min-width:24px;height:24px;padding:0 6px;font-size:12px}
+  .tab .tk{display:none!important}
+  .content{padding-top:14px}
 }
 
-section.block{margin-bottom:28px;scroll-margin-top:20px;}
-.block h3{font-size:16.5px;margin:0 0 12px;display:flex;align-items:center;gap:8px;font-weight:700;}
-.block h3::before{content:'';width:8px;height:8px;background:var(--green);border-radius:2px;flex:none;}
-.card{
-  background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--green);
-  border-radius:6px;padding:14px 16px;margin-bottom:10px;
-}
-.card p{margin:0 0 8px;font-size:14px;}
-.card p:last-child{margin-bottom:0;}
-.card strong{color:var(--ink);}
-.diagram-img{max-width:100%;border:1px solid var(--rule-strong);border-radius:8px;display:block;margin:6px 0 10px;box-shadow:0 2px 6px rgba(20,33,27,0.08);}
+/* ===== đầu trang module ===== */
+.module-head{background:var(--surface);border:2px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:22px clamp(16px,2.4vw,30px);margin-bottom:20px;position:relative;overflow:hidden}
+.module-head::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:var(--blue-soft);opacity:.7;pointer-events:none}
+.module-eyebrow{display:inline-block;position:relative;z-index:1;background:var(--sun);color:var(--sun-ink);font-weight:800;font-size:12.5px;padding:3px 12px;border-radius:999px;margin-bottom:8px}
+.module-title{font-size:clamp(23px,3.2vw,32px);font-weight:800;position:relative;z-index:1}
+.module-goal{margin:8px 0 0;color:var(--muted);position:relative;z-index:1}
+.gv-note{display:none;background:var(--mint-soft);border:2px solid var(--mint);border-radius:18px;padding:14px 16px;margin-top:16px;position:relative;z-index:1}
+body.mode-gv .gv-note{display:block}
+.gv-head{font-family:var(--display);font-weight:800;color:var(--mint);margin-bottom:8px}
+.gv-row{font-size:14px;margin-bottom:8px;text-align:justify}
+.gv-row:last-child{margin-bottom:0}
+.gv-row b{display:block;font-size:12.5px;color:var(--mint);margin-bottom:1px}
 
-.attitude-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-@media (max-width:600px){.attitude-grid{grid-template-columns:1fr;}}
-.attitude-col{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;}
-.attitude-col.good{border-left:4px solid var(--green);}
-.attitude-col.bad{border-left:4px solid var(--seal);}
-.attitude-col h5{
-  margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;
-  font-family:var(--font-mono);font-weight:700;
+section.block{margin-bottom:26px}
+.block h3{font-size:20px;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.block h3::before{content:"";width:12px;height:12px;background:var(--blue);border-radius:4px;flex:none;transform:rotate(45deg)}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:14px 18px;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.diagram-img{display:block;margin:10px auto 4px;border:2px solid var(--line);border-radius:16px;background:#fff}
+.reftable-wrap{overflow-x:auto;margin-bottom:14px;border:2px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
+table.reftable{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+table.reftable th{background:var(--blue-soft);color:var(--blue);text-align:left;padding:11px 14px;font-weight:700;border-bottom:2px solid var(--line)}
+table.reftable td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:justify;text-justify:inter-word}
+table.reftable tr:last-child td{border-bottom:0}
+table.reftable tr:nth-child(even) td{background:color-mix(in srgb,var(--surface2) 45%,transparent)}
+table.reftable td:first-child{font-weight:600}
+table.reftable.cmp th:nth-child(2){background:var(--coral-soft);color:var(--coral)}
+table.reftable.cmp th:nth-child(3){background:var(--mint-soft);color:var(--mint)}
+@media (max-width:640px){
+  table.reftable.stack{min-width:0}
+  table.reftable.stack thead{display:none}
+  table.reftable.stack tr{display:block;border-bottom:2px solid var(--line);padding:6px 0}
+  table.reftable.stack tr:last-child{border-bottom:0}
+  table.reftable.stack td{display:block;border:0;padding:4px 14px;background:transparent!important}
+  table.reftable.stack td[data-l]::before{content:attr(data-l);display:block;font-size:12px;font-weight:700;color:var(--blue)}
+  table.reftable.stack td:first-child{font-family:var(--display);font-size:16px;font-weight:800;color:var(--ink)}
 }
-.attitude-col.good h5{color:var(--green-deep);}
-.attitude-col.bad h5{color:var(--seal);}
-.attitude-col ul{margin:0;padding-left:18px;font-size:13.5px;}
-.attitude-col li{margin-bottom:6px;}
 
-.reftable-wrap{overflow-x:auto;margin-bottom:14px;border-left:3px double var(--green);border-radius:0 var(--radius) var(--radius) 0;}
-table.reftable{width:100%;border-collapse:collapse;background:var(--card);font-size:13.5px;}
-table.reftable th{
-  background:var(--green-soft);text-align:left;padding:10px 14px;
-  font-family:var(--font-mono);font-weight:700;font-size:10.5px;text-transform:uppercase;
-  letter-spacing:.4px;color:var(--green-deep);border-bottom:2px solid var(--rule-strong);
-}
-table.reftable td{padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top;}
-table.reftable tr:nth-child(even) td{background:#FAFCFA;}
-table.reftable tr:last-child td{border-bottom:none;}
-table.reftable td.num{font-family:var(--font-mono);text-align:right;}
+ul.lst{list-style:none;margin:6px 0 10px;padding:0}
+ul.lst li{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+.txt{flex:1;min-width:0;text-align:justify;text-justify:inter-word;text-wrap:pretty}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-top:.7em}
+.dot.g{background:var(--mint)} .dot.r{background:var(--coral)}
+.pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12.5px;font-weight:700;background:var(--blue-soft);color:var(--blue);white-space:nowrap}
+.pill.g{background:var(--mint-soft);color:var(--mint)} .pill.a{background:var(--amber-soft);color:var(--amber)} .pill.r{background:var(--coral-soft);color:var(--coral)} .pill.s{background:var(--sun);color:var(--sun-ink)}
 
-/* ===== ERROR LOOKUP (Module 4) ===== */
-.err-search{display:flex;gap:10px;margin-bottom:18px;}
-.err-search input{
-  flex:1;border:1px solid var(--rule-strong);background:var(--card);border-radius:7px;
-  padding:12px 16px;font-size:14px;
-}
-.err-search input:focus{outline:2px solid var(--green);outline-offset:1px;}
-.err-count{font-size:12.5px;color:var(--ink-faint);margin:-8px 0 14px;font-family:var(--font-mono);}
-.err-card{
-  background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--seal);
-  border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-bottom:14px;
-  scroll-margin-top:20px;
-}
-.err-card .tag{
-  display:inline-block;font-family:var(--font-mono);font-size:10.5px;font-weight:700;
-  letter-spacing:.5px;border:1.5px solid var(--seal);color:var(--seal);padding:2px 8px;
-  border-radius:3px;margin-bottom:9px;text-transform:uppercase;background:#fff;
-}
-.err-card h4{margin:0 0 8px;font-size:15.5px;font-weight:700;}
-.err-card .lbl{
-  font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);
-  font-family:var(--font-mono);margin:10px 0 4px;font-weight:600;
-}
-.err-card ul{margin:0;padding-left:18px;font-size:14px;}
-.err-card li{margin-bottom:4px;}
-.no-result{text-align:center;color:var(--ink-faint);padding:30px;font-style:italic;}
-.err-filterbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
-.err-filter-btn{
-  font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.3px;
-  border:1px solid var(--rule-strong);background:var(--card);color:var(--ink-soft);
-  padding:6px 12px;border-radius:16px;cursor:pointer;transition:all .15s ease;
-}
-.err-filter-btn:hover{background:var(--paper-2);}
-.err-filter-btn.active{background:var(--green-deep);border-color:var(--green-deep);color:#EAF5EE;}
-.err-card ol{margin:0;padding-left:20px;font-size:14px;}
-.err-card ol li{margin-bottom:5px;}
-.err-images{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
-.err-images img{
-  max-width:280px;width:100%;border:1px solid var(--rule-strong);border-radius:6px;
-  display:block;box-shadow:0 2px 6px rgba(20,33,27,0.08);
-}
-@media (max-width:600px){.err-images img{max-width:100%;}}
+/* nút, chip */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:16px;border:0;background:var(--blue);color:var(--blue-ink);font-weight:700;cursor:pointer;text-decoration:none;box-shadow:var(--pop)}
+.btn:active{transform:translateY(3px);box-shadow:none}
+.btn.sun{background:var(--sun);color:var(--sun-ink)}
+.btn.ghost{background:var(--surface);color:var(--blue);border:2px solid var(--blue);box-shadow:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:2px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 14px;border-radius:999px;font-weight:600;font-size:13.5px;cursor:pointer}
+.chip:hover{border-color:var(--blue)}
+.chip.active{background:var(--blue);border-color:var(--blue);color:var(--blue-ink)}
+.finput{width:100%;border:2px solid var(--line);background:var(--surface);border-radius:16px;padding:11px 16px;font-size:15px;margin-bottom:12px}
+.finput:focus{outline:none;border-color:var(--blue)}
+.cnt{font-size:13px;color:var(--muted);margin:0 0 10px;font-weight:600}
+.nores{text-align:center;color:var(--muted);padding:28px}
 
-/* ===== CALL SCRIPT (Module 5) ===== */
-.call-step{
-  display:flex;gap:16px;background:var(--card);border:1px solid var(--rule);
-  border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;align-items:flex-start;
-  scroll-margin-top:20px;
-}
-.call-step input[type=checkbox]{margin-top:3px;width:17px;height:17px;accent-color:var(--green);flex:none;}
-.call-step .step-num{
-  font-family:var(--font-mono);font-weight:700;color:var(--green);font-size:19px;flex:none;width:22px;
-}
-.call-step h4{margin:0 0 5px;font-size:15px;font-weight:700;}
-.call-step p{margin:0;font-size:13.5px;color:var(--ink-soft);}
-.call-step .example{
-  margin-top:8px;background:var(--green-soft);color:var(--green-deep);
-  padding:8px 12px;border-radius:6px;font-size:13px;font-family:var(--font-mono);
-}
-.attitude-title{font-size:16.5px;font-weight:700;margin:26px 0 12px;display:flex;align-items:center;gap:8px;}
-.attitude-title::before{content:'';width:8px;height:8px;background:var(--green);border-radius:2px;flex:none;}
+/* ===== lỗi thường gặp ===== */
+.err-card{background:var(--surface);border:2px solid var(--line);border-left:8px solid var(--coral);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+.err-card .tag{display:inline-block;font-size:12.5px;font-weight:700;background:var(--coral-soft);color:var(--coral);padding:2px 11px;border-radius:999px;margin-bottom:8px}
+.err-card h4{font-size:18px;margin:0 0 6px}
+.lbl{font-size:12.5px;font-weight:700;color:var(--blue);margin:12px 0 2px;letter-spacing:.04em;text-transform:uppercase}
+.err-images{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.err-images img{max-width:300px;width:100%;border:2px solid var(--line);border-radius:14px;display:block;cursor:zoom-in;background:#fff}
+ol.lst{margin:6px 0 10px;padding-left:0;list-style:none;counter-reset:n}
+ol.lst li{display:flex;gap:10px;align-items:flex-start;margin:7px 0;counter-increment:n}
+ol.lst li::before{content:counter(n);flex:none;width:24px;height:24px;border-radius:50%;background:var(--blue);color:var(--blue-ink);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
 
-/* ===== QUIZ (Module 6) ===== */
-.quiz-q{
-  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);
-  padding:16px 18px;margin-bottom:14px;scroll-margin-top:20px;
-}
-.quiz-q p.qtext{font-weight:700;margin:0 0 10px;font-size:14.5px;}
-.quiz-q label{
-  display:block;padding:8px 12px;border:1px solid var(--rule);border-radius:7px;
-  margin-bottom:7px;font-size:13.5px;cursor:pointer;
-}
-.quiz-q label:hover{background:var(--paper-2);}
-.quiz-q input{margin-right:8px;}
-.quiz-result{
-  display:none;background:var(--green-soft);color:var(--green-deep);padding:14px 18px;
-  border-radius:var(--radius);font-weight:700;margin-top:8px;
-}
-.btn{
-  background:var(--ink);color:var(--paper);border:none;padding:11px 22px;border-radius:7px;
-  font-weight:700;font-size:13.5px;cursor:pointer;
-}
-.btn:hover{background:#0A140F;}
+/* ===== kịch bản cuộc gọi ===== */
+.call-step{display:flex;gap:14px;background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:12px;align-items:flex-start}
+.call-step .step-num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--sun);color:var(--sun-ink);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:19px}
+.call-step h4{font-size:17px;margin:0 0 4px}
+.call-step p{margin:0;color:var(--muted)}
+.call-step input[type=checkbox]{display:none}
+.call-step .example{margin-top:8px;background:var(--blue-soft);color:var(--ink);padding:9px 14px;border-radius:14px;font-size:14px}
+.attitude-title{font-family:var(--display);font-size:20px;font-weight:700;margin:26px 0 12px;display:flex;align-items:center;gap:10px}
+.attitude-title::before{content:"";width:12px;height:12px;background:var(--blue);border-radius:4px;flex:none;transform:rotate(45deg)}
+.attitude-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.attitude-grid{grid-template-columns:1fr}}
+.attitude-col{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:14px 18px;box-shadow:var(--shadow)}
+.attitude-col.good{border-color:var(--mint);background:var(--mint-soft)}
+.attitude-col.bad{border-color:var(--coral);background:var(--coral-soft)}
+.attitude-col h5{margin:0 0 6px;font-family:var(--display);font-size:17px}
+.attitude-col.good h5{color:var(--mint)} .attitude-col.bad h5{color:var(--coral)}
 
-.flash{animation:flashbg 1.6s ease;}
-@keyframes flashbg{0%{background:#CDEBD9;}100%{background:inherit;}}
+/* ===== kiểm tra ===== */
+.quiz-q{background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+.quiz-q .qtext{font-weight:700;margin:0 0 10px}
+.quiz-q label{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:2px solid var(--line);border-radius:14px;margin-bottom:8px;cursor:pointer}
+.quiz-q label:hover{border-color:var(--blue)}
+.quiz-q label:has(input:checked){border-color:var(--blue);background:var(--blue-soft)}
+.quiz-q input{margin-top:.35em;accent-color:var(--blue)}
+.quiz-q.graded label{cursor:default}
+.quiz-q label.correct{border-color:var(--mint);background:var(--mint-soft)}
+.quiz-q label.wrong{border-color:var(--coral);background:var(--coral-soft)}
+.quiz-result{display:none;background:var(--sun);color:var(--sun-ink);padding:16px 20px;border-radius:20px;font-weight:700;margin-top:10px;font-size:17px;box-shadow:var(--pop)}
+.qbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
-@media (max-width:820px){
-  .layout{grid-template-columns:1fr;}
-  .rail{border-right:none;border-bottom:1px solid var(--rule);padding:18px 0;}
-  .content{padding:24px 20px 50px;}
-  .topbar{padding:14px 18px 0;}
-  .seal-banner{padding:10px 18px;}
-}
+/* ===== giải đáp (accordion) ===== */
+details.acc{background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+details.acc[open]{border-color:var(--blue)}
+details.acc>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:13px 16px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"";flex:none;width:10px;height:10px;border-right:3px solid var(--muted);border-bottom:3px solid var(--muted);transform:rotate(45deg);margin:8px 4px 0 auto;transition:transform .15s}
+details.acc[open]>summary::after{transform:rotate(-135deg);margin-top:12px}
+.qn{flex:none;min-width:34px;height:34px;padding:0 8px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-family:var(--display);font-weight:800}
+.qh{min-width:0;flex:1}
+.qh .pill{margin-bottom:4px}
+.qh .qq{font-weight:700;display:block;text-align:left}
+.accb{padding:2px 18px 16px 62px}
+.say{display:inline-block;background:var(--mint-soft);color:var(--mint);font-weight:700;font-size:12.5px;padding:2px 11px;border-radius:999px;margin:4px 0 8px}
+.hl{background:var(--sun);color:var(--sun-ink);font-weight:600;border-radius:14px;padding:9px 14px;margin:8px 0;text-align:left}
+@media (max-width:640px){.accb{padding:2px 14px 14px 14px}}
+.prac{background:linear-gradient(135deg,var(--blue),#2c86e8);color:#fff;border-radius:24px;padding:18px clamp(16px,2.4vw,28px);margin-bottom:18px;box-shadow:var(--pop)}
+.prac h3{font-size:20px;color:#fff}
+.prac .pq{background:rgba(255,255,255,.16);border-radius:16px;padding:12px 16px;margin:12px 0;font-weight:600;min-height:24px}
+.prac .pa{background:var(--surface);color:var(--ink);border-radius:16px;padding:12px 16px;margin:0 0 12px;display:none}
+.prac .pa.show{display:block}
+.prac .btn{background:var(--sun);color:var(--sun-ink)}
+.prac .btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.linkcard{display:flex;gap:12px;align-items:center;background:var(--surface);border:2px dashed var(--blue);border-radius:20px;padding:14px 18px;text-decoration:none;color:var(--ink);margin-top:16px}
+.linkcard b{display:block;color:var(--blue)}
+.linkcard svg{color:var(--blue)}
+
+/* ===== sổ sách ===== */
+.picker{background:var(--surface);border:2px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:18px clamp(14px,2.4vw,26px);margin-bottom:18px}
+.picker h3{font-size:20px;margin-bottom:4px}
+.picker>p{color:var(--muted)}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+@media (max-width:760px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:18px;padding:12px 14px;cursor:pointer;font-weight:600}
+.opt .txt{text-align:left}
+.opt:hover{border-color:var(--blue)}
+.opt.on{border-color:var(--blue);background:var(--blue-soft)}
+.opt .oi{flex:none;width:34px;height:34px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-family:var(--display);font-weight:800}
+.opt.on .oi{background:var(--blue);color:var(--blue-ink)}
+.pres{display:none;background:var(--mint-soft);border:2px solid var(--mint);border-radius:18px;padding:12px 16px;margin-top:8px}
+.pres.show{display:block}
+.pres b{color:var(--mint)}
+.pres .pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.so{transition:opacity .15s}
+.so.dim{opacity:.45}
+.so.hit{border-color:var(--mint)}
+.so>summary .qn{min-width:auto;padding:0 12px;border-radius:999px}
+.sname{font-weight:700;display:block}
+.colt{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 10px;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.colt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:justify}
+.colt tr:last-child td{border-bottom:0}
+.colt td:first-child{width:92px;font-weight:700;color:var(--blue);background:var(--blue-soft);text-align:left;white-space:nowrap}
+.formula{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--amber-soft);border-radius:16px;padding:12px 16px;margin:6px 0 12px;font-weight:600}
+.frac{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
+.frac span:first-child{border-bottom:2px solid currentColor;padding:0 8px 3px}
+.frac span:last-child{padding:3px 8px 0}
+.basis{font-size:13px;color:var(--muted);margin:8px 0}
+.thumb{display:block;margin:8px 0 4px;border:2px solid var(--line);border-radius:14px;background:#fff;max-width:min(100%,420px);cursor:zoom-in}
+.hint{font-size:13px;color:var(--muted);margin:0 0 8px}
+.lb{position:fixed;inset:0;background:rgba(5,12,28,.88);z-index:80;display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+.lb.show{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:12px;background:#fff}
+
+/* ===== trang chủ ===== */
+.hero{background:linear-gradient(135deg,#0a5fc4 0%,#2c86e8 60%,#59a9f5 100%);color:#fff;border-radius:30px;padding:clamp(20px,4vw,40px);box-shadow:var(--pop);position:relative;overflow:hidden;margin-bottom:22px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12);pointer-events:none}
+.hero::before{width:260px;height:260px;right:-60px;top:-80px}
+.hero::after{width:140px;height:140px;right:120px;bottom:-60px}
+.hero .hi{display:inline-block;background:var(--sun);color:var(--sun-ink);font-weight:800;font-size:13px;padding:3px 13px;border-radius:999px;margin-bottom:10px}
+.hero h1{font-size:clamp(28px,5vw,46px);font-weight:800;color:#fff;max-width:900px;position:relative}
+.hero p{color:#e8f2ff;max-width:820px;margin:10px 0 0;font-size:16.5px;position:relative}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;position:relative}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:#fff}
+.hero .btn.sun:hover{filter:brightness(1.05)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:22px}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:12px 14px;display:flex;gap:12px;align-items:center}
+.stat b{font-family:var(--display);font-size:30px;line-height:1;color:var(--blue)}
+.stat span{font-size:13px;font-weight:600;color:var(--muted);line-height:1.3}
+.sec-t{font-family:var(--display);font-size:22px;font-weight:800;margin:6px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.prog{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--muted);font-family:var(--body)}
+.pbar{width:120px;height:10px;border-radius:999px;background:var(--surface2);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--mint);border-radius:999px;transition:width .3s}
+.quick{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.quick a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--surface);border:2px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;box-shadow:var(--shadow)}
+.quick a:hover{border-color:var(--blue);color:var(--blue)}
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.mcard{display:flex;flex-direction:column;gap:8px;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px 18px;cursor:pointer;position:relative}
+.mcard:hover{border-color:var(--blue);transform:translateY(-2px)}
+.mcard:active{transform:translateY(2px)}
+.mcard .mi{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue)}
+.mcard .mi svg{width:26px;height:26px}
+.mcard.c-m .mi{background:var(--mint-soft);color:var(--mint)}
+.mcard.c-a .mi{background:var(--amber-soft);color:var(--amber)}
+.mcard.c-r .mi{background:var(--coral-soft);color:var(--coral)}
+.mcard .me{font-size:12.5px;font-weight:700;color:var(--muted)}
+.mcard h3{font-size:19px}
+.mcard p{margin:0;color:var(--muted);font-size:14px}
+.mcard .ok{position:absolute;right:14px;top:14px;color:var(--mint);display:none}
+.mcard.done .ok{display:block}
+
+/* ===== khác ===== */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;border:0;background:var(--sun);color:var(--sun-ink);cursor:pointer;box-shadow:var(--pop);opacity:0;pointer-events:none;transition:opacity .2s;z-index:55;display:grid;place-items:center}
+.fab.show{opacity:1;pointer-events:auto}
+.flash{animation:flashbg 1.8s ease}
+@keyframes flashbg{0%,40%{box-shadow:0 0 0 6px var(--sun)}100%{box-shadow:var(--shadow)}}
+.foot{text-align:center;color:var(--muted);font-size:13px;padding:18px 0 28px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body class="mode-dtv">
 
-<div class="topbar">
-  <div class="topbar-main">
-    <div class="brand">
-      <span class="mark">VNPT HKD Academy</span>
-      <span class="sub">Nghiệp vụ kế toán</span>
+<header class="top">
+  <div class="wrap">
+    <button class="home" type="button" onclick="go('home')" aria-label="Trang chủ"><svg class="i" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg><span>Trang chủ</span></button>
+    <div class="brand">VNPT HKD Academy<small>Nghiệp vụ kế toán</small></div>
+    <div class="sp"></div>
+    <div class="seg" role="group" aria-label="Chế độ xem">
+      <button type="button" class="dtv on" id="btn-dtv" onclick="setMode('dtv')">ĐTV<span class="long"> · Tra cứu</span></button>
+      <button type="button" class="gv" id="btn-gv" onclick="setMode('gv')">GV<span class="long"> · Giảng dạy</span></button>
     </div>
-    <div class="mode-switch">
-      <button class="gv" id="btn-gv" onclick="setMode('gv')"><span class="ic"></span>Giảng dạy (GV)</button>
-      <button class="active dtv" id="btn-dtv" onclick="setMode('dtv')"><span class="ic"></span>Tra cứu (ĐTV)</button>
-    </div>
+    <button class="ibtn" type="button" id="themeBtn" onclick="toggleTheme()" aria-label="Đổi giao diện sáng tối"><svg class="i" viewBox="0 0 24 24" id="themeIc"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg><span id="themeTx">Tối</span></button>
   </div>
-  <div class="doc-meta">
-    <span>Mã tài liệu: <b>VNPT-HKD-KT.01</b></span>
-    <span>Phiên bản: <b>2026.1</b></span>
-    <span>Cập nhật: <b>22/07/2026</b></span>
-  </div>
-</div>
-<div class="seal-banner">
-  <span class="stamp">TT 152/2025</span>
-  Thông tư 152/2025/TT-BTC — hiệu lực từ 01/01/2026, thay thế hoàn toàn Thông tư 88/2021/TT-BTC
-</div>
+</header>
+<div class="banner"><div class="wrap"><span class="stamp">TT 152/2025</span><span>Thông tư 152/2025/TT-BTC — hiệu lực từ 01/01/2026, thay thế hoàn toàn Thông tư 88/2021/TT-BTC</span></div></div>
 
-<div class="layout">
-  <div class="rail">
-    <div class="rail-search">
-      <input type="text" id="global-search" placeholder="Tìm nhanh: lỗi, mẫu sổ, quy trình…" oninput="onGlobalSearchInput(this.value)" autocomplete="off">
-      <div class="search-results" id="search-results"></div>
-    </div>
-    <div class="rail-title">6 module đào tạo</div>
-    <button class="tab active" data-m="m1" onclick="showModule('m1')"><span class="num">I</span> Nền tảng pháp lý</button>
-    <button class="tab" data-m="m2" onclick="showModule('m2')"><span class="num">II</span> Tổng quan nghiệp vụ</button>
-    <button class="tab" data-m="m3" onclick="showModule('m3')"><span class="num">III</span> Hướng dẫn thao tác</button>
-    <button class="tab" data-m="m4" onclick="showModule('m4')"><span class="num">IV</span> Lỗi thường gặp</button>
-    <button class="tab" data-m="m5" onclick="showModule('m5')"><span class="num">V</span> Kịch bản cuộc gọi</button>
-    <button class="tab" data-m="m6" onclick="showModule('m6')"><span class="num">VI</span> Kiểm tra & tổng kết</button>
+<main class="wrap" id="top">
+  <div class="searchbar">
+    <svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input type="search" id="global-search" placeholder="Tìm nhanh: lỗi, mẫu sổ, tình huống giải đáp…" oninput="onGlobalSearchInput(this.value)" autocomplete="off" aria-label="Tìm kiếm">
+    <div class="search-results" id="search-results"></div>
   </div>
+  <div class="layout">
+    <nav class="rail" id="rail" aria-label="Danh sách module"></nav>
+    <div class="content" id="content"></div>
+  </div>
+  <div class="foot">VNPT HKD Academy · Mã tài liệu VNPT-HKD-KT.01 · Phiên bản 2026.2 · Cập nhật 17/11/2026</div>
+</main>
 
-  <div class="content" id="content"></div>
-</div>
+<button class="fab" id="fab" type="button" aria-label="Lên đầu trang"><svg class="i" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div class="lb" id="lb" role="dialog" aria-label="Xem ảnh lớn"><img id="lbimg" alt=""></div>
 
 <script>
 const DATA = {
@@ -1440,266 +1446,443 @@ m6:{
   ]
 }
 };
+DATA.m1.blocks.push.apply(DATA.m1.blocks,[{"h": "Điểm mới của Thông tư 152", "body": "<div class=\"card\"><p><strong>Kế toán gắn liền với nghĩa vụ thuế:</strong> sổ sách giờ phục vụ trực tiếp cho việc chứng minh doanh thu, chi phí để tính thuế thay cho cơ chế khoán cũ.</p></div><div class=\"card\"><p><strong>Đơn giản hóa chứng từ:</strong> cắt bỏ các mẫu phiếu thu, phiếu chi, phiếu nhập kho bắt buộc của Thông tư 88. Hộ kinh doanh dùng trực tiếp hóa đơn, bảng kê, phiếu thu/chi thực tế của hoạt động kinh doanh để ghi sổ, miễn là bảo đảm tính pháp lý để kê khai thuế.</p></div><div class=\"card\"><p><strong>Số hóa:</strong> việc ghi sổ dựa trên dữ liệu hóa đơn điện tử. Yêu cầu về hóa đơn điện tử khởi tạo từ máy tính tiền và tài khoản ngân hàng riêng phục vụ kinh doanh trở nên chặt chẽ hơn.</p></div><div class=\"card\"><p><strong>Lưu trữ:</strong> thời hạn lưu trữ tối thiểu <strong>05 năm</strong> đối với chứng từ, sổ sách kế toán; được lưu bằng bản giấy hoặc điện tử.</p></div><div class=\"card\"><p><strong>Nhân sự kế toán:</strong> chủ hộ được bố trí người thân (cha mẹ, vợ chồng, con, anh chị em ruột) làm kế toán; cho phép người quản lý, thủ kho, thủ quỹ kiêm nhiệm làm kế toán.</p></div>"}, {"h": "So sánh Thông tư 152 và Thông tư 88", "body": "<div class=\"reftable-wrap\"><table class=\"reftable cmp stack\"><thead><tr><th>Tiêu chí</th><th>Thông tư 88/2021/TT-BTC (cũ)</th><th>Thông tư 152/2025/TT-BTC (mới)</th></tr></thead><tbody><tr><td>Hiệu lực</td><td data-l=\"Thông tư 88 (cũ)\">Từ 01/01/2022 đến 31/12/2025.</td><td data-l=\"Thông tư 152 (mới)\">Từ 01/01/2026.</td></tr><tr><td>Bối cảnh áp dụng</td><td data-l=\"Thông tư 88 (cũ)\">Áp dụng khi vẫn còn song hành hai hình thức: Thuế khoán và Thuế kê khai.</td><td data-l=\"Thông tư 152 (mới)\">Áp dụng khi bãi bỏ hoàn toàn thuế khoán. Tất cả hộ kinh doanh chuyển sang tự kê khai, tự nộp.</td></tr><tr><td>Đối tượng áp dụng</td><td data-l=\"Thông tư 88 (cũ)\">Chủ yếu bắt buộc với hộ kinh doanh nộp thuế theo phương pháp kê khai.</td><td data-l=\"Thông tư 152 (mới)\">Tất cả hộ kinh doanh, cá nhân kinh doanh. Được phân lớp cụ thể theo ngưỡng doanh thu và nghĩa vụ thuế.</td></tr><tr><td>Chứng từ kế toán</td><td data-l=\"Thông tư 88 (cũ)\">Ban hành danh mục 05 mẫu chứng từ cụ thể (Phiếu thu, Phiếu chi, Phiếu nhập kho, Phiếu xuất kho, Bảng thanh toán tiền lương).</td><td data-l=\"Thông tư 152 (mới)\">Không ban hành mẫu riêng. Sử dụng hóa đơn, bảng kê hoặc các chứng từ theo quy định pháp luật về thuế để ghi sổ.</td></tr><tr><td>Sổ sách kế toán</td><td data-l=\"Thông tư 88 (cũ)\">Duy trì 07 loại sổ kế toán cơ bản dùng chung cho các hộ kê khai.</td><td data-l=\"Thông tư 152 (mới)\">Phân loại hệ thống sổ theo nhóm đối tượng (tùy theo doanh thu và loại thuế phải nộp).</td></tr><tr><td>Vai trò sổ kế toán</td><td data-l=\"Thông tư 88 (cũ)\">Mang tính “đối phó khi kiểm tra”</td><td data-l=\"Thông tư 152 (mới)\">Là căn cứ xác định nghĩa vụ thuế</td></tr><tr><td>Lựa chọn chế độ kế toán</td><td data-l=\"Thông tư 88 (cũ)\">Được phép lựa chọn áp dụng Thông tư 88 hoặc Chế độ kế toán doanh nghiệp siêu nhỏ (Thông tư 132/2018/TT-BTC)</td><td data-l=\"Thông tư 152 (mới)\">Bắt buộc áp dụng TT 152, không được lựa chọn chế độ kế toán khác để đảm bảo tính đồng nhất.</td></tr><tr><td>Thời hạn lưu trữ</td><td data-l=\"Thông tư 88 (cũ)\">Theo quy định chung của Luật Kế toán</td><td data-l=\"Thông tư 152 (mới)\">Quy định rõ thời hạn lưu trữ tối thiểu là 05 năm</td></tr><tr><td>Lưu trữ sổ sách</td><td data-l=\"Thông tư 88 (cũ)\">Chủ yếu bản giấy</td><td data-l=\"Thông tư 152 (mới)\">Giấy hoặc điện tử đều hợp pháp</td></tr><tr><td>Cơ sở chính sách thuế</td><td data-l=\"Thông tư 88 (cũ)\">Ngưỡng không chịu thuế GTGT và thuế TNCN đối với hộ kinh doanh, cá nhân kinh doanh: 100 triệu/năm</td><td data-l=\"Thông tư 152 (mới)\">Ngưỡng không chịu thuế GTGT và thuế TNCN đối với hộ kinh doanh, cá nhân kinh doanh: &lt;= 1 tỷ đồng/năm</td></tr><tr><td>Kiểm tra thuế</td><td data-l=\"Thông tư 88 (cũ)\">Kiểm tra nặng về hình thức sổ</td><td data-l=\"Thông tư 152 (mới)\">Kiểm tra dựa trên dữ liệu doanh thu</td></tr><tr><td>Quan hệ với cơ quan thuế</td><td data-l=\"Thông tư 88 (cũ)\">Thuế quyết định nhiều (ấn định, khoán)</td><td data-l=\"Thông tư 152 (mới)\">HKD tự ghi – thuế đối chiếu</td></tr><tr><td>Khả năng mở rộng khi HKD lớn lên</td><td data-l=\"Thông tư 88 (cũ)\">Chuyển đổi lên DN khá “sốc”</td><td data-l=\"Thông tư 152 (mới)\">Sổ sách là bước đệm lên Doanh nghiệp</td></tr><tr><td>Phù hợp TMĐT, nền tảng số</td><td data-l=\"Thông tư 88 (cũ)\">Chưa rõ</td><td data-l=\"Thông tư 152 (mới)\">Phù hợp NĐ 117/2025/NĐ-CP</td></tr></tbody></table></div>"}]);
+DATA.m6.quiz.push.apply(DATA.m6.quiz,[{"q": "Hộ kinh doanh có doanh thu từ 1 tỷ đồng/năm trở xuống, không chịu thuế GTGT và không nộp thuế TNCN, mở sổ nào theo Thông tư 152?", "opts": ["Mẫu S2a-HKD", "Mẫu S1a-HKD (Sổ doanh thu bán hàng hóa, dịch vụ)", "Bộ sổ S2b, S2c, S2d, S2e-HKD", "Mẫu S3a-HKD"], "correct": 1}, {"q": "Mẫu sổ S2a-HKD dành cho hộ kinh doanh thuộc trường hợp nào?", "opts": ["Nộp thuế GTGT và thuế TNCN theo tỷ lệ % trên doanh thu", "Không chịu thuế GTGT, không nộp thuế TNCN", "Nộp thuế TNCN trên thu nhập tính thuế", "Chịu các loại thuế khác"], "correct": 0}, {"q": "Bộ sổ S2b, S2c, S2d, S2e-HKD dùng cho hộ kinh doanh nào?", "opts": ["Hộ có doanh thu từ 1 tỷ đồng/năm trở xuống", "Hộ chỉ nộp thuế theo tỷ lệ % trên doanh thu", "Hộ nộp thuế GTGT theo tỷ lệ % trên doanh thu và thuế TNCN trên thu nhập tính thuế", "Hộ chỉ có hoạt động chịu thuế tài nguyên"], "correct": 2}, {"q": "Sổ S2d-HKD dùng để theo dõi nội dung nào?", "opts": ["Thu, chi tiền mặt và tiền gửi không kỳ hạn", "Nhập, xuất, tồn của vật liệu, dụng cụ, sản phẩm, hàng hóa", "Nghĩa vụ thuế khác", "Doanh thu theo từng ngành nghề"], "correct": 1}, {"q": "Sổ S2e-HKD (Sổ chi tiết tiền) theo dõi tình hình nào?", "opts": ["Nhập, xuất, tồn hàng hóa", "Doanh thu theo ngành nghề", "Thu, chi bằng tiền mặt hoặc tiền gửi không kỳ hạn trong tài khoản của hộ kinh doanh", "Thuế bảo vệ môi trường phải nộp"], "correct": 2}, {"q": "Hộ kinh doanh có thêm hoạt động chịu thuế tiêu thụ đặc biệt, thuế tài nguyên, thuế bảo vệ môi trường cần mở thêm sổ nào?", "opts": ["Mẫu S1a-HKD", "Mẫu S2e-HKD", "Mẫu S2d-HKD", "Mẫu S3a-HKD (Sổ theo dõi nghĩa vụ thuế khác)"], "correct": 3}, {"q": "Theo Thông tư 152, thời hạn lưu trữ tối thiểu tài liệu kế toán của hộ kinh doanh là bao lâu?", "opts": ["03 năm", "05 năm", "10 năm", "Không quy định"], "correct": 1}, {"q": "Về chứng từ kế toán, Thông tư 152 quy định thế nào so với Thông tư 88?", "opts": ["Ban hành thêm các mẫu phiếu thu, phiếu chi bắt buộc", "Không ban hành mẫu chứng từ riêng, dùng hóa đơn, bảng kê hoặc chứng từ theo pháp luật thuế để ghi sổ", "Bắt buộc lập phiếu nhập kho, xuất kho theo mẫu", "Chỉ cho phép dùng chứng từ giấy"], "correct": 1}, {"q": "Khách hỏi: \"Thông tư 152 có bắt buộc hộ kinh doanh dùng phần mềm không?\" ĐTV trả lời thế nào cho đúng?", "opts": ["Bắt buộc, nếu không dùng sẽ bị phạt", "Không bắt buộc, nhưng dùng phần mềm giúp kiểm soát doanh thu, tự theo dõi mình thuộc nhóm đối tượng nào", "Chỉ bắt buộc với hộ bán online", "Chỉ bắt buộc với hộ có hàng tồn kho"], "correct": 1}, {"q": "Hộ kinh doanh đang nộp thuế khoán năm 2025 có phải đăng ký chuyển sang phương pháp kê khai không?", "opts": ["Phải đăng ký lại với ngân hàng", "Phải nộp hồ sơ giấy tại cơ quan thuế trước 31/12/2025", "Theo Thông tư 152, hộ mặc định chuyển sang phương pháp kê khai", "Được chọn tiếp tục nộp thuế khoán"], "correct": 2}]);
+DATA.m7={"eyebrow": "", "title": "Giải đáp Thông tư 152 cho khách hàng", "goal": "Nắm cách trả lời 19 tình huống về Thông tư 152 và 10 câu hỏi thường gặp về VNPT HKD, đúng nội dung và đúng giọng hỗ trợ", "gv": {"giang": "Cho học viên che đáp án, tự trả lời từng tình huống thành lời trong 30 giây rồi mở gợi ý đáp để đối chiếu. Nhấn mạnh các mốc: 01/01/2026, ngưỡng 1 tỷ đồng, thời hạn lưu trữ tối thiểu 05 năm.", "hoi": "Khi khách hỏi vượt phạm vi tư vấn của ĐTV (ví dụ thủ tục cụ thể với cơ quan thuế), ĐTV nên hướng khách tới đâu và nói câu nào để vẫn giữ được sự tin cậy?", "thuchanh": "Chia cặp, một người đóng khách hàng rút ngẫu nhiên tình huống bằng nút \"Tình huống khác\", người kia trả lời; đổi vai sau mỗi 5 tình huống."}, "isQA": true, "qa": [{"n": 1, "cat": "Hiệu lực", "q": "Thông tư 152 là gì và có hiệu lực từ khi nào?", "a": [{"t": "p", "x": "Dạ, Thông tư 152 là quy định mới về kế toán cho hộ kinh doanh, có hiệu lực từ 01/01/2026, yêu cầu ghi chép và quản lý sổ sách rõ ràng, minh bạch hơn."}]}, {"n": 2, "cat": "Hiệu lực", "q": "TT152 thay thế hoàn toàn cho TT88, đúng hay sai?", "a": [{"t": "p", "x": "Dạ đúng. TT152 ra đời sẽ thay thế hoàn toàn cho TT88 trước đó ạ"}]}, {"n": 3, "cat": "Hiệu lực", "q": "Tại sao cá nhân kinh doanh hoặc hộ kinh doanh cần rà soát doanh thu, kiểm kê hàng tồn, đăng ký sử dụng hóa đơn, tài khoản ngân hàng...kể từ ngày 1/1/2026.", "a": [{"t": "p", "x": "Dạ, vì theo TT152. Cá nhân kinh doanh hoặc Hộ kinh doanh sẽ phải nộp thuế theo phương pháp kê khai kể từ ngày 01/1/2026 theo quy định."}]}, {"n": 4, "cat": "Thay đổi so với TT 88", "q": "Thay đổi giữa TT152 với TT88 là gì?", "a": [{"t": "p", "x": "Dạ. Điểm thay đổi nổi bật giữa TT152 và TT88 là:"}, {"t": "li", "x": "TT88: Thuế khoán, Sổ sách kế toán mang tính hình thức, chưa rõ ràng qua nền tảng TMĐT, nền tảng số"}, {"t": "li", "x": "TT152: Xóa bỏ thuế khoán, Quản lý theo doanh thu thực (kê khai thực tế)"}]}, {"n": 5, "cat": "Sổ sách", "q": "Nếu TT152 ra đời thì từ năm 2026, Hộ kinh doanh không còn làm sổ sách theo TT88 nữa, đúng không?", "a": [{"t": "p", "x": "Dạ đúng ạ. Từ ngày 01/01/2026, TT152 sẽ thay thế hoàn toàn TT88/2021/TT-BTC."}, {"t": "li", "x": "Tất cả hộ kinh doanh, cá nhân kinh doanh chuyển sang ghi sổ theo TT152, phù hợp với chính sách xóa bỏ thuế khoán."}]}, {"n": 6, "cat": "Sổ sách", "q": "Theo TT88 trước đây tôi hay bị yêu cầu làm thêm sổ chi phí, giờ theo TT152 còn không?", "a": [{"t": "p", "x": "Dạ. Theo TT152 thì KHÔNG CÒN ạ."}, {"t": "p", "x": "Nếu doanh thu ≤ 1 tỷ/năm, các HKD:"}, {"t": "li", "x": "Không phải mở sổ chi phí"}, {"t": "li", "x": "Không phải tập hợp hóa đơn đầu vào"}, {"t": "li", "x": "Không quyết toán thuế"}, {"t": "hl", "x": "HKD chỉ cần ghi doanh thu để chứng minh HKD chưa đến ngưỡng chịu thuế  (Mẫu số S1a-HKD)"}]}, {"n": 7, "cat": "Sổ sách", "q": "Thay đổi đáng chú ý trong TT152/2025/TT-BTC của BTC về hướng dẫn chế độ kế toán đối với hộ kinh doanh và cá nhân KD là gì?", "a": [{"t": "p", "x": "Dạ. Thay đổi đáng chú ý là điều chỉnh cách phân loại đối tượng áp dụng Thuế."}, {"t": "li", "x": "Thay vì xác định chế độ kế toán dựa trên quy mô doanh thu như trước đây,"}, {"t": "li", "x": "Hiện tại, HKD và cá nhân KD sẽ được phân nhóm theo quy mô doanh thu nhằm làm căn cứ xác định phương pháp tính thuế giá trị gia tăng và thuế thu nhập cá nhân tương ứng."}]}, {"n": 8, "cat": "Sổ sách", "q": "Nếu tôi doanh thu dưới 1 tỷ thì có cần làm sổ sách kế toán không?", "a": [{"t": "p", "x": "Dạ có, nhưng rất đơn giản ạ, không phải làm các sổ phức tạp như trước."}, {"t": "p", "x": "Theo TT152 cho phép:"}, {"t": "li", "x": "HKD không chịu GTGT, không phải nộp TNCN"}, {"t": "li", "x": "Chỉ phải làm 01 loại sổ duy nhất: Sổ DOANH THU bán hàng hóa, dịch vụ – Mẫu sổ S1a-HKD"}]}, {"n": 9, "cat": "Sổ sách", "q": "Sổ doanh thu S1a-HKD dành cho HKD có mức doanh thu dưới 1 tỷ đồng, có phải ghi từng chi tiết hóa đơn không?", "a": [{"t": "p", "x": "Dạ. Không bắt buộc ạ!"}, {"t": "p", "x": "TT152 cho phép HKD:"}, {"t": "li", "x": "Ghi theo từng giao dịch"}, {"t": "li", "x": "Hoặc ghi gộp theo ngày/theo tháng"}, {"t": "hl", "x": "Miễn sao: Phản ánh đúng doanh thu thực tế phát sinh."}]}, {"n": 10, "cat": "Tính thuế", "q": "Tôi muốn biết ba (03) phương pháp tính thuế giá trị gia tăng và thuế thu nhập cá nhân khi áp dụng TT152?", "a": [{"t": "p", "x": "Các phương pháp tính thuế giá trị gia tăng và thuế thu nhập cá nhân khi áp dụng TT152 gồm:"}, {"t": "li", "x": "Tính thuế trực tiếp theo tỷ lệ % trên doanh thu vượt ngưỡng (Doanh thu từ trên 1 tỷ đến dưới 3 tỷ đồng/năm);"}, {"t": "li", "x": "Tính thuế dựa trên Thu nhập chịu thuế thực tế (Doanh thu trừ Chi phí) (Doanh thu từ 3 tỷ đến dưới 50 tỷ đồng/năm)"}, {"t": "li", "x": "Kê khai toàn diện theo mô hình Doanh nghiệp (Áp dụng cho quy mô lớn) (Doanh thu trên 50 tỷ đồng/năm)."}]}, {"n": 11, "cat": "Tính thuế", "q": "Áp dụng TT152, doanh thu bao nhiêu thì Hộ kinh doanh cần nộp thuế GTGT và thu nhập cá nhân (TNCN)?", "a": [{"t": "p", "x": "Dạ. Từ 01/01/2026, Hộ kinh doanh có mức Doanh thu >1 tỷ đồng/năm"}, {"t": "li", "x": "PHẢI Chịu thuế GTGT"}, {"t": "li", "x": "PHẢI Nộp thuế TNCN"}]}, {"n": 12, "cat": "Tính thuế", "q": "Nếu năm nay dưới 1 tỷ đồng, năm sau vượt 1 tỷ đồng thì xử lý thế nào?", "a": [{"t": "p", "x": "Dạ, Anh/Chị có thể tham khảo như sau:"}, {"t": "li", "x": "Năm doanh thu ≤ 1 tỷ đồng → ghi Sổ doanh thu (S1a-HKD)"}, {"t": "li", "x": "Khi doanh thu vượt  1 tỷ đồng → chuyển sang thực hiện nghĩa vụ:"}, {"t": "hl", "x": "Thuế GTGT"}, {"t": "hl", "x": "Thuế TNCN"}, {"t": "hl", "x": "Sổ sách theo quy định tương ứng"}]}, {"n": 13, "cat": "Tổ chức kế toán", "q": "HKD, cá nhân KD bố trí cha đẻ, mẹ đẻ, cha nuôi, mẹ nuôi, vợ, chồng, con đẻ, con nuôi, anh, chị, em ruột của mình làm kế toán cho hộ kinh doanh có đúng quy định?", "a": [{"t": "p", "x": "Dạ, theo TT152 thì Người đại diện HKD, cá nhân KD có thể tự ghi chép sổ sách kế toán hoặc bố trí người làm kế toán hoặc thuê dịch vụ làm kế toán cho HKD, cá nhân kinh doanh theo quy định của pháp luật."}]}, {"n": 14, "cat": "Đối tượng áp dụng", "q": "Đối tượng nào phải áp dụng Thông tư 152?", "a": [{"t": "p", "x": "Các hộ kinh doanh, cá nhân kinh doanh thuộc diện quản lý theo quy định hiện hành."}]}, {"n": 15, "cat": "Đối tượng áp dụng", "q": "Tôi bán online (Facebook, Shopee), TT152 có áp dụng không?", "a": [{"t": "p", "x": "Dạ. Có áp dụng đầy đủ."}, {"t": "p", "x": "TT152 cho phép:"}, {"t": "p", "x": "Ghi sổ điện tử hoặc bản giấy"}, {"t": "p", "x": "Doanh thu online vẫn ghi chung vào Sổ doanh thu"}, {"t": "p", "x": "Nếu doanh thu ≤ 1 tỷ đồng → không chịu thuế"}]}, {"n": 16, "cat": "Chuyển đổi khoán sang kê khai", "q": "HKD có cần chuẩn bị gì để chuyển đổi từ Thuế khoán sang phương pháp kê khai không?", "a": [{"t": "p", "x": "Dạ. Để chuẩn xác Anh/chị nên liên hệ CQT địa phương để được hướng dẫn. Anh/chị tham khảo một số HD cơ bản:"}, {"t": "li", "x": "Việc chuyển đổi sang phương pháp kê khai: CQT sẽ thực hiện chuyển đổi tự động trên hệ thống của CQT"}, {"t": "li", "x": "Các HKD dự kiến doanh thu và tự xác định mình thuộc ngưỡng doanh thu bao nhiêu để CQT hướng dẫn phương pháp tính thuế"}, {"t": "li", "x": "Các HKD kiểm kê hàng tồn kho đến 31/12/2025 theo mẫu của CQT"}, {"t": "li", "x": "Dùng TK HKD, không dùng TK cá nhân trong hoạt động kinh doanh"}, {"t": "li", "x": "Đối với các giao dịch từ 5 triệu đồng trở lên phải thanh toán bằng chuyển khoản"}]}, {"n": 17, "cat": "Chuyển đổi khoán sang kê khai", "q": "Năm 2025 đang là hộ khoán giờ HKD có phải đăng ký chuyển từ khoán sang kê khai không hay Thuế mặc định chuyển đổi?", "a": [{"t": "p", "x": "Dạ. Theo TT152 thì các HKD mặc định sẽ chuyển sang phương pháp kê khai"}]}, {"n": 18, "cat": "Lưu trữ", "q": "Có bắt buộc phải lưu trữ các chứng từ kế toán trên phương tiện điện tử? Nếu lưu trữ bằng giấy có hợp lệ không?", "a": [{"t": "p", "x": "Dạ, Theo TT152 thì HKD, cá nhân KD được lựa chọn lưu trữ các tài liệu kế toán (hóa đơn, chứng từ kế toán, sổ kế toán,...) trên phương tiện điện tử hoặc bằng bản giấy."}]}, {"n": 19, "cat": "Lưu trữ", "q": "Thời hạn lưu trữ các chứng từ kế toán?", "a": [{"t": "p", "x": "Dạ, Theo TT152 thì thời hạn lưu trữ tài liệu kế toán của hộ kinh doanh, cá nhân kinh doanh tối thiểu là 05 năm, đối với thời hạn lưu trữ hóa đơn thì thực hiện theo quy định của pháp luật về thuế."}]}], "faq": [{"n": 1, "cat": "Phần mềm VNPT HKD", "q": "Khi TT152 hiệu lực từ 01/01/2026. Hộ kinh doanh đang sử dụng phần mềm HKD có phải trả thêm chi phí nâng cấp theo thông tư mới?", "a": [{"t": "p", "x": "Dạ, Quý khách hàng đang sử dụng phần mềm HKD. VNPT sẽ tự động nâng cấp, cập nhật các biểu mẫu đáp ứng TT152. HKD không cần phải trả thêm chi phí cho việc nâng cấp này."}]}, {"n": 2, "cat": "Phần mềm VNPT HKD", "q": "Hiện nay TT152 có hiệu lực từ 01/01/2026 nhưng phần mềm HKD tôi chưa thấy các biểu mẫu mới?", "a": [{"t": "p", "x": "Dạ, TT152 được Bộ Tài Chính ban hành ngày 31/12/2025."}, {"t": "p", "x": "VNPT đã thực hiện và sẽ cập nhật đủ các biểu mẫu theo đúng quy định trên VNPT HKD theo lộ trình của CQT"}]}, {"n": 3, "cat": "Phần mềm VNPT HKD", "q": "Lúc nào thì HKD có các biểu mẫu đáp ứng quy định của TT152?", "a": [{"t": "p", "x": "Dạ, TT152 vừa ban hành cuối năm 2025. Cơ quan thuế vẫn đang triển khai hướng dẫn cho các cá nhân KD và Hộ kinh doanh cách kê khai theo TT mới. VNPT đảm bảo sẽ cập nhật đủ các biểu mẫu đáp ứng yêu cầu và lộ trình quy định của CQT"}]}, {"n": 4, "cat": "Phần mềm VNPT HKD", "q": "TT152 có bắt buộc Hộ kinh doanh dùng phần mềm không?", "a": [{"t": "p", "x": "Dạ, Không bắt buộc, nhưng khi HKD dùng phần mềm sẽ dễ dàng kiểm soát doanh thu, tự theo dõi mình thuộc nhóm đối tượng nào một cách dễ dàng, đúng quy định."}]}, {"n": 5, "cat": "Phần mềm VNPT HKD", "q": "Khi HKD nói “Tôi bán nhỏ, không cần phần mềm”?", "a": [{"t": "p", "x": "Dạ, Quy mô nhỏ vẫn cần ghi chép đúng, dùng phần mềm có sẵn mẫu sổ giúp HKD dễ dàng theo dõi và ít sai sót hơn."}]}, {"n": 6, "cat": "Phần mềm VNPT HKD", "q": "Khi HKD lo lắng  dùng phần mềm phức tạp", "a": [{"t": "p", "x": "Dạ, VNPT HKD thiết kế cho hộ kinh doanh, không cần biết kế toán vẫn dùng được ạ!"}]}, {"n": 7, "cat": "Phần mềm VNPT HKD", "q": "VNPT HKD hỗ trợ nội dung gì?", "a": [{"t": "p", "x": "Dạ, VNPT HKD thiết kế giúp HKD có thể:"}, {"t": "li", "x": "Ghi chép doanh thu"}, {"t": "li", "x": "Ghi chép các chi phí (nếu cần)"}, {"t": "li", "x": "Xuất báo cáo thống kê các dữ liệu theo yêu cầu"}, {"t": "li", "x": "Lưu trữ dữ liệu theo yêu cầu của Cơ quan thuế"}]}, {"n": 8, "cat": "Phần mềm VNPT HKD", "q": "Lưu trữ theo TT152 ra sao?", "a": [{"t": "p", "x": "Dạ, Lưu trữ điện tử, dễ dàng tra cứu khi cần (chỉ cần có internet)"}]}, {"n": 9, "cat": "Phần mềm VNPT HKD", "q": "Vì sao dùng VNPT HKD yên tâm hơn?", "a": [{"t": "p", "x": "Dạ, HKD sử dụng sẽ làm đúng quy định,không lo thất lạc sổ sách"}]}, {"n": 10, "cat": "Phần mềm VNPT HKD", "q": "Tôi sử dụng VNPT HKD, khi chính sách của cơ quan thuế thay đổi, VNPT sẽ tự động cập nhật (quy trình, biểu mẫu…) đúng quy định, đúng không?", "a": [{"t": "p", "x": "Dạ, đúng ạ. VNPT sẽ hỗ trợ cập nhật, điều chỉnh đáp ứng triển khai đúng hướng dẫn, quy định của CQNN"}]}], "drive": "https://drive.google.com/drive/folders/1VWo-qmJBnPtfanOVXSSNS6waJ3XL58Vj?usp=sharing"};
+DATA.m8={"eyebrow": "", "title": "Hướng dẫn ghi các sổ kế toán theo Thông tư 152", "goal": "Biết hộ kinh doanh cần mở sổ nào, mỗi sổ dùng để làm gì và ghi từng cột ra sao, để hướng dẫn khách đúng khi họ ghi sổ trên VNPT HKD", "gv": {"giang": "Chiếu biểu mẫu từng sổ, yêu cầu học viên chỉ ra cột nào ghi gì trước khi đọc phần hướng dẫn. Dùng bộ chọn đặc điểm hộ để chốt đúng sổ cho từng hồ sơ khách.", "hoi": "Vì sao các sổ về vật tư, hàng hóa (S2d) và tiền (S2e) nằm trong bộ sổ của hộ tính thuế TNCN trên thu nhập tính thuế, còn hộ chỉ ghi doanh thu thì không cần?", "thuchanh": "Phát bốn hồ sơ hộ kinh doanh khác nhau, mỗi học viên chọn đúng sổ và điền thử vài dòng trên biểu mẫu."}, "isSo": true, "so": [{"code": "S1a-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ làm căn cứ kê khai, xác định hộ kinh doanh, cá nhân kinh doanh có thuộc đối tượng chịu thuế GTGT, nộp thuế TNCN theo quy định của pháp luật về thuế hay không."}, {"sub": false, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh thực hiện kê khai doanh thu theo quy định của pháp luật về thuế thì hộ kinh doanh, cá nhân kinh doanh có thể dùng sổ này để theo dõi, đối chiếu số liệu với cơ quan thuế"}], "cols": [{"k": "Cột A", "v": "Ghi ngày, tháng ghi sổ."}, {"k": "Cột B", "v": "Ghi diễn giải doanh thu từ việc bán hàng hóa, dịch vụ. Hộ kinh doanh, cá nhân kinh doanh có thể ghi theo từng nghiệp vụ phát sinh hoặc theo định kỳ."}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ"}], "notes": [], "basis": "Căn cứ Điều 4 Thông tư 152/2025/TT-BTC", "img": "images/so-s1a-hkd.png", "w": 538, "h": 456}, {"code": "S2a-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ theo từng nhóm danh mục ngành nghề kinh doanh có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN."}, {"sub": true, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh có nhiều nhóm ngành nghề khác nhau thì sổ này có thể mở cho từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN."}, {"sub": true, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế GTGT, thuế TNCN thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để theo dõi, đối chiếu số thuế GTGT, thuế TNCN phải nộp với cơ quan thuế."}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ."}, {"k": "Cột C", "v": "Ghi diễn giải nội dung doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN"}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ có thể theo từng ngành nghề để làm căn cứ xác định doanh thu bán hàng hóa, dịch vụ có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN. Trên cơ sở doanh thu được xác định, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền thuế GTGT, thuế TNCN phải nộp theo từng ngành nghề có cùng tỷ lệ % hoặc cùng mức thuế suất. Dòng cuối cùng ghi tổng số thuế GTGT, thuế TNCN phải nộp"}], "notes": [], "basis": "Căn cứ Điều 5 Thông tư 152/2025/TT-BTC", "img": "images/so-s2a-hkd.png", "w": 768, "h": 1001}, {"code": "S2b-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ theo từng nhóm danh mục ngành nghề kinh doanh có cùng tỷ lệ % để tính thuế GTGT."}, {"sub": true, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh có nhiều nhóm ngành nghề khác nhau thì sổ này có thể mở cho từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT."}, {"sub": true, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế GTGT thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để theo dõi, đối chiếu số thuế GTGT phải nộp với cơ quan thuế"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT"}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ có thể theo từng ngành nghề để làm căn cứ xác định doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT. Trên cơ sở doanh thu được xác định, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền thuế GTGT phải nộp theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT. Dòng cuối cùng ghi tổng số thuế GTGT phải nộp"}], "notes": [], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2b-hkd.png", "w": 710, "h": 1024}, {"code": "S2c-HKD", "name": "Sổ chi tiết doanh thu, chi phí", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh mở sổ này để xác định nghĩa vụ thuế TNCN theo quy định của pháp luật về thuế."}, {"sub": false, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế TNCN thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để đối chiếu số thuế TNCN phải nộp với cơ quan thuế"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1", "v": "Ghi số tiền phù hợp với từng nội dung nêu tại cột C"}, {"k": "Dòng 1", "v": "Hộ kinh doanh, cá nhân kinh doanh căn cứ vào chứng từ kế toán để ghi tổng doanh thu bán hàng hóa, dịch vụ hoặc có thể ghi theo từng nghiệp vụ phát sinh tùy theo nhu cầu của hộ kinh doanh, cá nhân kinh doanh"}, {"k": "Dòng 2", "v": "Ghi tổng chi phí hợp lý trên cơ sở các chi phí thực tế phát sinh tại hộ kinh doanh, cá nhân kinh doanh hoặc có thể ghi theo từng nghiệp vụ phát sinh tùy theo nhu cầu của hộ kinh doanh, cá nhân kinh doanh Hộ kinh doanh, cá nhân kinh doanh tính chênh lệch giữa tổng doanh thu và tổng chi phí hợp lý để làm căn cứ tính thuế TNCN phải nộp"}], "notes": ["Việc xác định doanh thu, chi phí hợp lý để xác định nghĩa vụ thuế TNCN được thực hiện theo quy định của pháp luật về thuế"], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2c-hkd.png", "w": 612, "h": 810}, {"code": "S2d-HKD", "name": "Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh mở sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa để theo dõi, quản lý về tình hình nhập, xuất, tồn cho từng vật liệu, dụng cụ, sản phẩm, hàng hóa"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột D", "v": "Đơn vị tính của vật liệu, dụng cụ, sản phẩm, hàng hóa"}, {"k": "Cột 1", "v": "Ghi đơn giá nhập, xuất, tồn của từng vật liệu, dụng cụ, sản phẩm, hàng hóa. Trong đó, đơn giá nhập kho của từng vật liệu, dụng cụ, sản phẩm, hàng hóa căn cứ vào chứng từ mua vật liệu, dụng cụ, sản phẩm, hàng hóa Đơn giá xuất kho được tính riêng cho từng loại vật liệu, dụng cụ, sản phẩm, hàng hóa theo công thức sau:"}, {"k": "Cột 2", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa nhập kho"}, {"k": "Cột 3", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa nhập kho (Cột 3 = Cột 1 x Cột 2)."}, {"k": "Cột 4", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa xuất kho"}, {"k": "Cột 5", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa xuất kho (Cột 5 = Cột 1 x Cột 4)"}, {"k": "Cột 6", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa tồn kho"}, {"k": "Cột 7", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa tồn kho (Cột 7 = Cột 1 x Cột 6)"}], "notes": [], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2d-hkd.png", "w": 768, "h": 816}, {"code": "S2e-HKD", "name": "Sổ chi tiết tiền", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh phải mở sổ chi tiết tiền để theo dõi tình hình thu, chi bằng tiền mặt hoặc tiền gửi không kỳ hạn (tiền gửi để thanh toán) trong tài khoản của hộ kinh doanh, cá nhân kinh doanh tại các ngân hàng và tổ chức cung ứng dịch vụ thanh toán theo quy định của pháp luật."}, {"sub": true, "x": "Hộ kinh doanh, cá nhân kinh doanh có thể mở sổ này chi tiết theo từng loại tiền (tiền mặt, tiền gửi không kỳ hạn)."}, {"sub": true, "x": "Đối với tiền gửi không kỳ hạn, hộ kinh doanh, cá nhân kinh doanh có thể theo dõi riêng số tiền gửi tại từng ngân hàng hoặc từng tổ chức cung ứng dịch vụ thanh toán"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu và ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1,2", "v": "Ghi số tiền thu, chi tiền mặt hoặc số tiền gửi không kỳ hạn gửi vào, rút ra"}], "notes": ["Cuối kỳ, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền mặt thu, chi, tồn quỹ và số tiền gửi không kỳ hạn gửi vào, rút ra, dư cuối kỳ"], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2e-hkd.png", "w": 593, "h": 705}, {"code": "S3a-HKD", "name": "Sổ theo dõi nghĩa vụ thuế khác", "pur": [{"sub": false, "x": "Hộ kinh doanh mở sổ này để theo dõi nghĩa vụ thuế khác, dùng trong trường hợp hộ kinh doanh, cá nhân kinh doanh có hoạt động thuộc diện chịu các loại thuế khác (thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế tài nguyên, thuế bảo vệ môi trường, thuế sử dụng đất)"}], "cols": [{"k": "Cột A", "v": "Ghi ngày, tháng ghi sổ."}, {"k": "Cột B", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1", "v": "Ghi lượng hàng hóa, dịch vụ chịu thuế"}, {"k": "Cột 2", "v": "Ghi mức thuế tuyệt đối theo quy định của pháp luật về thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế bảo vệ môi trường"}, {"k": "Cột 3", "v": "Giá tính thuế/01 đơn vị hàng hóa, dịch vụ thực hiện theo quy định của pháp luật về thuế"}, {"k": "Cột 4", "v": "Ghi mức thuế suất theo quy định của pháp luật về thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế tài nguyên, thuế sử dụng đất"}, {"k": "Cột 5", "v": "Thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt áp dụng phương pháp tính thuế theo tỷ lệ % (Cột 5 = Cột 1 x Cột 3 x Cột 4)"}, {"k": "Cột 6", "v": "Tính thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt áp dụng phương pháp tính thuế tuyệt đối (Cột 6 = Cột 1 x Cột 2)"}, {"k": "Cột 7", "v": "Tính thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt phải nộp (Cột 7= Cột 5+ Cột 6)"}, {"k": "Cột 8", "v": "Tính thuế bảo vệ môi trường phải nộp (Cột 8 = Cột 1 x Cột 2)"}, {"k": "Cột 9", "v": "Tính thuế tài nguyên phải nộp (Cột 9 = Cột 1 x Cột 3 x Cột 4)"}, {"k": "Cột 10", "v": "Tính thuế sử dụng đất phải nộp (Cột 10 = Cột 1 x Cột 3 x Cột 4)"}], "notes": [], "basis": "Căn cứ Điều 7 Thông tư 152/2025/TT-BTC", "img": "images/so-s3a-hkd.png", "w": 768, "h": 834}]};
 
-let currentModule = 'm1';
-let SEARCH_INDEX = [];
+/* ===================== ENGINE ===================== */
+const ORDER=['m1','m7','m8','m2','m3','m4','m5','m6'];
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII'];
+const META={
+  m1:{ic:'law',c:'',s:'Nền tảng pháp lý'},
+  m7:{ic:'chat',c:'c-m',s:'Giải đáp Thông tư 152'},
+  m8:{ic:'book',c:'c-a',s:'Hướng dẫn ghi sổ'},
+  m2:{ic:'layers',c:'',s:'Tổng quan nghiệp vụ'},
+  m3:{ic:'tool',c:'c-m',s:'Hướng dẫn thao tác'},
+  m4:{ic:'alert',c:'c-r',s:'Lỗi thường gặp'},
+  m5:{ic:'phone',c:'c-a',s:'Kịch bản cuộc gọi'},
+  m6:{ic:'check',c:'',s:'Kiểm tra & tổng kết'}
+};
+const IC={
+  law:'M12 3v18M5 7h14M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0zM8 21h8',
+  chat:'M21 12a8 8 0 01-11.5 7.2L4 20l1-4.5A8 8 0 1121 12zM8.5 11h7M8.5 14h4',
+  book:'M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 21V5M9 7h6M9 11h6',
+  layers:'M12 3l9 5-9 5-9-5zM3 13l9 5 9-5',
+  tool:'M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z',
+  alert:'M12 3l10 18H2zM12 10v5M12 18h.01',
+  phone:'M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z',
+  check:'M20 6L9 17l-5-5',
+  link:'M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1',
+  dice:'M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zM8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01',
+  sun:'M12 17a5 5 0 100-10 5 5 0 000 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4',
+  moon:'M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z'
+};
+function ic(n){return '<svg class="i" viewBox="0 0 24 24"><path d="'+IC[n]+'"/></svg>'}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+const escapeHtml=esc;
+const $=function(s,r){return (r||document).querySelector(s)};
+const $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function li(x){return '<li><span class="dot"></span><span class="txt">'+x+'</span></li>'}
+function ul(a){return '<ul class="lst">'+a.map(li).join('')+'</ul>'}
+function mlabel(k){return 'Module '+ROMAN[ORDER.indexOf(k)]+' — '+META[k].s}
 
-function normalizeVN(str){
-  return (str||'').toString()
-    .normalize('NFD').replace(/\p{Mn}/gu,'')
-    .replace(/đ/g,'d').replace(/Đ/g,'D')
-    .toLowerCase().trim();
-}
-function stripTags(html){ return (html||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' '); }
+/* ---- nhãn module theo thứ tự hiển thị ---- */
+ORDER.forEach(function(k,i){DATA[k].eyebrow='Module '+ROMAN[i]});
 
-function buildIndex(){
-  const idx = [];
-  ['m1','m2','m3'].forEach(mk=>{
-    DATA[mk].blocks.forEach((b,i)=>{
-      idx.push({module:mk, moduleLabel:DATA[mk].title, kind:'block', id:i,
-        snippet:b.h, textN:normalizeVN(b.h+' '+stripTags(b.body))});
-    });
-  });
-  DATA.m4.errors.forEach((e,i)=>{
-    idx.push({module:'m4', moduleLabel:'Module IV — Lỗi thường gặp', kind:'error', id:i,
-      snippet:e.title, textN:normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' '))});
-  });
-  DATA.m5.steps.forEach((s,i)=>{
-    idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'step', id:i,
-      snippet:s.t, textN:normalizeVN(s.t+' '+s.d+' '+(s.ex||''))});
-  });
-  DATA.m5.ticketProcess.items.forEach((it,i)=>{
-    idx.push({module:'m5', moduleLabel:'Module V — Phiếu OneBSS chuyển IT', kind:'ticket', id:i,
-      snippet:it.t, textN:normalizeVN(DATA.m5.ticketProcess.title+' '+it.t+' '+it.d)});
-  });
-  idx.push({module:'m5', moduleLabel:'Module V — Kịch bản cuộc gọi', kind:'attitude', id:0,
-    snippet:DATA.m5.attitude.title, textN:normalizeVN(DATA.m5.attitude.title+' '+DATA.m5.attitude.good.join(' ')+' '+DATA.m5.attitude.bad.join(' '))});
-  DATA.m6.quiz.forEach((q,i)=>{
-    idx.push({module:'m6', moduleLabel:'Module VI — Kiểm tra', kind:'quiz', id:i,
-      snippet:q.q, textN:normalizeVN(q.q+' '+q.opts.join(' '))});
-  });
-  SEARCH_INDEX = idx;
-}
+/* ---- lưu tiến độ, giao diện ---- */
+let VIS={};
+try{VIS=JSON.parse(localStorage.getItem('hkd-acad-v2')||'{}')||{}}catch(e){VIS={}}
+function saveP(){try{localStorage.setItem('hkd-acad-v2',JSON.stringify(VIS))}catch(e){}}
+function curDark(){var t=document.documentElement.dataset.theme; if(t) return t==='dark'; return window.matchMedia('(prefers-color-scheme: dark)').matches}
+function themeBtn(){var d=curDark(); $('#themeTx').textContent=d?'Sáng':'Tối'; $('#themeIc').innerHTML='<path d="'+(d?IC.sun:IC.moon)+'"/>'}
+function toggleTheme(){var n=curDark()?'light':'dark'; document.documentElement.dataset.theme=n; try{localStorage.setItem('hkd-acad-theme',n)}catch(e){} themeBtn()}
+try{var _t=localStorage.getItem('hkd-acad-theme'); if(_t) document.documentElement.dataset.theme=_t}catch(e){}
+themeBtn();
 
 function setMode(m){
-  document.body.className = 'mode-'+m;
-  document.getElementById('btn-gv').classList.toggle('active', m==='gv');
-  document.getElementById('btn-dtv').classList.toggle('active', m==='dtv');
+  document.body.className='mode-'+m;
+  $('#btn-gv').classList.toggle('on',m==='gv');
+  $('#btn-dtv').classList.toggle('on',m==='dtv');
+  try{localStorage.setItem('hkd-acad-mode',m)}catch(e){}
 }
+try{var _m=localStorage.getItem('hkd-acad-mode'); if(_m==='gv') setMode('gv')}catch(e){}
 
-function gvNoteHTML(gv){
-  return `<div class="gv-note">
-    <div class="gv-head">Dành cho giảng viên</div>
-    <div class="gv-row"><b>Gợi ý giảng dạy</b>${gv.giang}</div>
-    <div class="gv-row"><b>Câu hỏi thảo luận</b>${gv.hoi}</div>
-    <div class="gv-row"><b>Ý tưởng thực hành</b>${gv.thuchanh}</div>
-  </div>`;
-}
-
-function showModule(key, filterTerm){
-  currentModule = key;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.m===key));
-  const d = DATA[key];
-  let html = `<div class="module-head">
-    <div class="module-eyebrow">${d.eyebrow}</div>
-    <h1 class="module-title">${d.title}</h1>
-    <p class="module-goal">${d.goal}</p>
-    ${gvNoteHTML(d.gv)}
-  </div>`;
-
-  if(d.isErrorModule){
-    html += `<div class="err-search"><input type="text" id="err-input" placeholder="Gõ hiện tượng lỗi, ví dụ: 'không tìm thấy chứng từ'…" oninput="renderErrors(this.value)" autocomplete="off"></div>
-             <div class="err-filterbar" id="err-filterbar"></div>
-             <div class="err-count" id="err-count"></div>
-             <div id="err-list"></div>`;
-    document.getElementById('content').innerHTML = html;
-    renderErrFilterBar();
-    renderErrors(filterTerm||'');
-    return;
-  }
-
-  if(d.isCallScript){
-    html += `<div class="attitude-title">1. Quy trình các bước xử lý cuộc gọi hỗ trợ VNPT HKD</div>`;
-    d.steps.forEach((s,i)=>{
-      html += `<div class="call-step" data-idx="${i}">
-        <div class="step-num">${i+1}</div>
-        <div style="flex:1">
-          <input type="checkbox" id="cs${i}" style="float:left;margin-right:10px;margin-top:2px;">
-          <h4>${s.t}</h4>
-          <p>${s.d}</p>
-          ${s.ex ? `<div class="example">${s.ex}</div>` : ''}
-        </div>
-      </div>`;
-    });
-    html += `<div class="attitude-title">${d.ticketProcess.title}</div>`;
-    d.ticketProcess.items.forEach((it,i)=>{
-      html += `<div class="card" data-idx="${i}"><p><strong>${it.t}:</strong> ${it.d}</p></div>`;
-    });
-    html += `<div class="attitude-title">${d.attitude.title}</div>
-      <div class="attitude-grid" data-idx="0">
-        <div class="attitude-col good"><h5>Nên</h5><ul>${d.attitude.good.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-        <div class="attitude-col bad"><h5>Tránh</h5><ul>${d.attitude.bad.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      </div>`;
-    document.getElementById('content').innerHTML = html;
-    return;
-  }
-
-  if(d.isQuiz){
-    d.quiz.forEach((q,i)=>{
-      html += `<div class="quiz-q" data-idx="${i}">
-        <p class="qtext">${i+1}. ${q.q}</p>
-        ${q.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('')}
-      </div>`;
-    });
-    html += `<button class="btn" onclick="gradeQuiz()">Nộp bài kiểm tra</button>
-             <div class="quiz-result" id="quiz-result"></div>`;
-    document.getElementById('content').innerHTML = html;
-    return;
-  }
-
-  d.blocks.forEach((b,i)=>{
-    html += `<section class="block" data-idx="${i}"><h3>${b.h}</h3>${b.body}</section>`;
-  });
-  document.getElementById('content').innerHTML = html;
-}
-
-const ERR_GROUP_META = [
-  {key:'all', label:'Tất cả'},
-  {key:'n1', label:'Nhóm 1 · Chứng từ, công nợ'},
-  {key:'n2', label:'Nhóm 2 · Kho, giá vốn'},
-  {key:'n3', label:'Nhóm 3 · Ràng buộc & báo cáo âm'},
-  {key:'n4', label:'Nhóm 4 · Lệch dữ liệu sổ sách'},
-  {key:'theory', label:'Lý thuyết / FAQ'},
-  {key:'other', label:'Kế toán khác'},
-  {key:'thue', label:'Thuế'}
-];
-let currentErrGroup = 'all';
-
-function renderErrFilterBar(){
-  const bar = document.getElementById('err-filterbar');
-  if(!bar) return;
-  const counts = {all: DATA.m4.errors.length};
-  DATA.m4.errors.forEach(e=>{ counts[e.group] = (counts[e.group]||0) + 1; });
-  bar.innerHTML = ERR_GROUP_META.filter(g=>g.key==='all' || counts[g.key]).map(g=>`
-    <button class="err-filter-btn${g.key===currentErrGroup?' active':''}" data-g="${g.key}">${escapeHtml(g.label)} (${counts[g.key]||0})</button>
-  `).join('');
-  Array.from(bar.children).forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      currentErrGroup = btn.dataset.g;
-      renderErrFilterBar();
-      const term = document.getElementById('err-input') ? document.getElementById('err-input').value : '';
-      renderErrors(term);
+/* ---- tìm kiếm ---- */
+let SEARCH_INDEX=[];
+function normalizeVN(str){return (str||'').toString().normalize('NFD').replace(/\p{Mn}/gu,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().trim()}
+function stripTags(html){return (html||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ')}
+function qaAll(){return DATA.m7.qa.concat(DATA.m7.faq)}
+function buildIndex(){
+  var idx=[];
+  ['m1','m2','m3'].forEach(function(mk){
+    DATA[mk].blocks.forEach(function(b,i){
+      idx.push({module:mk,moduleLabel:mlabel(mk),kind:'block',id:i,snippet:b.h,textN:normalizeVN(b.h+' '+stripTags(b.body))});
     });
   });
-}
-
-function renderErrors(term){
-  const d = DATA.m4;
-  const t = normalizeVN(term);
-  const filtered = d.errors.filter(e=>{
-    if(currentErrGroup!=='all' && e.group!==currentErrGroup) return false;
-    if(!t) return true;
-    const hay = normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' '));
-    return hay.includes(t);
+  qaAll().forEach(function(q,i){
+    idx.push({module:'m7',moduleLabel:mlabel('m7')+' · '+q.cat,kind:'qa',id:i,snippet:q.q,
+      textN:normalizeVN(q.q+' '+q.a.map(function(x){return x.x}).join(' '))});
   });
-  const list = document.getElementById('err-list');
-  const countEl = document.getElementById('err-count');
-  if(!list) return;
-  if(countEl) countEl.textContent = `${filtered.length}/${d.errors.length} tình huống`;
-  if(filtered.length===0){
-    list.innerHTML = `<div class="no-result">Không tìm thấy tình huống lỗi phù hợp. Thử từ khóa khác.</div>`;
-    return;
-  }
-  list.innerHTML = filtered.map(e=>`
-    <div class="err-card">
-      <span class="tag">${escapeHtml(e.tag)}</span>
-      <h4>${escapeHtml(e.title)}</h4>
-      ${e.hien_tuong && e.hien_tuong.length ? `
-      <div class="lbl">Hiện tượng</div>
-      <ul>${e.hien_tuong.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
-      ${e.nguyen_nhan.length ? `
-      <div class="lbl">Nguyên nhân</div>
-      <ul>${e.nguyen_nhan.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
-      ${e.xu_ly.length ? `
-      <div class="lbl">Hướng xử lý</div>
-      ${e.xu_ly_ordered
-        ? `<ol>${e.xu_ly.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ol>`
-        : `<ul>${e.xu_ly.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul>`}` : ''}
-      ${e.images && e.images.length ? `
-      <div class="lbl">Ảnh minh hoạ</div>
-      <div class="err-images">${e.images.map(src=>`<img src="${src}" alt="Ảnh minh hoạ thao tác" loading="lazy">`).join('')}</div>` : ''}
-    </div>`).join('');
-}
-
-function gradeQuiz(){
-  const d = DATA.m6.quiz;
-  let score = 0;
-  d.forEach((q,i)=>{
-    const sel = document.querySelector(`input[name="q${i}"]:checked`);
-    if(sel && parseInt(sel.value)===q.correct) score++;
+  DATA.m8.so.forEach(function(s,i){
+    idx.push({module:'m8',moduleLabel:mlabel('m8'),kind:'so',id:i,snippet:s.code+' — '+s.name,
+      textN:normalizeVN(s.code+' '+s.name+' '+s.pur.map(function(x){return x.x}).join(' ')+' '+s.cols.map(function(c){return c.k+' '+c.v}).join(' '))});
   });
-  const res = document.getElementById('quiz-result');
-  res.style.display = 'block';
-  res.textContent = `Kết quả: ${score}/${d.length} câu đúng.`;
+  DATA.m4.errors.forEach(function(e,i){
+    idx.push({module:'m4',moduleLabel:mlabel('m4'),kind:'error',id:i,snippet:e.title,
+      textN:normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' '))});
+  });
+  DATA.m5.steps.forEach(function(s,i){
+    idx.push({module:'m5',moduleLabel:mlabel('m5'),kind:'step',id:i,snippet:s.t,textN:normalizeVN(s.t+' '+s.d+' '+(s.ex||''))});
+  });
+  DATA.m5.ticketProcess.items.forEach(function(it,i){
+    idx.push({module:'m5',moduleLabel:mlabel('m5')+' · Phiếu OneBSS chuyển IT',kind:'ticket',id:i,snippet:it.t,textN:normalizeVN(DATA.m5.ticketProcess.title+' '+it.t+' '+it.d)});
+  });
+  idx.push({module:'m5',moduleLabel:mlabel('m5'),kind:'attitude',id:0,snippet:DATA.m5.attitude.title,
+    textN:normalizeVN(DATA.m5.attitude.title+' '+DATA.m5.attitude.good.join(' ')+' '+DATA.m5.attitude.bad.join(' '))});
+  DATA.m6.quiz.forEach(function(q,i){
+    idx.push({module:'m6',moduleLabel:mlabel('m6'),kind:'quiz',id:i,snippet:q.q,textN:normalizeVN(q.q+' '+q.opts.join(' '))});
+  });
+  SEARCH_INDEX=idx;
 }
-
-/* ===== GLOBAL SIDEBAR SEARCH ===== */
 function onGlobalSearchInput(term){
-  const box = document.getElementById('search-results');
-  const raw = term.trim();
-  if(!raw){ box.classList.remove('show'); box.innerHTML=''; return; }
-  const t = normalizeVN(raw);
-  const matches = SEARCH_INDEX.filter(e=>e.textN.includes(t)).slice(0,8);
-  if(matches.length===0){
-    box.innerHTML = `<div class="search-empty">Không tìm thấy nội dung phù hợp.</div>`;
-    box.classList.add('show');
-    return;
-  }
-  box.innerHTML = matches.map((m,i)=>`
-    <div class="search-result-item" data-i="${i}">
-      <div class="srm">${m.moduleLabel}</div>
-      <div class="srs">${escapeHtml(m.snippet)}</div>
-    </div>`).join('');
+  var box=$('#search-results'), raw=term.trim();
+  if(!raw){box.classList.remove('show'); box.innerHTML=''; return}
+  var t=normalizeVN(raw);
+  var matches=SEARCH_INDEX.filter(function(e){return e.textN.indexOf(t)>=0}).slice(0,10);
+  if(!matches.length){box.innerHTML='<div class="search-empty">Không tìm thấy nội dung phù hợp.</div>'; box.classList.add('show'); return}
+  box.innerHTML=matches.map(function(m,i){return '<div class="search-result-item" tabindex="0" data-i="'+i+'"><div class="srm">'+esc(m.moduleLabel)+'</div><div class="srs">'+esc(m.snippet)+'</div></div>'}).join('');
   box.classList.add('show');
-  Array.from(box.children).forEach((el,i)=>{
-    el.addEventListener('click', ()=> navigateToResult(matches[i], raw));
+  $$('.search-result-item',box).forEach(function(el,i){
+    var f=function(){navigateToResult(matches[i],raw)};
+    el.addEventListener('click',f);
+    el.addEventListener('keydown',function(e){if(e.key==='Enter') f()});
   });
 }
-function escapeHtml(s){
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function navigateToResult(entry, rawTerm){
-  const box = document.getElementById('search-results');
-  box.classList.remove('show');
-  if(entry.module==='m4'){
-    showModule('m4', rawTerm);
-    return;
-  }
-  showModule(entry.module);
-  requestAnimationFrame(()=>{
-    let sel = null;
-    if(entry.kind==='block') sel = `.block[data-idx="${entry.id}"]`;
-    else if(entry.kind==='step') sel = `.call-step[data-idx="${entry.id}"]`;
-    else if(entry.kind==='ticket') sel = `.card[data-idx="${entry.id}"]`;
-    else if(entry.kind==='attitude') sel = `.attitude-grid[data-idx="${entry.id}"]`;
-    else if(entry.kind==='quiz') sel = `.quiz-q[data-idx="${entry.id}"]`;
-    if(!sel) return;
-    const el = document.querySelector(sel);
-    if(el){
-      el.scrollIntoView({behavior:'smooth', block:'center'});
-      el.classList.add('flash');
-      setTimeout(()=>el.classList.remove('flash'), 1600);
-    }
-  });
-}
-document.addEventListener('click', (ev)=>{
-  const box = document.getElementById('search-results');
-  const wrap = document.querySelector('.rail-search');
-  if(wrap && !wrap.contains(ev.target)){ box.classList.remove('show'); }
+document.addEventListener('click',function(ev){
+  var box=$('#search-results'), w=$('.searchbar');
+  if(w&&!w.contains(ev.target)) box.classList.remove('show');
 });
 
-buildIndex();
-showModule('m1');
+/* ---- điều hướng ---- */
+let currentModule='home', PEND=null;
+function go(k){if(location.hash==='#'+k) route(); else location.hash=k}
+function route(){
+  var h=(location.hash||'').replace('#','');
+  if(DATA[h]) showModule(h); else renderHome();
+  applyPending();
+}
+window.addEventListener('hashchange',route);
+function navigateToResult(entry,rawTerm){
+  $('#search-results').classList.remove('show');
+  PEND={kind:entry.kind,id:entry.id,term:rawTerm};
+  if(entry.kind==='qa'){qaCat='all'; qaTerm=''}
+  go(entry.module);
+}
+function applyPending(){
+  if(!PEND) return;
+  var p=PEND; PEND=null;
+  var sel=null, el=null;
+  if(p.kind==='block') sel='.block[data-idx="'+p.id+'"]';
+  else if(p.kind==='step') sel='.call-step[data-idx="'+p.id+'"]';
+  else if(p.kind==='ticket') sel='.card[data-idx="'+p.id+'"]';
+  else if(p.kind==='attitude') sel='.attitude-grid[data-idx="'+p.id+'"]';
+  else if(p.kind==='quiz') sel='.quiz-q[data-idx="'+p.id+'"]';
+  else if(p.kind==='qa') sel='details[data-qi="'+p.id+'"]';
+  else if(p.kind==='so') sel='details[data-si="'+p.id+'"]';
+  if(!sel) return;
+  el=$(sel);
+  if(!el) return;
+  if(el.tagName==='DETAILS') el.open=true;
+  requestAnimationFrame(function(){
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.classList.add('flash');
+    setTimeout(function(){el.classList.remove('flash')},1800);
+  });
+}
+
+/* ---- rail ---- */
+function buildRail(){
+  var h='<div class="rail-title">8 module đào tạo</div>';
+  ORDER.forEach(function(k,i){
+    h+='<button type="button" class="tab" data-m="'+k+'" onclick="go(\''+k+'\')"><span class="num">'+ROMAN[i]+'</span><span>'+META[k].s+'</span><span class="tk">'+ic('check')+'</span></button>';
+  });
+  $('#rail').innerHTML=h;
+  markDone();
+}
+function markDone(){
+  $$('.tab').forEach(function(t){t.classList.toggle('done',!!VIS[t.dataset.m])});
+}
+function setActive(k){
+  $$('.tab').forEach(function(t){t.classList.toggle('active',t.dataset.m===k)});
+  var a=$('.tab.active'), r=$('#rail');
+  if(a&&r&&r.scrollWidth>r.clientWidth) r.scrollTo({left:Math.max(0,a.offsetLeft-24),behavior:'smooth'});
+}
+
+/* ---- trang chủ ---- */
+function renderHome(){
+  currentModule='home'; setActive(null);
+  var nQa=qaAll().length, nSo=DATA.m8.so.length, nErr=DATA.m4.errors.length;
+  var done=ORDER.filter(function(k){return VIS[k]}).length;
+  var h='<section class="hero"><span class="hi">Cẩm nang cho ĐTV và giảng viên</span><h1>Nghiệp vụ kế toán VNPT HKD</h1>'
+   +'<p>Học nhanh, tra cứu nhanh và luyện trả lời khách hàng theo Thông tư 152/2025/TT-BTC: pháp lý, mẫu sổ, thao tác trên phần mềm, lỗi thường gặp và kịch bản cuộc gọi.</p>'
+   +'<div class="cta"><button type="button" class="btn sun" onclick="go(\'m1\')">Bắt đầu học</button><button type="button" class="btn ghost" onclick="go(\'m7\')">Luyện giải đáp</button><button type="button" class="btn ghost" onclick="go(\'m4\')">Tra lỗi nhanh</button></div></section>';
+  h+='<div class="stats">'
+   +'<div class="stat"><b>'+ORDER.length+'</b><span>module<br>đào tạo</span></div>'
+   +'<div class="stat"><b>'+nQa+'</b><span>tình huống<br>giải đáp</span></div>'
+   +'<div class="stat"><b>'+nSo+'</b><span>mẫu sổ có<br>biểu mẫu</span></div>'
+   +'<div class="stat"><b>'+nErr+'</b><span>ca lỗi<br>thường gặp</span></div></div>';
+  h+='<div class="sec-t">Truy cập nhanh</div><div class="quick">'
+   +'<a href="#m8" data-hot="so:0">'+ic('book')+'Sổ S1a-HKD</a>'
+   +'<a href="#m8">'+ic('book')+'Chọn sổ theo nhóm hộ</a>'
+   +'<a href="#m7">'+ic('chat')+'Luyện nhanh tình huống</a>'
+   +'<a href="#m4">'+ic('alert')+'Tra lỗi thường gặp</a>'
+   +'<a href="#m5">'+ic('phone')+'Quy trình cuộc gọi</a>'
+   +'<a href="#m6">'+ic('check')+'Làm bài kiểm tra</a></div>';
+  h+='<div class="sec-t">Tám module <span class="prog"><span class="pbar"><i style="width:'+Math.round(done/ORDER.length*100)+'%"></i></span>Đã xem '+done+'/'+ORDER.length+'</span></div><div class="mods">';
+  ORDER.forEach(function(k,i){
+    var m=META[k], d=DATA[k];
+    h+='<button type="button" class="mcard '+m.c+(VIS[k]?' done':'')+'" onclick="go(\''+k+'\')"><span class="ok">'+ic('check')+'</span>'
+     +'<span class="mi">'+ic(m.ic)+'</span><span class="me">Module '+ROMAN[i]+'</span><h3>'+esc(d.title)+'</h3><p>'+esc(d.goal)+'</p></button>';
+  });
+  h+='</div>';
+  $('#content').innerHTML=h;
+  $$('.quick a').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault(); var hot=a.dataset.hot; if(hot){PEND={kind:'so',id:0}}
+    go(a.getAttribute('href').slice(1));
+  })});
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---- đầu module ---- */
+function gvNoteHTML(gv){
+  return '<div class="gv-note"><div class="gv-head">Dành cho giảng viên</div>'
+   +'<div class="gv-row"><b>Gợi ý giảng dạy</b>'+gv.giang+'</div>'
+   +'<div class="gv-row"><b>Câu hỏi thảo luận</b>'+gv.hoi+'</div>'
+   +'<div class="gv-row"><b>Ý tưởng thực hành</b>'+gv.thuchanh+'</div></div>';
+}
+function showModule(key,filterTerm){
+  currentModule=key; setActive(key); VIS[key]=1; saveP(); markDone();
+  var d=DATA[key];
+  var html='<div class="module-head"><div class="module-eyebrow">'+d.eyebrow+'</div><h1 class="module-title">'+d.title+'</h1><p class="module-goal">'+d.goal+'</p>'+gvNoteHTML(d.gv)+'</div>';
+  if(!PEND) window.scrollTo({top:0,behavior:'instant'});
+
+  if(d.isErrorModule){
+    html+='<input class="finput" type="search" id="err-input" placeholder="Gõ hiện tượng lỗi, ví dụ: không tìm thấy chứng từ…" oninput="renderErrors(this.value)" autocomplete="off" aria-label="Lọc ca lỗi">'
+      +'<div class="chips" id="err-filterbar"></div><div class="cnt" id="err-count"></div><div id="err-list"></div>';
+    $('#content').innerHTML=html;
+    var jump=false;
+    if(PEND&&PEND.kind==='error'){filterTerm=PEND.term; PEND=null; jump=true}
+    if(filterTerm) $('#err-input').value=filterTerm;
+    renderErrFilterBar(); renderErrors(filterTerm||'');
+    if(jump) requestAnimationFrame(function(){$('#err-input').scrollIntoView({behavior:'smooth',block:'start'})});
+    return;
+  }
+  if(d.isCallScript){
+    html+='<div class="attitude-title">1. Quy trình các bước xử lý cuộc gọi hỗ trợ VNPT HKD</div>';
+    d.steps.forEach(function(s,i){
+      html+='<div class="call-step" data-idx="'+i+'"><div class="step-num">'+(i+1)+'</div><div style="flex:1;min-width:0"><h4>'+s.t+'</h4><p>'+s.d+'</p>'+(s.ex?'<div class="example">'+s.ex+'</div>':'')+'</div></div>';
+    });
+    html+='<div class="attitude-title">'+d.ticketProcess.title+'</div>';
+    d.ticketProcess.items.forEach(function(it,i){
+      html+='<div class="card" data-idx="'+i+'"><p><strong>'+it.t+':</strong> '+it.d+'</p></div>';
+    });
+    html+='<div class="attitude-title">'+d.attitude.title+'</div><div class="attitude-grid" data-idx="0">'
+      +'<div class="attitude-col good"><h5>Nên</h5>'+ul(d.attitude.good)+'</div>'
+      +'<div class="attitude-col bad"><h5>Tránh</h5>'+ul(d.attitude.bad).replace(/class="dot"/g,'class="dot r"')+'</div></div>';
+    $('#content').innerHTML=html; return;
+  }
+  if(d.isQuiz){
+    d.quiz.forEach(function(q,i){
+      html+='<div class="quiz-q" data-idx="'+i+'"><p class="qtext">'+(i+1)+'. '+q.q+'</p>'
+        +q.opts.map(function(o,j){return '<label><input type="radio" name="q'+i+'" value="'+j+'"><span class="txt">'+o+'</span></label>'}).join('')+'</div>';
+    });
+    html+='<div class="qbar"><button type="button" class="btn" id="qsubmit" onclick="gradeQuiz()">Nộp bài kiểm tra</button><button type="button" class="btn ghost" onclick="showModule(\'m6\')">Làm lại</button></div><div class="quiz-result" id="quiz-result"></div>';
+    $('#content').innerHTML=html; return;
+  }
+  if(d.isQA){ $('#content').innerHTML=html+qaHTML(d); qaInit(); return }
+  if(d.isSo){ $('#content').innerHTML=html+soHTML(d); soInit(); return }
+  d.blocks.forEach(function(b,i){html+='<section class="block" data-idx="'+i+'"><h3>'+b.h+'</h3>'+b.body+'</section>'});
+  $('#content').innerHTML=html;
+}
+
+/* ---- lỗi thường gặp ---- */
+const ERR_GROUP_META=[
+  {key:'all',label:'Tất cả'},{key:'n1',label:'Nhóm 1 · Chứng từ, công nợ'},{key:'n2',label:'Nhóm 2 · Kho, giá vốn'},
+  {key:'n3',label:'Nhóm 3 · Ràng buộc & báo cáo âm'},{key:'n4',label:'Nhóm 4 · Lệch dữ liệu sổ sách'},
+  {key:'theory',label:'Lý thuyết / FAQ'},{key:'other',label:'Kế toán khác'},{key:'thue',label:'Thuế'}
+];
+let currentErrGroup='all';
+function renderErrFilterBar(){
+  var bar=$('#err-filterbar'); if(!bar) return;
+  var counts={all:DATA.m4.errors.length};
+  DATA.m4.errors.forEach(function(e){counts[e.group]=(counts[e.group]||0)+1});
+  bar.innerHTML=ERR_GROUP_META.filter(function(g){return g.key==='all'||counts[g.key]}).map(function(g){
+    return '<button type="button" class="chip'+(g.key===currentErrGroup?' active':'')+'" data-g="'+g.key+'">'+esc(g.label)+' ('+(counts[g.key]||0)+')</button>';
+  }).join('');
+  $$('.chip',bar).forEach(function(btn){btn.addEventListener('click',function(){
+    currentErrGroup=btn.dataset.g; renderErrFilterBar();
+    renderErrors($('#err-input')?$('#err-input').value:'');
+  })});
+}
+function renderErrors(term){
+  var d=DATA.m4, t=normalizeVN(term);
+  var filtered=d.errors.filter(function(e){
+    if(currentErrGroup!=='all'&&e.group!==currentErrGroup) return false;
+    if(!t) return true;
+    return normalizeVN(e.tag+' '+e.title+' '+(e.hien_tuong||[]).join(' ')+' '+e.nguyen_nhan.join(' ')+' '+e.xu_ly.join(' ')).indexOf(t)>=0;
+  });
+  var list=$('#err-list'), cnt=$('#err-count'); if(!list) return;
+  if(cnt) cnt.textContent=filtered.length+'/'+d.errors.length+' tình huống';
+  if(!filtered.length){list.innerHTML='<div class="nores">Không tìm thấy tình huống lỗi phù hợp. Thử từ khóa khác.</div>'; return}
+  list.innerHTML=filtered.map(function(e){
+    return '<div class="err-card"><span class="tag">'+esc(e.tag)+'</span><h4>'+esc(e.title)+'</h4>'
+     +(e.hien_tuong&&e.hien_tuong.length?'<div class="lbl">Hiện tượng</div>'+ul(e.hien_tuong.map(esc)).replace(/class="dot"/g,'class="dot r"'):'')
+     +(e.nguyen_nhan.length?'<div class="lbl">Nguyên nhân</div>'+ul(e.nguyen_nhan.map(esc)):'')
+     +(e.xu_ly.length?'<div class="lbl">Hướng xử lý</div>'+(e.xu_ly_ordered
+        ?'<ol class="lst">'+e.xu_ly.map(function(x){return '<li><span class="txt">'+esc(x)+'</span></li>'}).join('')+'</ol>'
+        :ul(e.xu_ly.map(esc)).replace(/class="dot"/g,'class="dot g"')):'')
+     +(e.images&&e.images.length?'<div class="lbl">Ảnh minh hoạ</div><div class="err-images">'+e.images.map(function(s){return '<img src="'+s+'" alt="Ảnh minh hoạ thao tác" loading="lazy">'}).join('')+'</div>':'')
+     +'</div>';
+  }).join('');
+}
+
+/* ---- kiểm tra ---- */
+function gradeQuiz(){
+  var d=DATA.m6.quiz, score=0;
+  d.forEach(function(q,i){
+    var box=$('.quiz-q[data-idx="'+i+'"]'); box.classList.add('graded');
+    var sel=$('input[name="q'+i+'"]:checked');
+    var labels=$$('label',box);
+    labels.forEach(function(l){var inp=$('input',l); inp.disabled=true;
+      if(parseInt(inp.value)===q.correct) l.classList.add('correct');
+      else if(inp.checked) l.classList.add('wrong');
+    });
+    if(sel&&parseInt(sel.value)===q.correct) score++;
+  });
+  var res=$('#quiz-result'); res.style.display='block';
+  var pct=score/d.length;
+  res.textContent='Kết quả: '+score+'/'+d.length+' câu đúng. '+(pct>=0.8?'Rất tốt, bạn đã nắm chắc nội dung.':pct>=0.5?'Khá ổn, hãy xem lại các câu đỏ để ghi nhớ.':'Hãy ôn lại các module rồi làm lại nhé.');
+  $('#qsubmit').disabled=true;
+  res.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ---- giải đáp Thông tư 152 ---- */
+let qaCat='all', qaTerm='', PRAC=null;
+function ansHTML(a){
+  var h='<span class="say">ĐTV trả lời</span>', buf=[];
+  function flush(){if(buf.length){h+=ul(buf); buf=[]}}
+  a.forEach(function(x){
+    if(x.t==='li') buf.push(esc(x.x));
+    else {flush(); h+=x.t==='hl'?'<div class="hl">'+esc(x.x)+'</div>':'<p>'+esc(x.x)+'</p>'}
+  });
+  flush(); return h;
+}
+function qaHTML(d){
+  var h='<div class="prac"><h3>Luyện nhanh: rút một tình huống</h3>'
+   +'<div class="pq" id="pq"></div><div class="pa" id="pa"></div>'
+   +'<div class="qbar"><button type="button" class="btn" id="pshow">Xem gợi ý đáp</button><button type="button" class="btn ghost" id="pnext">'+ic('dice')+' Tình huống khác</button></div></div>';
+  h+='<input class="finput" type="search" id="qa-input" placeholder="Lọc tình huống: hiệu lực, sổ sách, 1 tỷ, lưu trữ…" autocomplete="off" aria-label="Lọc tình huống">'
+   +'<div class="chips" id="qa-chips"></div><div class="cnt" id="qa-cnt"></div><div id="qa-list"></div>';
+  if(d.drive) h+='<a class="linkcard" href="'+d.drive+'" target="_blank" rel="noopener">'+ic('link')+'<span><b>Tài liệu hướng dẫn kế toán HKD từ Thuế địa phương</b>Mở thư mục tổng hợp trên Google Drive</span></a>';
+  return h;
+}
+function qaInit(){
+  $('#qa-input').value=qaTerm;
+  $('#qa-input').addEventListener('input',function(){qaTerm=this.value; qaList()});
+  $('#pnext').addEventListener('click',pracPick);
+  $('#pshow').addEventListener('click',function(){var pa=$('#pa'); pa.classList.toggle('show'); this.textContent=pa.classList.contains('show')?'Ẩn gợi ý đáp':'Xem gợi ý đáp'});
+  pracPick(); qaChips(); qaList();
+}
+function pracPick(){
+  var all=qaAll(); PRAC=all[Math.floor(Math.random()*all.length)];
+  $('#pq').textContent=PRAC.q; $('#pa').innerHTML=ansHTML(PRAC.a); $('#pa').classList.remove('show'); $('#pshow').textContent='Xem gợi ý đáp';
+}
+function qaChips(){
+  var all=qaAll(), cats=[], cnt={};
+  all.forEach(function(q){if(cats.indexOf(q.cat)<0) cats.push(q.cat); cnt[q.cat]=(cnt[q.cat]||0)+1});
+  var h='<button type="button" class="chip'+(qaCat==='all'?' active':'')+'" data-c="all">Tất cả ('+all.length+')</button>';
+  cats.forEach(function(c){h+='<button type="button" class="chip'+(qaCat===c?' active':'')+'" data-c="'+esc(c)+'">'+esc(c)+' ('+cnt[c]+')</button>'});
+  $('#qa-chips').innerHTML=h;
+  $$('#qa-chips .chip').forEach(function(b){b.addEventListener('click',function(){qaCat=b.dataset.c; qaChips(); qaList()})});
+}
+function qaList(){
+  var d=DATA.m7, t=normalizeVN(qaTerm), all=qaAll(), out='', shown=0, lastGroup='';
+  all.forEach(function(q,i){
+    if(qaCat!=='all'&&q.cat!==qaCat) return;
+    if(t&&normalizeVN(q.q+' '+q.cat+' '+q.a.map(function(x){return x.x}).join(' ')).indexOf(t)<0) return;
+    var g=i<d.qa.length?'Kịch bản giải đáp Thông tư 152':'Câu hỏi thường gặp về VNPT HKD';
+    if(g!==lastGroup){out+='<div class="attitude-title">'+g+'</div>'; lastGroup=g}
+    out+='<details class="acc" data-qi="'+i+'"><summary><span class="qn">'+q.n+'</span><span class="qh"><span class="pill'+(i<d.qa.length?'':' g')+'">'+esc(q.cat)+'</span><span class="qq">'+esc(q.q)+'</span></span></summary><div class="accb">'+ansHTML(q.a)+'</div></details>';
+    shown++;
+  });
+  $('#qa-cnt').textContent=shown+'/'+all.length+' tình huống';
+  $('#qa-list').innerHTML=out||'<div class="nores">Không có tình huống phù hợp. Thử từ khóa khác.</div>';
+}
+
+/* ---- hướng dẫn ghi sổ ---- */
+const PICK=[
+  {t:'Doanh thu từ 1 tỷ đồng/năm trở xuống: không chịu thuế GTGT, không nộp thuế TNCN',s:['S1a-HKD']},
+  {t:'Nộp thuế GTGT và thuế TNCN theo tỷ lệ % trên doanh thu',s:['S2a-HKD']},
+  {t:'Nộp thuế GTGT theo tỷ lệ % trên doanh thu, thuế TNCN trên thu nhập tính thuế',s:['S2b-HKD','S2c-HKD','S2d-HKD','S2e-HKD']},
+  {t:'Có hoạt động chịu các loại thuế khác (tiêu thụ đặc biệt, tài nguyên, bảo vệ môi trường…)',s:['S3a-HKD']}
+];
+const SOTAG={'S1a-HKD':['Không chịu thuế',''],'S2a-HKD':['Thuế theo % doanh thu','g'],'S2b-HKD':['TNCN trên thu nhập tính thuế','a'],'S2c-HKD':['TNCN trên thu nhập tính thuế','a'],'S2d-HKD':['TNCN trên thu nhập tính thuế','a'],'S2e-HKD':['TNCN trên thu nhập tính thuế','a'],'S3a-HKD':['Thuế khác','r']};
+let picked={};
+function soHTML(d){
+  var h='<div class="picker"><h3>Hộ của khách cần mở sổ nào?</h3><p>Chọn đặc điểm của hộ kinh doanh, có thể chọn nhiều đặc điểm. Các sổ phù hợp sẽ được đánh dấu bên dưới.</p><div class="opts">';
+  PICK.forEach(function(o,i){h+='<button type="button" class="opt" data-p="'+i+'"><span class="oi">'+(i+1)+'</span><span class="txt">'+esc(o.t)+'</span></button>'});
+  h+='</div><div class="pres" id="pres"></div></div><p class="hint">Chạm vào từng sổ để xem mục đích, cách ghi và biểu mẫu. Chạm vào ảnh biểu mẫu để phóng to.</p><div id="so-list">';
+  d.so.forEach(function(s,i){
+    var tg=SOTAG[s.code]||['',''];
+    h+='<details class="acc so" data-si="'+i+'" data-code="'+s.code+'"><summary><span class="qn">'+s.code.replace('-HKD','')+'</span><span class="qh"><span class="pill'+(tg[1]?' '+tg[1]:'')+'">'+esc(tg[0])+'</span><span class="sname">'+esc(s.name)+'</span></span></summary><div class="accb">'
+      +'<div class="lbl">Mục đích sử dụng</div>'+ul(s.pur.map(function(p){return p.sub?'<span class="pill">Trường hợp</span> '+esc(p.x):esc(p.x)}))
+      +'<div class="lbl">Cách ghi sổ</div><table class="colt">'+s.cols.map(function(c){return '<tr><td>'+esc(c.k)+'</td><td>'+esc(c.v)+'</td></tr>'}).join('')+'</table>';
+    if(s.code==='S2d-HKD') h+='<div class="formula"><span>Đơn giá xuất kho =</span><span class="frac"><span>Giá trị hàng tồn đầu kỳ + Giá trị hàng nhập trong kỳ</span><span>Số lượng hàng tồn đầu kỳ + Số lượng hàng nhập trong kỳ</span></span></div>';
+    s.notes.forEach(function(n){h+='<p>'+esc(n)+'</p>'});
+    h+='<div class="basis">'+esc(s.basis)+'</div>';
+    if(s.img) h+='<div class="lbl">Biểu mẫu</div><img class="thumb" src="'+s.img+'" alt="Biểu mẫu sổ '+s.code+'" loading="lazy" width="'+s.w+'" height="'+s.h+'">';
+    h+='</div></details>';
+  });
+  return h+'</div>';
+}
+function soInit(){
+  picked={}; soPaint();
+  $$('.opt').forEach(function(b){b.addEventListener('click',function(){var i=b.dataset.p; picked[i]=!picked[i]; b.classList.toggle('on',!!picked[i]); soPaint()})});
+}
+function soPaint(){
+  var set=[]; Object.keys(picked).forEach(function(i){if(picked[i]) PICK[i].s.forEach(function(c){if(set.indexOf(c)<0) set.push(c)})});
+  $$('.so').forEach(function(el){
+    el.classList.toggle('hit',set.indexOf(el.dataset.code)>=0);
+    el.classList.toggle('dim',set.length>0&&set.indexOf(el.dataset.code)<0);
+  });
+  var p=$('#pres');
+  if(!set.length){p.classList.remove('show'); p.innerHTML=''; return}
+  p.classList.add('show');
+  var more=picked[3]?(picked[0]||picked[1]||picked[2]?' Sổ thuế khác dùng thêm, ghi cùng với các sổ của nhóm hộ.':''):'';
+  p.innerHTML='<b>Hộ này cần mở:</b><div class="pills">'+set.map(function(c){return '<button type="button" class="chip active" data-c="'+c+'">'+c+'</button>'}).join('')+'</div>'+(more?'<p style="margin:8px 0 0">'+more+'</p>':'');
+  $$('.chip',p).forEach(function(b){b.addEventListener('click',function(){
+    var el=$('.so[data-code="'+b.dataset.c+'"]'); el.open=true; el.scrollIntoView({behavior:'smooth',block:'start'});
+  })});
+}
+
+/* ---- ảnh phóng to, nút lên đầu ---- */
+document.addEventListener('click',function(e){
+  var im=e.target.closest&&e.target.closest('img.thumb,.err-images img,.diagram-img');
+  if(im){$('#lbimg').src=im.src; $('#lbimg').alt=im.alt; $('#lb').classList.add('show')}
+});
+$('#lb').addEventListener('click',function(){this.classList.remove('show')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') $('#lb').classList.remove('show')});
+(function(){
+  var fab=$('#fab');
+  function onS(){fab.classList.toggle('show',window.scrollY>400)}
+  window.addEventListener('scroll',onS,{passive:true}); onS();
+  fab.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+
+DATA.m6.gv.giang=DATA.m6.gv.giang.replace('bài quiz 10 câu này','bài quiz này');
+buildIndex(); buildRail(); route();
+
 </script>
 </body>
 </html>
