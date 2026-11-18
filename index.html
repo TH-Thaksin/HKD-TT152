@@ -311,6 +311,110 @@ details.acc[open]>summary::after{transform:rotate(-135deg);margin-top:12px}
 @keyframes flashbg{0%,40%{box-shadow:0 0 0 6px var(--sun)}100%{box-shadow:var(--shadow)}}
 .foot{text-align:center;color:var(--muted);font-size:13px;padding:18px 0 28px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* ===== bổ sung: hình ảnh, icon và thành phần cho module mới ===== */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(12px,3vw,40px);align-items:center}
+.hero-t{min-width:0;position:relative}
+.hero-art{width:clamp(240px,28vw,360px);position:relative;z-index:1}
+.hero-art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 0 rgba(0,0,0,.14))}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero-art{display:none}}
+.stat .si{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-size:0}
+.stat .si svg{width:24px;height:24px}
+.stat:nth-child(2) .si{background:var(--mint-soft);color:var(--mint)}
+.stat:nth-child(3) .si{background:var(--amber-soft);color:var(--amber)}
+.stat:nth-child(4) .si{background:var(--coral-soft);color:var(--coral)}
+.stat .st{display:flex;flex-direction:column;gap:2px}
+.quick a svg{color:var(--blue)}
+.mcard{overflow:hidden}
+.mcard::after{content:attr(data-n);position:absolute;right:14px;bottom:2px;font-family:var(--display);font-size:62px;font-weight:800;color:var(--blue);opacity:.07;pointer-events:none;line-height:1}
+.mcard .mi{width:54px;height:54px;border-radius:18px;box-shadow:0 3px 0 rgba(13,37,82,.12)}
+.mcard .mi svg{width:30px;height:30px}
+.mcard.c-r::after{color:var(--coral)} .mcard.c-m::after{color:var(--mint)} .mcard.c-a::after{color:var(--amber)}
+.mh-ic{position:absolute;right:clamp(14px,2.4vw,28px);top:50%;transform:translateY(-50%);width:76px;height:76px;border-radius:24px;display:grid;place-items:center;background:var(--blue);color:var(--blue-ink);z-index:1;box-shadow:var(--pop)}
+.mh-ic svg{width:42px;height:42px}
+.module-head{padding-right:clamp(16px,2.4vw,30px)}
+@media (min-width:640px){.module-head{padding-right:130px}}
+@media (max-width:639px){.mh-ic{display:none}}
+.block h3.hasic::before{display:none}
+.block h3 .hic{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue)}
+.block h3 .hic svg{width:21px;height:21px}
+.sec-mini{font-family:var(--display);font-weight:800;font-size:16px;margin:14px 0 8px;color:var(--muted)}
+
+.xbox{border:2px solid var(--line);border-radius:18px;padding:12px 16px;background:var(--surface);margin:10px 0}
+.xbox h4{font-size:16px;margin:0 0 4px}
+.xbox p{margin:0}.xbox ul.lst{margin:4px 0 0}
+.xbox.ok{background:var(--mint-soft);border-color:var(--mint)} .xbox.ok h4{color:var(--mint)}
+.xbox.no{background:var(--coral-soft);border-color:var(--coral)} .xbox.no h4{color:var(--coral)}
+.xbox.warn{background:var(--amber-soft);border-color:var(--amber)} .xbox.warn h4{color:var(--amber)}
+.xtwo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.xsay{background:var(--blue-soft);border-radius:16px;padding:10px 16px;margin:10px 0}
+.xsay .who{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
+.xsay p{margin:0;text-align:left}
+.xsteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin:10px 0}
+.xq{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin:0}
+.xq .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--sun);color:var(--sun-ink);display:grid;place-items:center;font-family:var(--display);font-weight:800}
+.xsteps .xq p{margin:0;text-align:left;text-justify:auto}
+.xtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:10px 0}
+.xtile{background:var(--surface);border:2px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:14px 16px}
+.xtile h4{font-size:17px;margin:8px 0 4px}
+.xtile p{margin:0;text-align:left;color:var(--muted);font-size:14.5px}
+.xi{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--blue-soft);color:var(--blue);flex:none}
+.xi svg{width:24px;height:24px}
+.xi.g{background:var(--mint-soft);color:var(--mint)} .xi.a{background:var(--amber-soft);color:var(--amber)} .xi.r{background:var(--coral-soft);color:var(--coral)}
+.xflow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:10px 0}
+.xnode{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;flex:1 1 130px;min-width:120px;max-width:230px;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:12px 10px;box-shadow:var(--shadow)}
+.xnode b{font-family:var(--display);font-size:15.5px;line-height:1.25;display:flex;flex-direction:column;gap:2px}
+.xnode small{font-family:var(--body);font-weight:500;font-size:12.5px;color:var(--muted)}
+.xnode.hot{border-color:var(--blue);background:var(--blue-soft)}
+.xar{align-self:center;color:var(--muted);display:grid;place-items:center}
+.xar svg{width:22px;height:22px}
+@media (max-width:640px){.xnode{flex:1 1 100%;max-width:none;flex-direction:row;text-align:left}.xar{display:none}}
+.xlane{margin:12px 0;padding:10px 12px;border-radius:20px;background:var(--surface2)}
+.xlane-t{font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 4px 4px}
+.xeq{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;gap:10px;margin:12px 0 16px}
+.xeqb{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:150px;padding:14px 18px;border-radius:20px;border:2px solid var(--line);background:var(--surface);box-shadow:var(--pop);text-align:center}
+.xeqb b{font-family:var(--display);font-size:18px}
+.xeqb small{color:var(--muted);font-size:13px}
+.xeqb.a{border-color:var(--blue)} .xeqb.a .xi{background:var(--blue);color:var(--blue-ink)}
+.xeqb.r{border-color:var(--coral)} .xeqb.r .xi{background:var(--coral);color:var(--surface)}
+.xeqb.g{border-color:var(--mint)} .xeqb.g .xi{background:var(--mint);color:var(--surface)}
+.xop{align-self:center;font-family:var(--display);font-size:30px;font-weight:800;color:var(--muted)}
+.xbar{display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:6px;margin:6px 0 12px}
+@media (max-width:760px){.xbar{grid-template-columns:1fr}}
+.xseg{padding:14px 16px;border-radius:18px;border:2px solid var(--line);position:relative}
+.xseg b{display:block;font-family:var(--display);font-size:19px;margin-bottom:4px}
+.xseg span{font-size:14px;color:var(--ink);display:block}
+.xseg.s1{background:var(--mint-soft);border-color:var(--mint)} .xseg.s1 b{color:var(--mint)}
+.xseg.s2{background:var(--amber-soft);border-color:var(--amber)} .xseg.s2 b{color:var(--amber)}
+.xseg.s3{background:var(--coral-soft);border-color:var(--coral)} .xseg.s3 b{color:var(--coral)}
+.xdec{margin:8px 0 12px}
+.xdq{display:block;text-align:center;font-family:var(--display);font-weight:800;font-size:18px;background:var(--blue);color:var(--blue-ink);padding:12px 18px;border-radius:18px;margin:0 auto 10px;max-width:520px;box-shadow:var(--pop)}
+.xdb{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.xda{border:2px solid var(--line);border-radius:18px;padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.xda b{font-family:var(--display);font-size:16px}
+.xda small{color:var(--muted);font-size:13.5px;text-align:left}
+.xda.g{border-color:var(--mint);background:var(--mint-soft)} .xda.b{border-color:var(--blue);background:var(--blue-soft)} .xda.a{border-color:var(--amber);background:var(--amber-soft)}
+.xmf{align-self:flex-start;background:var(--sun);color:var(--sun-ink);font-family:var(--display);font-weight:800;padding:2px 14px;border-radius:999px;font-size:17px}
+.xcalc{background:var(--surface);border:2px solid var(--blue);border-radius:24px;box-shadow:var(--pop);padding:16px clamp(14px,2.4vw,24px)}
+.xform{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.xform label{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:13.5px;color:var(--muted)}
+.xform input,.xform select{font:inherit;font-weight:500;color:var(--ink);padding:10px 14px;border:2px solid var(--line);border-radius:14px;background:var(--surface)}
+.xform input:focus,.xform select:focus{outline:none;border-color:var(--blue)}
+.xpre{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-size:13.5px;font-weight:600;color:var(--muted)}
+.xpre button{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 12px;font-weight:700;cursor:pointer}
+.xpre button:hover{border-color:var(--blue);color:var(--blue)}
+.xout{min-height:60px}
+.xhint{color:var(--muted);margin:6px 0 0;text-align:left}
+.xres{border-radius:16px;padding:10px 14px;margin:8px 0;background:var(--blue-soft)}
+.xres p{margin:4px 0 0;text-align:left}
+.xres.g{background:var(--mint-soft);border:2px solid var(--mint)}
+.xres.w{background:var(--amber-soft);border:2px solid var(--amber);text-align:left}
+.xrow{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:8px 4px;border-bottom:1px dashed var(--line)}
+.xrow span{min-width:0}
+.xrow b{white-space:nowrap;font-family:var(--display);font-size:17px;color:var(--blue)}
+.xrow.tot{border-bottom:0;background:var(--sun);border-radius:14px;padding:10px 14px;margin:6px 0;color:var(--sun-ink)}
+.xrow.tot b{color:var(--sun-ink);font-size:19px}
+@media (max-width:560px){.xrow{flex-direction:column;gap:2px}}
 </style>
 </head>
 <body class="mode-dtv">
@@ -339,7 +443,7 @@ details.acc[open]>summary::after{transform:rotate(-135deg);margin-top:12px}
     <nav class="rail" id="rail" aria-label="Danh sách module"></nav>
     <div class="content" id="content"></div>
   </div>
-  <div class="foot">VNPT HKD Academy · Mã tài liệu VNPT-HKD-KT.01 · Phiên bản 2026.2 · Cập nhật 17/11/2026</div>
+  <div class="foot">VNPT HKD Academy · Mã tài liệu VNPT-HKD-KT.01 · Phiên bản 2026.3 · Cập nhật 18/11/2026</div>
 </main>
 
 <button class="fab" id="fab" type="button" aria-label="Lên đầu trang"><svg class="i" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
@@ -1452,8 +1556,8 @@ DATA.m7={"eyebrow": "", "title": "Giải đáp Thông tư 152 cho khách hàng",
 DATA.m8={"eyebrow": "", "title": "Hướng dẫn ghi các sổ kế toán theo Thông tư 152", "goal": "Biết hộ kinh doanh cần mở sổ nào, mỗi sổ dùng để làm gì và ghi từng cột ra sao, để hướng dẫn khách đúng khi họ ghi sổ trên VNPT HKD", "gv": {"giang": "Chiếu biểu mẫu từng sổ, yêu cầu học viên chỉ ra cột nào ghi gì trước khi đọc phần hướng dẫn. Dùng bộ chọn đặc điểm hộ để chốt đúng sổ cho từng hồ sơ khách.", "hoi": "Vì sao các sổ về vật tư, hàng hóa (S2d) và tiền (S2e) nằm trong bộ sổ của hộ tính thuế TNCN trên thu nhập tính thuế, còn hộ chỉ ghi doanh thu thì không cần?", "thuchanh": "Phát bốn hồ sơ hộ kinh doanh khác nhau, mỗi học viên chọn đúng sổ và điền thử vài dòng trên biểu mẫu."}, "isSo": true, "so": [{"code": "S1a-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ làm căn cứ kê khai, xác định hộ kinh doanh, cá nhân kinh doanh có thuộc đối tượng chịu thuế GTGT, nộp thuế TNCN theo quy định của pháp luật về thuế hay không."}, {"sub": false, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh thực hiện kê khai doanh thu theo quy định của pháp luật về thuế thì hộ kinh doanh, cá nhân kinh doanh có thể dùng sổ này để theo dõi, đối chiếu số liệu với cơ quan thuế"}], "cols": [{"k": "Cột A", "v": "Ghi ngày, tháng ghi sổ."}, {"k": "Cột B", "v": "Ghi diễn giải doanh thu từ việc bán hàng hóa, dịch vụ. Hộ kinh doanh, cá nhân kinh doanh có thể ghi theo từng nghiệp vụ phát sinh hoặc theo định kỳ."}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ"}], "notes": [], "basis": "Căn cứ Điều 4 Thông tư 152/2025/TT-BTC", "img": "images/so-s1a-hkd.png", "w": 538, "h": 456}, {"code": "S2a-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ theo từng nhóm danh mục ngành nghề kinh doanh có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN."}, {"sub": true, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh có nhiều nhóm ngành nghề khác nhau thì sổ này có thể mở cho từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN."}, {"sub": true, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế GTGT, thuế TNCN thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để theo dõi, đối chiếu số thuế GTGT, thuế TNCN phải nộp với cơ quan thuế."}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ."}, {"k": "Cột C", "v": "Ghi diễn giải nội dung doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN"}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ có thể theo từng ngành nghề để làm căn cứ xác định doanh thu bán hàng hóa, dịch vụ có cùng tỷ lệ % để tính thuế GTGT hoặc cùng mức thuế suất để tính thuế TNCN. Trên cơ sở doanh thu được xác định, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền thuế GTGT, thuế TNCN phải nộp theo từng ngành nghề có cùng tỷ lệ % hoặc cùng mức thuế suất. Dòng cuối cùng ghi tổng số thuế GTGT, thuế TNCN phải nộp"}], "notes": [], "basis": "Căn cứ Điều 5 Thông tư 152/2025/TT-BTC", "img": "images/so-s2a-hkd.png", "w": 768, "h": 1001}, {"code": "S2b-HKD", "name": "Sổ doanh thu bán hàng hóa, dịch vụ", "pur": [{"sub": false, "x": "Sổ này được mở để ghi doanh thu bán hàng hóa, dịch vụ theo từng nhóm danh mục ngành nghề kinh doanh có cùng tỷ lệ % để tính thuế GTGT."}, {"sub": true, "x": "Trường hợp hộ kinh doanh, cá nhân kinh doanh có nhiều nhóm ngành nghề khác nhau thì sổ này có thể mở cho từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT."}, {"sub": true, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế GTGT thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để theo dõi, đối chiếu số thuế GTGT phải nộp với cơ quan thuế"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT"}, {"k": "Cột 1", "v": "Ghi số tiền bán hàng hóa, dịch vụ có thể theo từng ngành nghề để làm căn cứ xác định doanh thu bán hàng hóa, dịch vụ theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT. Trên cơ sở doanh thu được xác định, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền thuế GTGT phải nộp theo từng ngành nghề có cùng tỷ lệ % để tính thuế GTGT. Dòng cuối cùng ghi tổng số thuế GTGT phải nộp"}], "notes": [], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2b-hkd.png", "w": 710, "h": 1024}, {"code": "S2c-HKD", "name": "Sổ chi tiết doanh thu, chi phí", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh mở sổ này để xác định nghĩa vụ thuế TNCN theo quy định của pháp luật về thuế."}, {"sub": false, "x": "Trường hợp cơ quan thuế cung cấp dữ liệu nộp thuế TNCN thì hộ kinh doanh, cá nhân kinh doanh sử dụng sổ này để đối chiếu số thuế TNCN phải nộp với cơ quan thuế"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1", "v": "Ghi số tiền phù hợp với từng nội dung nêu tại cột C"}, {"k": "Dòng 1", "v": "Hộ kinh doanh, cá nhân kinh doanh căn cứ vào chứng từ kế toán để ghi tổng doanh thu bán hàng hóa, dịch vụ hoặc có thể ghi theo từng nghiệp vụ phát sinh tùy theo nhu cầu của hộ kinh doanh, cá nhân kinh doanh"}, {"k": "Dòng 2", "v": "Ghi tổng chi phí hợp lý trên cơ sở các chi phí thực tế phát sinh tại hộ kinh doanh, cá nhân kinh doanh hoặc có thể ghi theo từng nghiệp vụ phát sinh tùy theo nhu cầu của hộ kinh doanh, cá nhân kinh doanh Hộ kinh doanh, cá nhân kinh doanh tính chênh lệch giữa tổng doanh thu và tổng chi phí hợp lý để làm căn cứ tính thuế TNCN phải nộp"}], "notes": ["Việc xác định doanh thu, chi phí hợp lý để xác định nghĩa vụ thuế TNCN được thực hiện theo quy định của pháp luật về thuế"], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2c-hkd.png", "w": 612, "h": 810}, {"code": "S2d-HKD", "name": "Sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh mở sổ chi tiết vật liệu, dụng cụ, sản phẩm, hàng hóa để theo dõi, quản lý về tình hình nhập, xuất, tồn cho từng vật liệu, dụng cụ, sản phẩm, hàng hóa"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu, ngày tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột D", "v": "Đơn vị tính của vật liệu, dụng cụ, sản phẩm, hàng hóa"}, {"k": "Cột 1", "v": "Ghi đơn giá nhập, xuất, tồn của từng vật liệu, dụng cụ, sản phẩm, hàng hóa. Trong đó, đơn giá nhập kho của từng vật liệu, dụng cụ, sản phẩm, hàng hóa căn cứ vào chứng từ mua vật liệu, dụng cụ, sản phẩm, hàng hóa Đơn giá xuất kho được tính riêng cho từng loại vật liệu, dụng cụ, sản phẩm, hàng hóa theo công thức sau:"}, {"k": "Cột 2", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa nhập kho"}, {"k": "Cột 3", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa nhập kho (Cột 3 = Cột 1 x Cột 2)."}, {"k": "Cột 4", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa xuất kho"}, {"k": "Cột 5", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa xuất kho (Cột 5 = Cột 1 x Cột 4)"}, {"k": "Cột 6", "v": "Ghi số lượng vật liệu, dụng cụ, sản phẩm, hàng hóa tồn kho"}, {"k": "Cột 7", "v": "Ghi giá trị (thành tiền) vật liệu, dụng cụ, sản phẩm, hàng hóa tồn kho (Cột 7 = Cột 1 x Cột 6)"}], "notes": [], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2d-hkd.png", "w": 768, "h": 816}, {"code": "S2e-HKD", "name": "Sổ chi tiết tiền", "pur": [{"sub": false, "x": "Hộ kinh doanh, cá nhân kinh doanh phải mở sổ chi tiết tiền để theo dõi tình hình thu, chi bằng tiền mặt hoặc tiền gửi không kỳ hạn (tiền gửi để thanh toán) trong tài khoản của hộ kinh doanh, cá nhân kinh doanh tại các ngân hàng và tổ chức cung ứng dịch vụ thanh toán theo quy định của pháp luật."}, {"sub": true, "x": "Hộ kinh doanh, cá nhân kinh doanh có thể mở sổ này chi tiết theo từng loại tiền (tiền mặt, tiền gửi không kỳ hạn)."}, {"sub": true, "x": "Đối với tiền gửi không kỳ hạn, hộ kinh doanh, cá nhân kinh doanh có thể theo dõi riêng số tiền gửi tại từng ngân hàng hoặc từng tổ chức cung ứng dịch vụ thanh toán"}], "cols": [{"k": "Cột A, B", "v": "Ghi số hiệu và ngày, tháng của chứng từ"}, {"k": "Cột C", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1,2", "v": "Ghi số tiền thu, chi tiền mặt hoặc số tiền gửi không kỳ hạn gửi vào, rút ra"}], "notes": ["Cuối kỳ, hộ kinh doanh, cá nhân kinh doanh tính ra số tiền mặt thu, chi, tồn quỹ và số tiền gửi không kỳ hạn gửi vào, rút ra, dư cuối kỳ"], "basis": "Căn cứ Điều 6 Thông tư 152/2025/TT-BTC", "img": "images/so-s2e-hkd.png", "w": 593, "h": 705}, {"code": "S3a-HKD", "name": "Sổ theo dõi nghĩa vụ thuế khác", "pur": [{"sub": false, "x": "Hộ kinh doanh mở sổ này để theo dõi nghĩa vụ thuế khác, dùng trong trường hợp hộ kinh doanh, cá nhân kinh doanh có hoạt động thuộc diện chịu các loại thuế khác (thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế tài nguyên, thuế bảo vệ môi trường, thuế sử dụng đất)"}], "cols": [{"k": "Cột A", "v": "Ghi ngày, tháng ghi sổ."}, {"k": "Cột B", "v": "Ghi diễn giải nội dung nghiệp vụ phát sinh"}, {"k": "Cột 1", "v": "Ghi lượng hàng hóa, dịch vụ chịu thuế"}, {"k": "Cột 2", "v": "Ghi mức thuế tuyệt đối theo quy định của pháp luật về thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế bảo vệ môi trường"}, {"k": "Cột 3", "v": "Giá tính thuế/01 đơn vị hàng hóa, dịch vụ thực hiện theo quy định của pháp luật về thuế"}, {"k": "Cột 4", "v": "Ghi mức thuế suất theo quy định của pháp luật về thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt, thuế tài nguyên, thuế sử dụng đất"}, {"k": "Cột 5", "v": "Thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt áp dụng phương pháp tính thuế theo tỷ lệ % (Cột 5 = Cột 1 x Cột 3 x Cột 4)"}, {"k": "Cột 6", "v": "Tính thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt áp dụng phương pháp tính thuế tuyệt đối (Cột 6 = Cột 1 x Cột 2)"}, {"k": "Cột 7", "v": "Tính thuế xuất khẩu, thuế nhập khẩu, thuế tiêu thụ đặc biệt phải nộp (Cột 7= Cột 5+ Cột 6)"}, {"k": "Cột 8", "v": "Tính thuế bảo vệ môi trường phải nộp (Cột 8 = Cột 1 x Cột 2)"}, {"k": "Cột 9", "v": "Tính thuế tài nguyên phải nộp (Cột 9 = Cột 1 x Cột 3 x Cột 4)"}, {"k": "Cột 10", "v": "Tính thuế sử dụng đất phải nộp (Cột 10 = Cột 1 x Cột 3 x Cột 4)"}], "notes": [], "basis": "Căn cứ Điều 7 Thông tư 152/2025/TT-BTC", "img": "images/so-s3a-hkd.png", "w": 768, "h": 834}]};
 
 /* ===================== ENGINE ===================== */
-const ORDER=['m1','m7','m8','m2','m3','m4','m5','m6'];
-const ROMAN=['I','II','III','IV','V','VI','VII','VIII'];
+const ORDER=['m1','m7','m8','m9','m2','m3','m10','m11','m12','m4','m5','m6'];
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 const META={
   m1:{ic:'law',c:'',s:'Nền tảng pháp lý'},
   m7:{ic:'chat',c:'c-m',s:'Giải đáp Thông tư 152'},
@@ -1462,7 +1566,11 @@ const META={
   m3:{ic:'tool',c:'c-m',s:'Hướng dẫn thao tác'},
   m4:{ic:'alert',c:'c-r',s:'Lỗi thường gặp'},
   m5:{ic:'phone',c:'c-a',s:'Kịch bản cuộc gọi'},
-  m6:{ic:'check',c:'',s:'Kiểm tra & tổng kết'}
+  m6:{ic:'check',c:'',s:'Kiểm tra & tổng kết'},
+  m9:{ic:'bulb',c:'c-m',s:'Nguyên lý & thiết lập'},
+  m10:{ic:'lock',c:'c-a',s:'Khóa sổ & số chứng từ'},
+  m11:{ic:'calc',c:'c-m',s:'Tính thuế theo tỷ lệ'},
+  m12:{ic:'form',c:'',s:'Thông tư 50/2026 & tờ khai'}
 };
 const IC={
   law:'M12 3v18M5 7h14M7 7l-3 7a3 3 0 006 0zM17 7l-3 7a3 3 0 006 0zM8 21h8',
@@ -1486,6 +1594,406 @@ const $$=function(s,r){return Array.prototype.slice.call((r||document).querySele
 function li(x){return '<li><span class="dot"></span><span class="txt">'+x+'</span></li>'}
 function ul(a){return '<ul class="lst">'+a.map(li).join('')+'</ul>'}
 function mlabel(k){return 'Module '+ROMAN[ORDER.indexOf(k)]+' — '+META[k].s}
+
+/* ===== MODULE BỔ SUNG: nguyên lý & thiết lập, khóa sổ & số chứng từ, tính thuế, TT 50/2026 ===== */
+Object.assign(IC,{
+  coin:'M12 3a9 9 0 100 18 9 9 0 000-18zM9 9h5a2 2 0 010 4h-4a2 2 0 000 4h5M12 6.5V9M12 17v2.5',
+  calc:'M6 3h12a1 1 0 011 1v16a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1zM8 7h8v3H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01',
+  box:'M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10',
+  tax:'M19 5L5 19M7.5 9a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4zM16.5 18.4a1.7 1.7 0 100-3.4 1.7 1.7 0 000 3.4z',
+  form:'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6',
+  lock:'M6 11h12v10H6zM8 11V7a4 4 0 018 0v4M12 15v2',
+  users:'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-3.3 2.7-5 6-5s6 1.7 6 5M17 11a2.5 2.5 0 100-5M17.5 15c2.2.3 3.5 1.7 3.5 4',
+  flow:'M3 4h6v5H3zM15 4h6v5h-6zM9 15h6v5H9zM6 9v3h12V9M12 12v3',
+  star:'M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.2 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z',
+  clock:'M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2',
+  hash:'M5 9h14M5 15h14M10 4L8 20M16 4l-2 16',
+  bulb:'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z',
+  trend:'M3 17l6-6 4 4 8-8M15 7h6v6',
+  shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+  doc:'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6',
+  home:'M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10',
+  cart:'M3 4h3l2.4 11h9.2L20 8H7M10 20h.01M17 20h.01',
+  list:'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01'
+});
+/* ---- bộ dựng nội dung (tiền tố x) ---- */
+function xcard(h){return '<div class="card">'+h+'</div>'}
+function xp(h){return '<p>'+h+'</p>'}
+function xtbl(head,rows){return '<div class="reftable-wrap"><table class="reftable"><thead><tr>'+head.map(function(h){return '<th>'+h+'</th>'}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+c+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>'}
+function xbox(kind,title,h){return '<div class="xbox '+kind+'">'+(title?'<h4>'+title+'</h4>':'')+h+'</div>'}
+function xtwo(a,b){return '<div class="xtwo">'+a+b+'</div>'}
+function xsay(who,t){return '<div class="xsay"><span class="who">'+who+'</span><p>'+t+'</p></div>'}
+function xsteps(list){return '<div class="xsteps">'+list.map(function(t,i){return '<div class="card xq"><span class="n">'+(i+1)+'</span><p>'+t+'</p></div>'}).join('')+'</div>'}
+function xtiles(list){return '<div class="xtiles">'+list.map(function(x){return '<div class="xtile"><span class="xi '+(x[3]||'')+'">'+ic(x[0])+'</span><h4>'+x[1]+'</h4><p>'+x[2]+'</p></div>'}).join('')+'</div>'}
+function xflow(list){return '<div class="xflow">'+list.map(function(x,i){return (i?'<span class="xar">'+ic('arrow')+'</span>':'')+'<div class="xnode '+(x[2]||'')+'"><span class="xi">'+ic(x[0])+'</span><b>'+x[1]+'</b></div>'}).join('')+'</div>'}
+IC.arrow='M5 12h14M13 6l6 6-6 6';
+IC.scale=IC.law;
+function xhead(ico,t){return t}
+
+/* ================= MODULE IX · Nguyên lý kế toán và thiết lập ================= */
+DATA.m9={
+  eyebrow:'',title:'Nguyên lý kế toán và thiết lập ban đầu',
+  goal:'Hiểu năm yếu tố cơ bản của kế toán, quy tắc “chứng từ trước, sổ sau”, và biết cần thiết lập gì trước khi khách bắt đầu ghi chứng từ.',
+  gv:{
+    giang:'Dùng chính một hộ tạp hóa làm xuyên suốt: bỏ vốn, nhập hàng, bán hàng, trả tiền. Cho học viên tự điền năm yếu tố vào bảng trước khi chiếu đáp án, vì đây là nền để hiểu sổ sách và báo cáo ở các module sau.',
+    hoi:'Vì sao nhập hàng về kho chưa phải là chi phí? Khi nào khoản đó mới trở thành chi phí giá vốn trong kỳ?',
+    thuchanh:'Phát cho mỗi nhóm một tình huống (nhận vốn, nhập hàng mua chịu, bán hàng thu tiền ngay, trả nợ nhà cung cấp). Yêu cầu nhóm ghi thay đổi của tài sản, nợ phải trả, vốn chủ sở hữu và kiểm tra phương trình còn cân.'
+  },
+  blocks:[
+   {ic:'star',h:'Năm yếu tố cơ bản của kế toán',body:
+     xp('Mọi con số trên sổ sách của hộ kinh doanh đều thuộc một trong năm yếu tố. Hiểu năm yếu tố này là hiểu được vì sao báo cáo lên đúng hoặc lệch.')+
+     '<div class="xeq"><div class="xeqb a"><span class="xi">'+ic('box')+'</span><b>Tài sản</b><small>Hộ đang có</small></div><span class="xop">=</span><div class="xeqb r"><span class="xi">'+ic('list')+'</span><b>Nợ phải trả</b><small>Hộ đang nợ</small></div><span class="xop">+</span><div class="xeqb g"><span class="xi">'+ic('shield')+'</span><b>Vốn chủ sở hữu</b><small>Phần của chủ hộ</small></div></div>'+
+     xtbl(['Yếu tố','Là gì','Ví dụ hộ tạp hóa','Nhìn ở đâu'],[
+      ['Tài sản','Thứ hộ đang có: tiền, hàng tồn kho, khoản khách còn nợ','Tiền mặt 20 triệu, hàng tồn 80 triệu, khách nợ 5 triệu','Sổ chi tiết tiền (S2e), sổ chi tiết hàng hóa (S2d), sổ công nợ phải thu'],
+      ['Nợ phải trả','Thứ hộ đang nợ người khác','Còn nợ nhà cung cấp 30 triệu','Sổ công nợ phải trả'],
+      ['Vốn chủ sở hữu','Phần thuộc về chủ hộ, bằng tài sản trừ nợ phải trả','105 − 30 = 75 triệu','Phản ánh qua số dư đầu kỳ và kết quả kinh doanh'],
+      ['Doanh thu','Số tiền bán hàng hóa, dịch vụ trong kỳ','Bán được 2 tỷ trong năm','Sổ doanh thu S1a, S2a, S2b'],
+      ['Chi phí','Khoản bỏ ra để kinh doanh: giá vốn, thuê mặt bằng, điện nước, lương','Giá vốn hàng bán, tiền thuê, điện','Sổ doanh thu, chi phí S2c']
+     ])+
+     xbox('ok','Kiểm tra phương trình bằng ví dụ','<p>Tài sản 20 + 80 + 5 = <b>105 triệu</b>. Nợ phải trả 30 triệu cộng vốn chủ sở hữu 75 triệu cũng bằng <b>105 triệu</b>. Phương trình luôn cân, và mọi chứng từ chỉ làm các vế dịch chuyển chứ không phá cân bằng.</p>')},
+   {ic:'trend',h:'Doanh thu, chi phí và lợi nhuận',body:
+     xtwo(
+      xbox('ok','Công thức','<ul class="lst"><li><span class="dot g"></span><span class="txt"><b>Lợi nhuận</b> = Doanh thu − Chi phí</span></li><li><span class="dot g"></span><span class="txt"><b>Thu nhập tính thuế</b> (hộ tính TNCN theo thu nhập) = Doanh thu − Chi phí hợp lý</span></li></ul>'),
+      xbox('warn','Ví dụ một tháng','<p>Doanh thu 100 triệu. Giá vốn hàng bán 70 triệu, tiền thuê 10 triệu, điện nước 2 triệu. Lợi nhuận = 100 − 70 − 10 − 2 = <b>18 triệu</b>.</p>'))+
+     '<div class="sec-mini">Ba nhầm lẫn hay gặp</div>'+
+     xsteps(['<b>Nhập hàng chưa phải chi phí.</b> Hàng nhập về kho là tài sản. Chỉ khi hàng bán ra, giá vốn mới thành chi phí trong kỳ. Vì vậy sai giá vốn là sai lợi nhuận.','<b>Tiền vào chưa chắc là doanh thu.</b> Khách đặt cọc, chủ hộ góp thêm vốn hay vay mượn là tiền vào nhưng không phải doanh thu bán hàng.','<b>Tiền ra chưa chắc là chi phí.</b> Trả nợ nhà cung cấp hay mua máy móc không phải chi phí kinh doanh của kỳ đó.'])},
+   {ic:'flow',h:'Chứng từ, sổ, báo cáo, tờ khai',body:
+     xflow([['doc','Chứng từ','Mua, bán, thu, chi, kho'],['book','Sổ sách','Tự lên từ chứng từ'],['trend','Báo cáo','Kiểm tra, đối chiếu'],['form','Tờ khai thuế','Lấy số từ sổ','hot']].map(function(x){return [x[0],x[1]+'<small>'+x[2]+'</small>',x[3]]}))+
+     xp('Phần mềm VNPT HKD chỉ “lên sổ” đúng khi chứng từ đúng. Ba nguyên tắc để số liệu đáng tin:')+
+     xtiles([['check','Có chứng từ','Mỗi nghiệp vụ phát sinh có một chứng từ tương ứng, không ghi miệng, không ghi gộp.','g'],['clock','Đúng ngày','Ghi theo ngày thực tế phát sinh. Sai ngày là nguyên nhân phổ biến của tồn âm và chứng từ “biến mất” khỏi danh sách.','a'],['link','Truy ngược được','Từ số trên sổ phải lần lại được chứng từ gốc khi khách hoặc cơ quan thuế hỏi.','']])},
+   {ic:'tool',h:'Thiết lập kế toán: làm gì trước khi ghi chứng từ',body:
+     xp('Thiết lập đúng ngay từ đầu giúp tránh phần lớn ca lỗi kho và giá vốn về sau. Thứ tự gợi ý khi hướng dẫn khách mới:')+
+     xsteps(['<b>Xác định nhóm hộ</b> theo doanh thu và cách nộp thuế để biết dùng bộ sổ nào (xem Module I).','<b>Thiết lập kế toán</b> tại menu <b>Kế toán › Tiện ích › Thiết lập kế toán</b>: chọn phương pháp tính giá xuất kho, kỳ dự trữ (tháng hoặc quý) và tùy chọn cảnh báo khi xuất âm kho.','<b>Nhập số dư đầu kỳ</b>: tiền mặt, tiền gửi, hàng tồn kho đầu kỳ (số lượng và giá trị), công nợ phải thu và phải trả. Làm trước khi phát sinh chứng từ mới.','<b>Khai danh mục</b>: kho, hàng hóa, đơn vị tính (và đơn vị tính chuyển đổi nếu có), khách hàng, nhà cung cấp. Hàng hóa gắn đúng nhóm ngành để tờ khai tính đúng tỷ lệ thuế.','<b>Phân quyền theo vai</b>: kế toán mua hàng, kế toán bán hàng, kế toán kho, mỗi người chỉ làm phần việc của mình.','<b>Bắt đầu ghi chứng từ</b> theo đúng thứ tự: nhập hàng, bán hàng, thu chi.'])+
+     xtwo(
+      xbox('ok','Từ năm 2026','<p>Mục <b>Phương pháp tính giá xuất kho</b> chọn <b>Bình quân gia quyền cả kỳ dự trữ</b>, theo Thông tư 152/2025/TT-BTC. Sau khi chọn, phải <b>Tính lại giá vốn xuất kho</b> cho năm 2026.</p>'),
+      xbox('warn','Cảnh báo xuất âm kho','<p>Nên để bật cảnh báo. Chỉ tạm tắt khi cần sửa chứng từ theo hướng dẫn ca lỗi, làm xong phải bật lại.</p>'))},
+   {ic:'chat',h:'Mẫu câu giải thích cho khách',body:
+     xsay('Khách hỏi: “Số dư đầu kỳ là gì mà phải nhập?”','Dạ số dư đầu kỳ là số tiền, số hàng và các khoản nợ mình đang có lúc bắt đầu dùng phần mềm ạ. Mình nhập đúng thì báo cáo về sau mới khớp với thực tế.')+
+     xsay('Khách hỏi: “Tiền khách đặt cọc có tính là doanh thu không?”','Dạ tiền đặt cọc chưa phải doanh thu bán hàng ạ. Khi nào giao hàng và lập chứng từ bán thì mới ghi nhận doanh thu. Mình cần xác định cụ thể cách ghi thì em xin phép chuyển bộ phận hỗ trợ kế toán ạ.')+
+     xsay('Khách hỏi: “Sao nhập hàng rồi mà lợi nhuận chưa giảm?”','Dạ hàng nhập về là hàng trong kho của mình ạ. Khi mình bán ra thì giá vốn mới được tính vào chi phí, nên lợi nhuận mới thay đổi theo ạ.')}
+  ]
+};
+
+/* ================= MODULE X · Khóa sổ và đánh lại số chứng từ ================= */
+DATA.m10={
+  eyebrow:'',title:'Khóa sổ và đánh lại số chứng từ',
+  goal:'Biết khóa sổ để làm gì, rà soát gì trước khi khóa, xử lý khi không khóa được hoặc phải mở lại kỳ, và xử lý chứng từ trùng số, nhảy số.',
+  gv:{
+    giang:'Nhấn mạnh khóa sổ là bước cuối của một vòng làm việc: dữ liệu đúng rồi mới khóa. Cho học viên tự lập danh sách rà soát trước khi chiếu bảng.',
+    hoi:'Nếu mở lại một kỳ đã khóa để sửa chứng từ, những việc nào bắt buộc làm lại sau đó và vì sao?',
+    thuchanh:'Cho một danh sách chứng từ bán hàng có hai số trùng và một khoảng nhảy số. Yêu cầu học viên xác định nguyên nhân có thể và đề xuất cách xử lý, có lưu ý chứng từ đã phát hành hóa đơn.'
+  },
+  blocks:[
+   {ic:'lock',h:'Khóa sổ là gì và khi nào cần',body:
+     xp('Khóa sổ là chốt số liệu của một kỳ (tháng, quý hoặc năm) sau khi đã kiểm tra, để báo cáo và tờ khai của kỳ đó nhất quán và không bị thay đổi vô tình.')+
+     '<div class="xlane"><div class="xlane-t">Một vòng làm việc cuối kỳ</div>'+xflow([['list','Rà soát chứng từ'],['check','Đối chiếu quỹ, ngân hàng, công nợ, tồn kho'],['calc','Tính lại giá vốn'],['lock','Khóa sổ','hot']])+'</div>'+
+     '<div class="xlane"><div class="xlane-t">Khi phát hiện sai sau khi đã khóa</div>'+xflow([['lock','Mở lại kỳ'],['tool','Sửa chứng từ'],['calc','Tính lại giá vốn'],['lock','Khóa lại','hot']])+'</div>'},
+   {ic:'check',h:'Rà soát trước khi khóa sổ',body:
+     xtbl(['Việc cần làm','Kiểm tra gì','Xem ở đâu'],[
+      ['Chứng từ đủ và đúng ngày','Không thiếu phiếu mua, bán, thu, chi; không có chứng từ sai ngày','Danh sách chứng từ, lọc theo kỳ'],
+      ['Quỹ tiền mặt','Số trên sổ bằng số tiền thực đếm','Sổ chi tiết tiền (S2e)'],
+      ['Tiền gửi ngân hàng','Khớp sao kê ngân hàng','Sổ chi tiết tiền (S2e)'],
+      ['Công nợ','Khớp với khách hàng, nhà cung cấp; không có khoản phải thu bị âm','Sổ công nợ phải thu, phải trả'],
+      ['Tồn kho','Khớp kiểm kê; không có hàng tồn âm','Sổ chi tiết hàng hóa (S2d), báo cáo nhập xuất tồn'],
+      ['Giá vốn','Đã tính lại giá vốn sau mọi thay đổi chứng từ','Chức năng Tính lại giá vốn'],
+      ['Doanh thu','Doanh thu sổ kế toán khớp báo cáo hóa đơn','Sổ doanh thu, báo cáo hóa đơn']
+     ])+xbox('warn','Nguyên tắc','<p>Sửa chứng từ cũ xong luôn phải <b>tính lại giá vốn</b> từ ngày chứng từ bị sửa, rồi mới khóa. Quên bước này là nguyên nhân phổ biến của giá vốn sai.</p>')},
+   {ic:'alert',h:'Không khóa được sổ hoặc cần mở lại kỳ',body:
+     xp('Khi khách báo không khóa được sổ hoặc muốn mở lại kỳ đã khóa, ĐTV làm lần lượt:')+
+     xsteps(['<b>Hỏi rõ:</b> thông báo lỗi nguyên văn, kỳ đang khóa là tháng, quý hay năm, khách vừa thao tác gì.','<b>Rà soát nhanh</b> theo bảng ở trên: chứng từ sai ngày, tồn kho âm, công nợ âm, chưa tính lại giá vốn.','<b>Hướng dẫn khách sửa</b> phần sai thuộc phạm vi hướng dẫn, rồi thử khóa lại.','<b>Mở lại kỳ</b> chỉ khi khách yêu cầu và đã hiểu hệ quả: phải sửa xong, tính lại giá vốn, kiểm tra lại báo cáo và tờ khai đã lập.','<b>Chưa xử lý được:</b> lập phiếu OneBSS chuyển bộ phận kỹ thuật theo quy trình ở Module Kịch bản cuộc gọi, kèm mã khách hàng, kỳ, ảnh thông báo lỗi và các bước đã làm.'])+
+     xbox('no','Không làm','<ul class="lst"><li><span class="dot r"></span><span class="txt">Hướng dẫn khách xóa dữ liệu để “cho khóa được sổ”</span></li><li><span class="dot r"></span><span class="txt">Hứa mở lại kỳ rồi sửa số mà không dặn tính lại giá vốn</span></li></ul>')},
+   {ic:'hash',h:'Đánh lại số chứng từ',body:
+     xp('Số chứng từ nên liên tục theo từng loại chứng từ và từng năm, mỗi số chỉ thuộc một chứng từ. Khi số bị trùng hoặc nhảy, khách khó đối chiếu và dễ nghi thất lạc chứng từ.')+
+     xtbl(['Hiện tượng','Nguyên nhân hay gặp','Hướng xử lý'],[
+      ['Trùng số','Nhập số bằng tay; chứng từ lập từ nhiều nơi hoặc đồng bộ từ hệ thống khác','Xác định chứng từ nào là đúng, đánh lại số theo loại và kỳ'],
+      ['Nhảy số','Đã xóa chứng từ ở giữa, để lại khoảng trống','Kiểm tra chứng từ bị xóa có chủ ý không, rồi đánh lại số'],
+      ['Số không theo thứ tự ngày','Nhập bổ sung chứng từ cũ vào sau','Đánh lại số theo thứ tự ngày lập'],
+      ['Muốn đổi cách đánh số','Khách đổi quy ước trong hộ','Điều chỉnh quy tắc đánh số rồi kiểm tra lại toàn bộ danh sách']
+     ])+
+     xsteps(['Xác định <b>loại chứng từ</b> và <b>kỳ</b> cần đánh lại.','Lọc danh sách, ghi lại các số trùng, nhảy.','Kiểm tra chứng từ đã in, đã gửi khách hoặc ghi chép ngoài phần mềm vì số mới sẽ khác số cũ.','Thực hiện chức năng đánh lại số chứng từ của phần mềm.','Xem lại danh sách: số liên tục, không trùng, đúng thứ tự ngày.'])+
+     xbox('warn','Lưu ý','<p>Số chứng từ kế toán khác với <b>số hóa đơn điện tử</b>. Số hóa đơn do hệ thống hóa đơn cấp theo thứ tự phát hành, đánh lại số chứng từ kế toán không làm đổi số hóa đơn đã phát hành.</p>')},
+   {ic:'chat',h:'Mẫu câu hỗ trợ',body:
+     xsay('Khách: “Sổ không khóa được, báo lỗi.”','Dạ anh/chị cho em xin nội dung thông báo lỗi và kỳ mình đang khóa là tháng hay quý ạ. Em sẽ cùng mình rà từng mục như tồn kho, công nợ và giá vốn trước nhé.')+
+     xsay('Khách: “Tôi muốn mở lại tháng trước để sửa.”','Dạ được ạ, nhưng mình lưu ý sau khi sửa xong phải tính lại giá vốn và kiểm tra lại báo cáo, tờ khai của tháng đó. Mình sửa xong báo em, em hướng dẫn mình bước tiếp theo ạ.')+
+     xsay('Khách: “Số chứng từ của tôi bị nhảy, có mất chứng từ không?”','Dạ thường là do trước đó có chứng từ bị xóa nên để lại khoảng trống ạ. Mình kiểm tra giúp em danh sách theo ngày, nếu đúng vậy thì mình dùng chức năng đánh lại số chứng từ để số liên tục lại ạ.')}
+  ]
+};
+
+/* ================= MODULE XI · Tính thuế theo tỷ lệ doanh thu ================= */
+var X_IND={'1':{n:'(a) Phân phối, cung cấp hàng hóa',g:1,t:0.5},'2':{n:'(d) Sản xuất, vận tải, dịch vụ gắn với hàng hóa, xây dựng có bao thầu nguyên vật liệu',g:3,t:1.5},'3':{n:'(b) Dịch vụ, xây dựng không bao thầu nguyên vật liệu',g:5,t:2},'4':{n:'(c) Cho thuê tài sản trừ bất động sản',g:5,t:5},'5':{n:'(e) Cung cấp sản phẩm nội dung thông tin số (game, phim, nhạc, quảng cáo số…)',g:5,t:5},'6':{n:'(f) Hoạt động kinh doanh khác',g:2,t:1}};
+function xvnd(n){return Math.round(n).toLocaleString('vi-VN')+' đồng'}
+function xpc(n){return String(n).replace('.',',')+'%'}
+function xCalc(){
+  var rev=parseFloat((document.getElementById('xc-rev').value||'').replace(',','.'))||0;
+  var ind=X_IND[document.getElementById('xc-ind').value];
+  var cv=document.getElementById('xc-cost').value, cost=cv===''?null:(parseFloat(cv.replace(',','.'))||0);
+  var out=document.getElementById('xc-out'), R=rev*1e6, h='';
+  if(!R){out.innerHTML='<p class="xhint">Nhập doanh thu năm (đơn vị triệu đồng) để xem kết quả.</p>';return}
+  if(R<=1e9){
+    h='<div class="xres g"><b>Nhóm 1</b><p>Doanh thu '+xvnd(R)+' thuộc nhóm từ 1 tỷ đồng/năm trở xuống: <b>không chịu GTGT, không nộp TNCN</b>, ghi sổ <b>S1a-HKD</b> và gửi thông báo doanh thu năm.</p></div>';
+  }else if(R>50e9){
+    h='<div class="xres w">Doanh thu trên 50 tỷ đồng nằm ngoài phạm vi máy tính này. Khi gặp ca này, ĐTV chuyển bộ phận hỗ trợ nghiệp vụ.</div>';
+  }else{
+    var gt=R*ind.g/100;
+    h='<div class="xres"><b>Ngành:</b> '+ind.n+' (GTGT '+xpc(ind.g)+', TNCN '+xpc(ind.t)+')</div>';
+    h+='<div class="xrow"><span>GTGT = '+xvnd(R)+' × '+xpc(ind.g)+'</span><b>'+xvnd(gt)+'</b></div>';
+    if(R<=3e9){
+      var t1=(R-1e9)*ind.t/100;
+      h+='<div class="xrow"><span>Cách 1: TNCN theo tỷ lệ = ('+xvnd(R)+' − 1.000.000.000) × '+xpc(ind.t)+'</span><b>'+xvnd(t1)+'</b></div>';
+      h+='<div class="xrow tot"><span>Tổng thuế năm (cách 1)</span><b>'+xvnd(gt+t1)+'</b></div>';
+      if(cost!==null){
+        var t2=Math.max(0,R-cost*1e6)*0.15;
+        h+='<div class="xrow"><span>Cách 2: TNCN theo thu nhập tính thuế = ('+xvnd(R)+' − '+xvnd(cost*1e6)+') × 15%</span><b>'+xvnd(t2)+'</b></div>';
+        h+='<div class="xrow tot"><span>Tổng thuế năm (cách 2)</span><b>'+xvnd(gt+t2)+'</b></div>';
+      }else h+='<p class="xhint">Nhập chi phí hợp lý để so sánh với cách 2.</p>';
+      h+='<div class="xres w">ĐTV chỉ giải thích cách tính, không chọn thay khách. Lưu ý cách 1 khóa đến hết năm, cách 2 khóa 2 năm liên tiếp.</div>';
+    }else{
+      if(cost!==null){
+        var t3=Math.max(0,R-cost*1e6)*0.17;
+        h+='<div class="xrow"><span>TNCN bắt buộc theo thu nhập tính thuế = ('+xvnd(R)+' − '+xvnd(cost*1e6)+') × 17%</span><b>'+xvnd(t3)+'</b></div>';
+        h+='<div class="xrow tot"><span>Tổng thuế năm</span><b>'+xvnd(gt+t3)+'</b></div>';
+      }else h+='<p class="xhint">Doanh thu trên 3 tỷ đến 50 tỷ: TNCN bắt buộc tính theo thu nhập tính thuế × 17%. Nhập chi phí hợp lý để tính.</p>';
+    }
+  }
+  out.innerHTML=h;
+}
+function xPreset(v){document.getElementById('xc-rev').value=v; xCalc()}
+DATA.m11={
+  eyebrow:'',title:'Tính thuế theo tỷ lệ doanh thu',
+  goal:'Tính được GTGT và TNCN, so sánh hai cách tính TNCN, hiểu quy tắc ngưỡng 1 tỷ và ghi sổ doanh thu nhiều ngành, giữ đúng ranh giới tư vấn.',
+  gv:{
+    giang:'Học bằng số tròn, hai phép nhân. Cho học viên tự tính ví dụ 2 tỷ trước, sau đó dùng máy tính để kiểm tra và thử thêm 900 triệu, 1,5 tỷ, 3,5 tỷ. Nhấn mạnh việc chọn cách tính TNCN bị khóa sau lần lập tờ khai đầu tiên.',
+    hoi:'Vì sao hộ doanh thu 900 triệu có thuế GTGT và TNCN bằng 0 nhưng vẫn phải ghi sổ? Vì sao khách cần cân nhắc kỹ trước khi chọn cách 2?',
+    thuchanh:'Đóng vai khách hỏi “cách nào ít thuế hơn”. Học viên trả lời theo ranh giới: giải thích cách tính chung, nhắc quy tắc khóa phương pháp, hướng dẫn hỏi cơ quan thuế hoặc kế toán, không quyết định thay khách.'
+  },
+  blocks:[
+   {ic:'tax',h:'Ba mốc doanh thu cần nhớ',body:
+     '<div class="xbar"><div class="xseg s1"><b>Đến 1 tỷ</b><span>Không chịu GTGT, không nộp TNCN. Sổ S1a-HKD, gửi thông báo doanh thu năm</span></div><div class="xseg s2"><b>Trên 1 đến 3 tỷ</b><span>GTGT theo tỷ lệ; TNCN chọn cách 1 (theo tỷ lệ) hoặc cách 2 (theo thu nhập tính thuế, 15%)<br>Khai theo quý</span></div><div class="xseg s3"><b>Trên 3 đến 50 tỷ</b><span>TNCN bắt buộc theo thu nhập tính thuế, thuế suất 17%<br>Khai theo quý</span></div></div>'+
+     xbox('warn','Doanh thu cộng dồn mọi cơ sở','<p>Từ năm 2026, doanh thu của tất cả địa điểm kinh doanh được cộng dồn để xác định nhóm. Ngay khi tổng doanh thu vượt 1 tỷ đồng, hộ phải kê khai và nộp thuế từ quý đó.</p>')},
+   {ic:'list',h:'Bảng tỷ lệ GTGT và TNCN theo nhóm ngành',body:
+     xtbl(['Nhóm ngành','GTGT','TNCN (cách 1)'],[
+      ['(a) Phân phối, cung cấp hàng hóa (tạp hóa, bán lẻ)','1%','0,5%'],
+      ['(d) Sản xuất, vận tải, dịch vụ gắn với hàng hóa, xây dựng có bao thầu nguyên vật liệu','3%','1,5%'],
+      ['(b) Dịch vụ, xây dựng không bao thầu nguyên vật liệu (sửa chữa, cắt tóc, làm đẹp)','5%','2%'],
+      ['(c) Cho thuê tài sản trừ bất động sản','5%','5%'],
+      ['(e) Cung cấp sản phẩm nội dung thông tin số (game, phim, nhạc, quảng cáo số…)','5%','5%'],
+      ['(f) Hoạt động kinh doanh khác','2%','1%']])+
+     xp('<b>Mẹo nhớ:</b> bốn nhóm quen thuộc có GTGT là 1, 3, 5, 2. Hai nhóm cho thuê tài sản và nội dung số có cả GTGT và TNCN đều 5%.')},
+   {ic:'calc',h:'Hai phép nhân',body:
+     xtwo(
+      xbox('ok','GTGT theo tỷ lệ','<ul class="lst"><li><span class="dot g"></span><span class="txt">Doanh thu chịu thuế × tỷ lệ GTGT của ngành</span></li><li><span class="dot g"></span><span class="txt">Hộ doanh thu từ 1 tỷ trở xuống không chịu GTGT</span></li></ul>'),
+      xbox('ok','TNCN cách 1: theo tỷ lệ','<ul class="lst"><li><span class="dot g"></span><span class="txt">(Doanh thu năm − 1 tỷ) × tỷ lệ TNCN của ngành</span></li><li><span class="dot g"></span><span class="txt">Hộ doanh thu từ 1 tỷ trở xuống không nộp TNCN</span></li></ul>'))+
+     xbox('warn','','<p>Luôn xác định hộ thuộc nhóm nào trước, rồi mới tính. Doanh thu 900 triệu thì thuế GTGT và TNCN đều bằng 0.</p>')},
+   {ic:'coin',h:'Ví dụ trọn bộ: tạp hóa doanh thu 2 tỷ',body:
+     xsteps(['Doanh thu 2 tỷ lớn hơn 1 tỷ nên hộ phải nộp thuế.','GTGT: 2.000.000.000 × 1% = <b>20.000.000</b>.','TNCN cách 1: (2.000.000.000 − 1.000.000.000) × 0,5% = <b>5.000.000</b>.','Tổng thuế năm: 20.000.000 + 5.000.000 = <b>25.000.000</b>. Ghi sổ S2a theo nhóm ngành phân phối hàng hóa.'])+
+     xsay('ĐTV','Dạ với hộ bán hàng hóa, thuế GTGT tính 1% trên doanh thu, thuế TNCN tính 0,5% trên phần doanh thu vượt 1 tỷ ạ.')},
+   {ic:'calc',h:'Máy tính thuế mô phỏng',body:
+     '<div class="xcalc"><div class="xform"><label>Doanh thu năm (triệu đồng)<input id="xc-rev" type="text" inputmode="decimal" placeholder="Ví dụ 2000" oninput="xCalc()"></label><label>Nhóm ngành<select id="xc-ind" onchange="xCalc()"><option value="1">(a) Phân phối, bán lẻ hàng hóa</option><option value="2">(d) Sản xuất, vận tải, xây dựng bao thầu NVL</option><option value="3">(b) Dịch vụ, xây dựng không bao thầu NVL</option><option value="4">(c) Cho thuê tài sản trừ bất động sản</option><option value="5">(e) Sản phẩm nội dung thông tin số</option><option value="6">(f) Hoạt động kinh doanh khác</option></select></label><label>Chi phí hợp lý (triệu đồng, tùy chọn)<input id="xc-cost" type="text" inputmode="decimal" placeholder="Ví dụ 1400" oninput="xCalc()"></label></div><div class="xpre"><span>Thử nhanh:</span><button type="button" onclick="xPreset(900)">900 triệu</button><button type="button" onclick="xPreset(1500)">1,5 tỷ</button><button type="button" onclick="xPreset(2000)">2 tỷ</button><button type="button" onclick="xPreset(3500)">3,5 tỷ</button></div><div id="xc-out" class="xout"><p class="xhint">Nhập doanh thu năm (đơn vị triệu đồng) để xem kết quả.</p></div></div>'},
+   {ic:'users',h:'Một hộ làm hai ngành, nhiều cơ sở',body:
+     xp('Hộ bán tạp hóa 1,5 tỷ và nhận sửa chữa 0,6 tỷ. Doanh thu tách riêng, mỗi ngành một tỷ lệ.')+
+     xtbl(['Ngành','Doanh thu','Tỷ lệ GTGT','GTGT'],[['Bán tạp hóa','1.500.000.000','1%','15.000.000'],['Sửa chữa (dịch vụ)','600.000.000','5%','30.000.000'],['<b>Tổng</b>','<b>2.100.000.000</b>','','<b>45.000.000</b>']])+
+     xp('Sổ S2a mở riêng cho từng nhóm ngành có cùng tỷ lệ.')+
+     xbox('ok','Ngưỡng giảm trừ 1 tỷ chỉ có một','<ul class="lst"><li><span class="dot g"></span><span class="txt">Ngưỡng 1 tỷ là mức giảm trừ duy nhất của một hộ trong một năm tính thuế, <b>không nhân</b> theo số địa điểm kinh doanh.</span></li><li><span class="dot g"></span><span class="txt">Hệ thống tự phân bổ ngưỡng vào ngành, địa điểm có tỷ lệ TNCN cao nhất để có lợi cho người nộp thuế.</span></li><li><span class="dot g"></span><span class="txt">Người nộp thuế có thể sửa tay cột [16] trên tờ khai, nhưng tổng [16] cả năm không vượt quá 1 tỷ đồng.</span></li></ul>')},
+   {ic:'scale',h:'Hai cách tính TNCN và quy tắc khóa',body:
+     xtbl(['','Cách 1: theo tỷ lệ trên doanh thu','Cách 2: theo thu nhập tính thuế'],[
+      ['Công thức','(Doanh thu năm − 1 tỷ) × tỷ lệ TNCN của ngành','(Doanh thu − chi phí hợp lý) × thuế suất'],
+      ['Thuế suất','Theo ngành, 0,5% đến 5%','15% (doanh thu đến 3 tỷ), 17% (trên 3 đến 50 tỷ)'],
+      ['Ai được dùng','Hộ doanh thu trên 1 đến 3 tỷ, được chọn','Hộ trên 1 đến 3 tỷ được chọn; hộ trên 3 đến 50 tỷ bắt buộc'],
+      ['Khóa','Khóa đến hết năm tính thuế, sau lần lập tờ khai đầu tiên trong năm','Khóa 2 năm liên tiếp kể từ năm đầu áp dụng'],
+      ['Ví dụ: doanh thu 2 tỷ, ngành dịch vụ, chi phí hợp lý 1,4 tỷ','(2 tỷ − 1 tỷ) × 2% = <b>20.000.000</b>','(2 tỷ − 1,4 tỷ) × 15% = <b>90.000.000</b>']
+     ])+
+     xbox('warn','','<p>Cách 2 cần sổ chi phí đầy đủ (S2c) và chỉ có lợi khi chi phí rất lớn so với doanh thu. Khi chọn cách 2, phần mềm hiện cảnh báo vì phương pháp này áp dụng bắt buộc 2 năm liên tiếp. ĐTV giải thích cách tính, không chọn thay khách.</p>')+
+     xsay('Khi khách nhờ chọn cách tính','Dạ có hai cách tính thuế thu nhập cá nhân: theo tỷ lệ trên doanh thu và theo thu nhập tính thuế. Mình lưu ý sau khi lập tờ khai đầu tiên thì cách tính được khóa nên mình nên cân nhắc kỹ. Em xin phép không chọn thay mình được ạ. Mình có thể hỏi cơ quan thuế hoặc kế toán, còn em hướng dẫn mình xem số liệu doanh thu, chi phí trên phần mềm ạ.')},
+   {ic:'book',h:'Ghi sổ doanh thu S2a',body:
+     xp('Mỗi lần bán ghi một dòng: ngày, diễn giải, nhóm ngành, số tiền. Cuối kỳ cộng theo từng nhóm ngành.')+
+     xtbl(['Ngày','Diễn giải','Nhóm ngành','Số tiền'],[['05/01/2026','Bán lẻ hàng tạp hóa','Phân phối hàng hóa','3.500.000'],['06/01/2026','Sửa chữa điện thoại','Dịch vụ','800.000'],['06/01/2026','Bán lẻ hàng tạp hóa','Phân phối hàng hóa','2.100.000'],['<b>Cộng hàng hóa</b>','','','<b>5.600.000</b>'],['<b>Cộng dịch vụ</b>','','','<b>800.000</b>']])+
+     xp('Trên VNPT HKD, sổ tự lên từ chứng từ bán hàng nên khách chỉ cần nhập chứng từ đúng ngày, đúng mặt hàng.')}
+  ]
+};
+
+/* ================= MODULE XII · Thông tư 50/2026 và kê khai trên VNPT HKD ================= */
+DATA.m12={
+  eyebrow:'',title:'Thông tư 50/2026 và kê khai thuế trên VNPT HKD',
+  goal:'Biết hộ dùng mẫu nào, hiểu nhóm doanh thu và kỳ khai, thao tác lập, sửa, gửi tờ khai 01/CNKD trên phần mềm và xử lý các tình huống thường gặp.',
+  gv:{
+    giang:'Đi theo đúng thứ tự: chọn mẫu theo doanh thu, nhóm doanh thu và kỳ khai, rồi thao tác 8 bước trên phần mềm. Nên chiếu màn hình thật khi giảng phần lập tờ khai.',
+    hoi:'Vì sao khách phải đảm bảo mọi hóa đơn điện tử đều có chứng từ bán hàng tương ứng trước khi lập tờ khai? Hóa đơn thay thế khác kỳ phải khai ở đâu?',
+    thuchanh:'Cho ba hồ sơ doanh thu 800 triệu, 2 tỷ và 4 tỷ. Học viên xác định nhóm, kỳ khai, mẫu, phương pháp TNCN và các phụ lục cần chọn.'
+  },
+  blocks:[
+   {ic:'doc',h:'Bối cảnh: Thông tư 18/2026 và Thông tư 50/2026',body:
+     xtiles([['law','Thông tư 18/2026/TT-BTC','Ban hành 05/03/2026: hồ sơ, thủ tục quản lý thuế đối với hộ kinh doanh, cá nhân kinh doanh.',''],['form','Thông tư 50/2026/TT-BTC','Ký 13/05/2026: sửa đổi, bổ sung Thông tư 18 và thay thế bốn mẫu biểu.','a'],['users','Hộ tự kê khai','Vì tự kê khai nên cần biết mình thuộc nhóm nào, dùng mẫu nào và khai những gì.','g']])},
+   {ic:'list',h:'Bốn mẫu biểu được thay',body:
+     xtbl(['Mẫu','Dùng cho','Ghi chú'],[['01/TKN-CNKD','Hộ doanh thu từ 1 tỷ đồng trở xuống','Thông báo doanh thu thực tế phát sinh trong năm; không chịu GTGT, không nộp TNCN'],['01/CNKD','Hộ doanh thu trên 1 tỷ đồng','Tờ khai thuế GTGT, TNCN; có thể kê khai theo từng địa điểm kinh doanh'],['01/BĐS','Hộ, cá nhân cho thuê bất động sản','Bổ sung thông tin tài khoản ngân hàng, ví điện tử nếu chưa có'],['02/BK-KTBĐS','Bên khai, nộp thuế thay cho người cho thuê bất động sản','Bảng kê kèm theo']])},
+   {ic:'flow',h:'Hộ nào dùng mẫu nào',body:
+     '<div class="xdec"><div class="xdq">Doanh thu cả năm của hộ là bao nhiêu?</div><div class="xdb"><div class="xda g"><b>Từ 1 tỷ đồng trở xuống</b><span class="xmf">01/TKN-CNKD</span><small>Nhóm 1, sổ S1a. Thông báo doanh thu thực tế phát sinh trong năm.</small></div><div class="xda b"><b>Trên 1 tỷ đồng</b><span class="xmf">01/CNKD</span><small>Nhóm 2 hoặc 3. Khai thuế GTGT, TNCN; có thể khai theo từng địa điểm kinh doanh.</small></div><div class="xda a"><b>Cho thuê bất động sản</b><span class="xmf">01/BĐS</span><small>Dùng mẫu riêng cho hoạt động cho thuê.</small></div></div></div>'+
+     xbox('warn','','<p>Khi khách hỏi dùng mẫu nào, hãy hỏi doanh thu cả năm trước. ĐTV không hướng dẫn khai thấp doanh thu để dùng mẫu khác.</p>')},
+   {ic:'clock',h:'Nhóm doanh thu và kỳ khai',body:
+     xtbl(['Nhóm','Doanh thu năm','Chế độ thuế','Kỳ khai'],[
+      ['Nhóm 1','Đến 1 tỷ đồng','Miễn GTGT và TNCN; chỉ gửi thông báo doanh thu năm','Năm, hạn 31/1 năm sau'],
+      ['Nhóm 2','Trên 1 đến 3 tỷ','Nộp thuế; được chọn cách 1 hoặc cách 2 để tính TNCN','Theo quý'],
+      ['Nhóm 3','Trên 3 đến 50 tỷ','Nộp thuế; bắt buộc tính TNCN trên thu nhập (doanh thu − chi phí) × 17%','Theo quý']
+     ])+
+     xbox('ok','Hệ thống tự xác định nhóm','<p>Phần mềm tự cộng doanh thu của tất cả địa điểm kinh doanh để xác định nhóm. Ngưỡng 1 tỷ là tổng doanh thu cộng dồn toàn bộ cơ sở. Phần kê khai hiện hỗ trợ theo quý cho doanh thu đến 50 tỷ.</p>')},
+   {ic:'scale',h:'Phương pháp tính TNCN và quy tắc khóa',body:
+     xtbl(['Phương pháp','Công thức','Điều kiện khóa'],[
+      ['Cách 1: tỷ lệ % trên doanh thu','(Doanh thu năm − 1 tỷ) × tỷ lệ theo ngành','Khóa đến hết năm tính thuế sau khi lập tờ khai đầu tiên trong năm'],
+      ['Cách 2: tỷ lệ % trên thu nhập tính thuế','(Doanh thu − chi phí hợp lý) × thuế suất 15% hoặc 17%','Khóa 2 năm liên tiếp kể từ năm đầu tiên áp dụng']
+     ])+
+     xsteps(['Sau khi lưu tờ khai đầu tiên trong năm, phương pháp bị khóa, không đổi giữa các quý trong cùng năm.','Khi chọn cách 2, phần mềm hiện cảnh báo xác nhận vì phương pháp áp dụng bắt buộc 2 năm liên tiếp.','Sau khi gửi tờ khai lên cơ quan thuế, phương pháp được chốt khóa theo quy định.','Xóa tờ khai bản nháp sẽ xóa phương pháp đã chọn, khi tạo lại cùng kỳ có thể chọn lại.'])},
+   {ic:'tool',h:'Danh sách tờ khai trên phần mềm',body:
+     xp('Vào menu <b>Thuế › Tờ khai 01/CNKD (TT 50/2026/TT-BTC)</b>. Màn hình liệt kê các tờ khai đã lập với ngày lập, loại tờ khai, kỳ tính thuế (quý/năm), tình trạng, nội dung phản hồi và mã giao dịch của cơ quan thuế.')+
+     xtbl(['Tình trạng tờ khai','Thao tác được','Ghi chú'],[
+      ['Tờ khai chỉnh sửa, bản nháp','Sửa, Gửi tờ khai, Xóa','Chỉnh sửa rồi gửi qua TVAN'],
+      ['Tờ khai gốc','Xem tờ khai','Chỉ xem, lưu vết thông tin gốc'],
+      ['Đã gửi, chờ phản hồi','Xem tờ khai','Không sửa khi đang chờ cơ quan thuế phản hồi'],
+      ['Đã gửi, đã có kết quả','Xem tờ khai','Không sửa khi đã có kết quả']
+     ])+
+     xp('Bộ lọc: từ ngày đến ngày (mặc định từ đầu tháng hiện tại), tình trạng tờ khai, kiểu tờ khai (gốc hoặc chỉnh sửa). Nhấn biểu tượng ⋮ cuối dòng để mở menu thao tác.')},
+   {ic:'cart',h:'Nguồn dữ liệu: hóa đơn điện tử hay chứng từ kế toán',body:
+     xtwo(
+      xbox('ok','Tổng hợp từ hóa đơn điện tử','<ul class="lst"><li><span class="dot g"></span><span class="txt">Lấy hóa đơn được cơ quan thuế chấp nhận, trạng thái thành công.</span></li><li><span class="dot g"></span><span class="txt">Kiểm tra tại báo cáo Bảng kê hóa đơn, chứng từ hàng hóa, dịch vụ bán ra và Quản lý hóa đơn.</span></li></ul>'),
+      xbox('ok','Tổng hợp từ chứng từ kế toán','<ul class="lst"><li><span class="dot g"></span><span class="txt">Lấy doanh thu, và chi phí nếu tính TNCN theo thu nhập.</span></li><li><span class="dot g"></span><span class="txt">Đối chiếu tại Sổ chi tiết doanh thu, chi phí (S2c-HKD).</span></li></ul>'))+
+     xbox('warn','Hai nguồn chỉ khớp khi','<ul class="lst"><li><span class="dot r"></span><span class="txt">Mọi hóa đơn điện tử đều có chứng từ kế toán tương ứng.</span></li><li><span class="dot r"></span><span class="txt">Hóa đơn thay thế hoặc điều chỉnh đã được chỉnh chứng từ bán hàng tương ứng cho khớp. Hóa đơn thay thế, điều chỉnh khác kỳ phải <b>khai bổ sung cho kỳ của hóa đơn gốc</b>, không khai ở kỳ hiện tại.</span></li></ul>')},
+   {ic:'flow',h:'Lập tờ khai mới: 8 bước',body:
+     xp('Tại danh sách tờ khai nhấn <b>+ Thêm mới</b>, chọn <b>Tờ khai thuế 01/CNKD (TT50/2026)</b>. Phần mềm mở quy trình gồm tối đa 8 bước, một số bước chỉ hiện khi khách có phát sinh tương ứng.')+
+     xsteps([
+      '<b>Bước 1, Thiết lập chung:</b> chọn Cục Thuế và cơ quan thuế nơi nộp; chọn nguồn tổng hợp (hóa đơn điện tử hoặc chứng từ kế toán); nhóm doanh thu; phương pháp TNCN nếu doanh thu trên 1 đến 3 tỷ; năm và quý; phụ lục đính kèm; thông tin khác (hàng chịu thuế TTĐB, tài nguyên, phí BVMT).',
+      '<b>Bước 2, Thông tin hộ kinh doanh:</b> tích đối tượng kê khai; kiểm tra người nộp thuế, mã số thuế, mã số thuế cũ; thông tin bên khai thay hoặc đại lý thuế nếu có.',
+      '<b>Bước 3, Kê khai GTGT và TNCN:</b> doanh thu theo từng ngành nghề, địa điểm kinh doanh.',
+      '<b>Bước 4, Thuế tiêu thụ đặc biệt:</b> chỉ hiện khi tích có hàng hóa chịu thuế TTĐB ở Bước 1.',
+      '<b>Bước 5, Thuế, phí tài nguyên môi trường:</b> chỉ hiện khi tích có tài nguyên hoặc hàng hóa chịu phí BVMT.',
+      '<b>Bước 6, Phụ lục 01/BK-STK:</b> thông báo số tài khoản ngân hàng, ví điện tử dùng cho kinh doanh.',
+      '<b>Bước 7, Phụ lục 01/BK-HTK:</b> bảng kê hàng tồn kho, máy móc thiết bị tại 31/12 năm trước.',
+      '<b>Bước 8, Xem tờ khai và lưu:</b> kiểm tra các tab, đối chiếu số liệu rồi nhấn Lưu tờ khai, tờ khai lưu ở trạng thái bản nháp.'
+     ])},
+   {ic:'form',h:'Các phụ lục đính kèm',body:
+     xtbl(['Phụ lục','Khi nào chọn','Lưu ý'],[
+      ['01/BK-STK','Bắt buộc ở lần đầu kê khai năm 2026 hoặc năm đầu ra kinh doanh','Phải có ít nhất một tài khoản; số tài khoản không trùng trong lưới; tên chủ tài khoản viết in hoa, không dấu, ví dụ NGUYEN VAN A; chọn trạng thái khai lần đầu, thay đổi hoặc đóng tài khoản'],
+      ['01/BK-HTK','Tự động tích khi chọn cách 2 (hộ trên 3 đến 50 tỷ hoặc chọn cách 2)','Kê hàng tồn kho và máy móc thiết bị tại 31/12 năm trước; nhập tay hoặc nhập từ Excel (tải file mẫu, tối đa 25MB, dòng lỗi được tải về)'],
+      ['Phụ lục giảm thuế GTGT','Khi có chính sách giảm thuế GTGT theo nghị quyết đặc thù','Bổ sung thêm bước phụ lục giảm thuế']
+     ])},
+   {ic:'calc',h:'Các cột chính ở Bước 3',body:
+     xtbl(['Cột','Nội dung','Cách có số'],[
+      ['[11]','Doanh thu (thuế GTGT)','Doanh thu phát sinh trong kỳ'],
+      ['[12]','Doanh thu không chịu thuế GTGT','Tổng hợp từ hàng hóa có loại thuế KCT (trên hóa đơn điện tử hoặc tab Thuế của chứng từ kế toán)'],
+      ['[13]','Doanh thu chịu thuế suất 0%','Tổng hợp từ hàng hóa có loại thuế 0%'],
+      ['[14]','GTGT phải nộp','Tự tính: ([11] − [12] − [13]) × thuế suất GTGT, trừ phụ lục giảm thuế nếu có'],
+      ['[15]','Doanh thu chịu thuế TNCN','Cách 1: bằng [11]. Cách 2: nếu lấy từ hóa đơn điện tử, người dùng tự nhập doanh thu sau khi trừ chi phí hợp lý; nếu lấy từ chứng từ kế toán, hệ thống tự trừ chi phí (đối chiếu S2c-HKD)'],
+      ['[16]','Doanh thu được trừ (ngưỡng 1 tỷ)','Hệ thống tự phân bổ tối ưu, chỉ áp dụng với cách 1; tổng cả năm không vượt 1 tỷ'],
+      ['[17]','TNCN phải nộp (cách 1)','Tự tính: ([15] − [16]) × tỷ lệ TNCN']
+     ])},
+   {ic:'shield',h:'Sửa, xóa, gửi tờ khai và nhận kết quả',body:
+     xtbl(['Việc','Điều kiện','Cách làm'],[
+      ['Sửa','Chỉ tờ khai chỉnh sửa ở trạng thái bản nháp','⋮ › Sửa. Phần mềm mở lại quy trình với dữ liệu đã lưu; kỳ tính thuế bị khóa không đổi được; lưu để ghi đè'],
+      ['Xóa','Chỉ tờ khai chỉnh sửa bản nháp; tờ khai đã gửi không được xóa','⋮ › Xóa › xác nhận. Không ảnh hưởng tờ khai gốc cùng kỳ'],
+      ['Gửi','Tờ khai ở trạng thái bản nháp','⋮ › Gửi tờ khai › ký số (Token, SmartCA hoặc HSM) › phần mềm gửi lên TVAN của cơ quan thuế. Thành công thì trạng thái thành “Đã gửi sang thuế, chờ phản hồi”'],
+      ['Nhận kết quả','Tờ khai đã gửi','⋮ › Nhận kết quả tờ khai. Nếu cơ quan thuế đã xử lý, trạng thái thành “đã có kết quả” và hiện mã giao dịch'],
+      ['Xuất XML','Mọi tờ khai','⋮ › Xuất XML, tệp tải về máy theo chuẩn TVAN']
+     ])+
+     xbox('warn','Lưu ý','<ul class="lst"><li><span class="dot r"></span><span class="txt">Sau khi gửi lên cơ quan thuế không sửa trực tiếp được, cần tạo tờ khai bổ sung.</span></li><li><span class="dot r"></span><span class="txt">Nếu gửi báo <b>ERR:5</b> (“Lỗi không xác định, vui lòng thực hiện lại”), thử gửi lại; vẫn lỗi thì lập phiếu chuyển bộ phận hỗ trợ kỹ thuật.</span></li></ul>')},
+   {ic:'cart',h:'Hộ bán trên nền tảng thương mại điện tử',body:
+     xtiles([['check','Đối tượng riêng','Hộ chỉ kinh doanh trên nền tảng thương mại điện tử, nền tảng số không có chức năng đặt hàng và thanh toán, tự kê khai và không bị chủ nền tảng khấu trừ. Tích riêng ở Bước 2.','g'],['coin','Tài khoản thanh toán','Hộ thông báo tài khoản ngân hàng, ví điện tử dùng cho kinh doanh qua phụ lục 01/BK-STK.','a'],['bulb','Khi khách hỏi chi tiết','Hướng dẫn khách xem hướng dẫn trên mẫu hoặc liên hệ cơ quan thuế, không tự suy diễn quy định.','']])},
+   {ic:'star',h:'Những điểm mới của mẫu 01/CNKD',body:
+     xtiles([['tax','Tách doanh thu','Doanh thu không chịu thuế và thuế suất 0% được tách khỏi doanh thu tính thuế GTGT (cột [12], [13]).','a'],['clock','Kỳ khai','Có các ô chọn kỳ khai năm, tháng, quý, lần phát sinh; phần kê khai trên phần mềm hiện hỗ trợ theo quý.',''],['list','Theo nhóm ngành','Doanh thu khai theo ngành nghề có cùng tỷ lệ thuế, khớp cách ghi sổ S2a.','g']])},
+   {ic:'check',h:'Chuẩn bị trước khi làm tờ khai',body:
+     xsteps(['Rà chứng từ mua, bán, thu, chi trong kỳ đã đủ và đúng ngày.','Chạy <b>Tính lại giá vốn</b> từ thời điểm sai.','Đảm bảo mọi hóa đơn điện tử có chứng từ bán hàng tương ứng; hóa đơn thay thế, điều chỉnh đã chỉnh chứng từ.','Kiểm tra doanh thu báo cáo kế toán khớp báo cáo hóa đơn.','Khi khai danh mục hàng hóa, dịch vụ, chọn đúng nhóm ngành để tờ khai tổng hợp đúng tỷ lệ thuế.','Chọn đúng mẫu, nhóm doanh thu, phương pháp TNCN và quý, rồi tạo tờ khai.'])},
+   {ic:'chat',h:'Câu trả lời mẫu',body:
+     xsay('Khách hỏi dùng tờ khai nào','Dạ anh/chị cho em hỏi doanh thu cả năm của mình khoảng bao nhiêu ạ? Nếu từ 1 tỷ đồng trở xuống thì mình thông báo doanh thu bằng mẫu 01/TKN-CNKD, còn trên 1 tỷ thì mình khai bằng mẫu 01/CNKD ạ.')+
+     xsay('Khách hỏi: “Quý sau tôi muốn đổi cách tính TNCN được không?”','Dạ sau khi mình lập tờ khai đầu tiên trong năm thì phương pháp tính thuế thu nhập cá nhân được khóa, không đổi giữa các quý trong năm ạ. Nếu mình chọn cách tính theo thu nhập thì áp dụng bắt buộc 2 năm liên tiếp, nên mình nên cân nhắc kỹ hoặc hỏi cơ quan thuế trước khi chọn ạ.')+
+     xsay('Khách hỏi: “Tôi gửi tờ khai rồi, sửa được không?”','Dạ tờ khai đã gửi lên cơ quan thuế thì mình không sửa trực tiếp được ạ. Mình tạo tờ khai bổ sung để điều chỉnh, em hướng dẫn mình từng bước nhé.')}
+  ]
+};
+
+
+/* ---- ca lỗi kê khai thuế theo Thông tư 50/2026 ---- */
+DATA.m4.errors.push(
+ {tag:'Thuế',group:'thue',title:'Gửi tờ khai 01/CNKD báo ERR:5 “Lỗi không xác định, vui lòng thực hiện lại”',
+  hien_tuong:['Sau khi ký số và gửi tờ khai, phần mềm báo ERR:5, tờ khai không chuyển sang trạng thái đã gửi'],
+  nguyen_nhan:[],
+  xu_ly:['Yêu cầu khách thực hiện gửi lại một lần nữa','Nếu vẫn báo lỗi, ghi lại kỳ tính thuế, mã khách hàng, ảnh thông báo lỗi','Lập phiếu OneBSS chuyển bộ phận hỗ trợ kỹ thuật theo quy trình ở Module Kịch bản cuộc gọi'],
+  xu_ly_ordered:true,images:[]},
+ {tag:'Thuế',group:'thue',title:'Không sửa hoặc không xóa được tờ khai',
+  hien_tuong:['Mở menu thao tác (⋮) trên tờ khai nhưng không thấy nút Sửa hoặc Xóa'],
+  nguyen_nhan:['Tờ khai gốc chỉ cho xem, lưu vết thông tin gốc','Tờ khai đã gửi (chờ phản hồi hoặc đã có kết quả) không được sửa, không được xóa','Chỉ tờ khai chỉnh sửa ở trạng thái bản nháp mới được sửa, xóa'],
+  xu_ly:['Kiểm tra trạng thái và kiểu tờ khai của dòng đó','Nếu cần thay đổi nội dung đã gửi, tạo tờ khai bổ sung cho kỳ đó','Nếu là bản nháp chỉnh sửa thì dùng ⋮ › Sửa hoặc Xóa; kỳ tính thuế bị khóa, không đổi được khi sửa'],
+  xu_ly_ordered:true,images:[]},
+ {tag:'Thuế',group:'thue',title:'Không đổi được phương pháp tính TNCN khi lập tờ khai',
+  hien_tuong:['Khách muốn đổi từ cách 1 sang cách 2 (hoặc ngược lại) nhưng phần mềm không cho chọn'],
+  nguyen_nhan:['Sau khi lập tờ khai đầu tiên trong năm, phương pháp được khóa, không đổi giữa các quý','Cách 1 khóa đến hết năm tính thuế; cách 2 khóa 2 năm liên tiếp kể từ năm đầu áp dụng','Sau khi gửi tờ khai lên cơ quan thuế, phương pháp được chốt khóa'],
+  xu_ly:['Giải thích quy tắc khóa cho khách, không hướng dẫn cách vượt khóa','Nếu tờ khai cùng kỳ còn là bản nháp: xóa bản nháp sẽ xóa phương pháp đã chọn, khi tạo lại có thể chọn lại','Với câu hỏi nên chọn cách nào, hướng dẫn khách hỏi cơ quan thuế hoặc kế toán'],
+  xu_ly_ordered:false,images:[]},
+ {tag:'Thuế',group:'thue',title:'Doanh thu trên tờ khai không khớp hóa đơn hoặc chứng từ kế toán',
+  hien_tuong:['Doanh thu tổng hợp trên tờ khai khác báo cáo hóa đơn hoặc sổ S2c-HKD'],
+  nguyen_nhan:['Có hóa đơn điện tử chưa tạo chứng từ kế toán tương ứng','Đã lập hóa đơn thay thế hoặc điều chỉnh nhưng chưa chỉnh chứng từ bán hàng tương ứng','Hóa đơn thay thế, điều chỉnh khác kỳ nhưng khai ở kỳ hiện tại'],
+  xu_ly:['Đối chiếu báo cáo Bảng kê hóa đơn bán ra, Quản lý hóa đơn (hóa đơn trạng thái thành công) với Sổ S2c-HKD','Tạo hoặc chỉnh chứng từ bán hàng cho khớp hóa đơn','Hóa đơn thay thế, điều chỉnh khác kỳ: khai bổ sung cho kỳ của hóa đơn gốc','Tính lại giá vốn nếu có chỉnh chứng từ, rồi lập lại tờ khai'],
+  xu_ly_ordered:true,images:[]}
+);
+
+/* ---- bổ sung vào module Hướng dẫn thao tác: bảng dấu hiệu bất thường ---- */
+DATA.m3.blocks.push({ic:'alert',h:'Bảng dấu hiệu số liệu bất thường',body:
+  xtbl(['Dấu hiệu','Nguyên nhân hay gặp','Cách xử lý'],[
+   ['Tồn âm số lượng hoặc tiền','Khách xuất âm; sửa dữ liệu chứng từ; đơn vị tính chứng từ không khớp danh mục (hay gặp khi đồng bộ từ hệ thống thứ ba)','Tìm điểm âm trong sổ, nhập bù, tính lại giá vốn'],
+   ['Số lượng 0 nhưng còn thành tiền','Xuất bán rồi quay lại sửa chứng từ mua','Tính lại giá vốn từ ngày chứng từ bị sai'],
+   ['Còn tồn nhưng báo hết hàng','Phiếu nhập sai ngày (tương lai) hoặc chọn nhầm kho','Sửa ngày chứng từ, kiểm tra kho, tính lại giá vốn'],
+   ['Lệch 1đ, 0đ, −1đ','Cấu hình số thập phân làm tròn','Đặt thập phân thành tiền = 0, tính lại từ 1/1/1899']
+  ])});
+
+/* ---- câu hỏi kiểm tra bổ sung (đáp án đúng được xoay vị trí) ---- */
+(function(){
+  var raw=[
+   ['Hộ bán lẻ tạp hóa (phân phối hàng hóa) có tỷ lệ GTGT là bao nhiêu?','1%',['3%','5%','2%']],
+   ['Hộ sửa chữa, dịch vụ không bao thầu nguyên vật liệu có tỷ lệ TNCN là bao nhiêu?','2%',['0,5%','1,5%','1%']],
+   ['Hộ vận tải hàng hóa có tỷ lệ GTGT và TNCN là bao nhiêu?','GTGT 3%, TNCN 1,5%',['GTGT 1%, TNCN 0,5%','GTGT 5%, TNCN 2%','GTGT 2%, TNCN 1%']],
+   ['Hộ bán hàng hóa có doanh thu năm 900 triệu đồng. Thuế GTGT phải nộp là bao nhiêu?','0 đồng, vì từ 1 tỷ đồng/năm trở xuống không chịu GTGT',['9 triệu đồng','4,5 triệu đồng','18 triệu đồng']],
+   ['Công thức TNCN theo tỷ lệ cho hộ doanh thu trên 1 tỷ đến 3 tỷ là gì?','(Doanh thu năm − 1 tỷ) × tỷ lệ TNCN của ngành',['Doanh thu năm × tỷ lệ TNCN của ngành','(Doanh thu − chi phí) × 17%','Doanh thu năm × 15%']],
+   ['Hộ doanh thu 2 tỷ, chi phí hợp lý 1,4 tỷ, chọn TNCN theo thu nhập tính thuế với thuế suất 15%. Thuế TNCN là bao nhiêu?','90 triệu đồng',['300 triệu đồng','20 triệu đồng','9 triệu đồng']],
+   ['Khách nhờ ĐTV: “Chọn giúp tôi cách tính thuế nào ít đóng hơn.” ĐTV nên làm gì?','Giải thích hai cách tính chung và hướng dẫn khách hỏi cơ quan thuế hoặc kế toán, không quyết định thay',['Khẳng định một cách luôn ít thuế hơn','Khuyên khách khai thấp doanh thu','Từ chối nói chuyện']],
+   ['Thông tư 50/2026/TT-BTC sửa đổi, bổ sung thông tư nào?','Thông tư 18/2026/TT-BTC',['Thông tư 152/2025/TT-BTC','Thông tư 88/2021/TT-BTC','Thông tư 40/2021/TT-BTC']],
+   ['Hộ doanh thu từ 1 tỷ đồng trở xuống thông báo doanh thu bằng mẫu nào?','01/TKN-CNKD',['01/CNKD','01/BĐS','02/BK-KTBĐS']],
+   ['Hộ doanh thu trên 1 tỷ đồng khai thuế GTGT, TNCN bằng mẫu nào?','01/CNKD',['01/TKN-CNKD','01/BĐS','02/BK-KTBĐS']],
+   ['Điểm mới nào của mẫu 01/CNKD so với mẫu theo Thông tư 18?','Tách doanh thu không chịu thuế và thuế suất 0% khỏi doanh thu tính thuế GTGT',['Bỏ kê khai doanh thu','Gộp bốn mẫu làm một','Chỉ còn khai theo năm']],
+   ['Trước khi làm tờ khai, thứ tự chuẩn bị đúng là gì?','Rà chứng từ, tính lại giá vốn, kiểm tra doanh thu khớp hóa đơn, rồi chọn mẫu và tạo tờ khai',['Tạo tờ khai trước rồi sửa chứng từ sau','Chỉ cần đổi mật khẩu','Xóa dữ liệu cũ']],
+   ['Phương trình kế toán cơ bản là gì?','Tài sản = Nợ phải trả + Vốn chủ sở hữu',['Tài sản = Doanh thu − Chi phí','Vốn chủ sở hữu = Doanh thu + Nợ phải trả','Doanh thu = Tài sản + Chi phí']],
+   ['Hộ nhập hàng về kho nhưng chưa bán. Hàng đó được hiểu thế nào?','Là tài sản (hàng tồn kho); chỉ thành chi phí giá vốn khi hàng bán ra',['Là chi phí ngay trong kỳ nhập','Là doanh thu của kỳ nhập','Không ghi nhận gì']],
+   ['Từ năm 2026, phương pháp tính giá xuất kho hộ kinh doanh chọn trong Thiết lập kế toán là gì?','Bình quân gia quyền cả kỳ dự trữ',['Nhập trước xuất trước','Nhập sau xuất trước','Giá đích danh']],
+   ['Trước khi khóa sổ, sau khi sửa chứng từ cũ ĐTV cần dặn khách làm gì?','Tính lại giá vốn từ ngày chứng từ bị sửa rồi mới khóa',['Khóa sổ ngay rồi tính lại sau','Xóa chứng từ đã sửa','Không cần làm gì thêm']],
+   ['Khách báo không khóa được sổ. Việc đầu tiên ĐTV nên làm là gì?','Hỏi thông báo lỗi nguyên văn, kỳ đang khóa và rà soát tồn kho, công nợ, giá vốn',['Hướng dẫn xóa dữ liệu của kỳ đó','Hẹn khách quay lại sau','Mở lại mọi kỳ đã khóa']],
+   ['Đánh lại số chứng từ kế toán có làm đổi số hóa đơn điện tử đã phát hành không?','Không, số hóa đơn do hệ thống hóa đơn cấp theo thứ tự phát hành',['Có, hai loại số luôn đồng bộ','Có, nhưng chỉ với hóa đơn trong tháng','Chỉ đổi khi khách yêu cầu']]
+,
+
+   ['Hộ doanh thu 4 tỷ đồng tính TNCN theo cách nào?','Bắt buộc theo thu nhập tính thuế: (doanh thu − chi phí hợp lý) × 17%',['Theo tỷ lệ trên doanh thu, được chọn tự do','Không phải nộp TNCN','(Doanh thu − 1 tỷ) × tỷ lệ ngành']],
+   ['Hộ chọn cách 2 (TNCN theo thu nhập tính thuế) thì bị khóa phương pháp bao lâu?','2 năm liên tiếp kể từ năm đầu tiên áp dụng',['Đến hết quý','Chỉ trong năm lập tờ khai','Không bị khóa']],
+   ['Hộ chọn cách 1 (TNCN theo tỷ lệ trên doanh thu) thì phương pháp được khóa thế nào?','Đến hết năm tính thuế, sau lần lập tờ khai đầu tiên trong năm',['Đổi được mỗi quý','Khóa 2 năm liên tiếp','Không bị khóa']],
+   ['Hộ cho thuê tài sản (trừ bất động sản) có tỷ lệ GTGT và TNCN là bao nhiêu?','GTGT 5%, TNCN 5%',['GTGT 1%, TNCN 0,5%','GTGT 3%, TNCN 1,5%','GTGT 2%, TNCN 1%']],
+   ['Hộ có ba cửa hàng, doanh thu mỗi nơi 500 triệu. Hộ thuộc nhóm nào?','Doanh thu cộng dồn 1,5 tỷ nên thuộc nhóm trên 1 tỷ đến 3 tỷ',['Nhóm 1 vì mỗi cửa hàng dưới 1 tỷ','Mỗi cửa hàng một ngưỡng 1 tỷ riêng','Không phải kê khai']],
+   ['Hóa đơn thay thế, điều chỉnh khác kỳ với hóa đơn gốc thì khai ở đâu?','Khai bổ sung cho kỳ của hóa đơn gốc',['Khai ở kỳ hiện tại','Không cần khai','Xóa hóa đơn gốc']],
+   ['Trên VNPT HKD, tờ khai nào được phép xóa?','Chỉ tờ khai chỉnh sửa ở trạng thái bản nháp',['Mọi tờ khai chưa có kết quả','Tờ khai gốc','Tờ khai đã gửi chờ phản hồi']],
+   ['Tờ khai đã gửi lên cơ quan thuế nay cần thay đổi nội dung. ĐTV hướng dẫn gì?','Tạo tờ khai bổ sung cho kỳ đó',['Sửa trực tiếp tờ khai đã gửi','Xóa tờ khai rồi gửi lại','Chờ sang năm sau']],
+   ['Hộ có doanh thu từ 1 tỷ trở xuống làm gì với cơ quan thuế về doanh thu?','Gửi thông báo doanh thu năm (mẫu 01/TKN-CNKD), hạn 31/1 năm sau',['Khai thuế GTGT theo quý','Khai thuế theo tháng','Không phải làm gì']]
+  ];
+  raw.forEach(function(r,i){
+    var pos=(i+1)%4, o=r[2].slice(); o.splice(pos,0,r[1]);
+    DATA.m6.quiz.push({q:r[0],opts:o,correct:pos});
+  });
+})();
+
+
+/* ---- icon tiêu đề block ---- */
+function xBlkIc(b){
+  if(b.ic) return b.ic;
+  var h=b.h||'';
+  if(/doanh thu|đầu ra/i.test(h)) return 'coin';
+  if(/chi phí|vật tư|kho/i.test(h)) return 'box';
+  if(/dòng tiền|thuế/i.test(h)) return 'tax';
+  if(/phân biệt/i.test(h)) return 'users';
+  if(/quy trình/i.test(h)) return 'flow';
+  if(/thao tác|chức năng/i.test(h)) return 'tool';
+  if(/mẫu|bảng|sổ/i.test(h)) return 'list';
+  if(/cốt lõi|điểm mới/i.test(h)) return 'star';
+  return 'doc';
+}
+var HERO_ART='<svg viewBox="0 0 340 250" role="img" aria-label="Sổ sách, máy tính và đồng tiền"><rect x="18" y="38" width="170" height="186" rx="18" fill="#fff"/><rect x="18" y="38" width="170" height="40" rx="18" fill="#ffd23f"/><rect x="18" y="62" width="170" height="16" fill="#ffd23f"/><circle cx="42" cy="58" r="7" fill="#4a3600" opacity=".25"/><rect x="58" y="52" width="74" height="12" rx="6" fill="#4a3600" opacity=".35"/><g fill="#0a5fc4" opacity=".85"><rect x="36" y="94" width="60" height="9" rx="4.5"/><rect x="36" y="116" width="92" height="9" rx="4.5"/><rect x="36" y="138" width="74" height="9" rx="4.5"/><rect x="36" y="160" width="100" height="9" rx="4.5"/></g><g fill="#1f9d62"><rect x="140" y="94" width="30" height="9" rx="4.5"/><rect x="152" y="138" width="18" height="9" rx="4.5"/></g><path d="M36 196l26-20 22 12 30-30 36 18" stroke="#d8412f" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="190" y="70" width="120" height="156" rx="18" fill="#0d2552"/><rect x="204" y="84" width="92" height="36" rx="10" fill="#cfe4ff"/><text x="292" y="108" text-anchor="end" font-family="Baloo 2,Be Vietnam Pro,sans-serif" font-weight="800" font-size="15" fill="#0d2552">25.000.000</text><g fill="#ffd23f"><circle cx="218" cy="148" r="10"/><circle cx="250" cy="148" r="10"/><circle cx="282" cy="148" r="10"/></g><g fill="#5aa7ff"><circle cx="218" cy="178" r="10"/><circle cx="250" cy="178" r="10"/></g><rect x="268" y="168" width="24" height="42" rx="10" fill="#1f9d62"/><circle cx="218" cy="208" r="10" fill="#5aa7ff"/><circle cx="250" cy="208" r="10" fill="#5aa7ff"/><path d="M270 40v14c0 7 13 12 30 12s30-5 30-12V40" fill="#e8b800"/><ellipse cx="300" cy="40" rx="30" ry="12" fill="#ffd23f"/><text x="300" y="45" text-anchor="middle" font-weight="800" font-size="14" fill="#4a3600">%</text></svg>';
 
 /* ---- nhãn module theo thứ tự hiển thị ---- */
 ORDER.forEach(function(k,i){DATA[k].eyebrow='Module '+ROMAN[i]});
@@ -1515,7 +2023,7 @@ function stripTags(html){return (html||'').replace(/<[^>]+>/g,' ').replace(/\s+/
 function qaAll(){return DATA.m7.qa.concat(DATA.m7.faq)}
 function buildIndex(){
   var idx=[];
-  ['m1','m2','m3'].forEach(function(mk){
+  ['m1','m2','m3','m9','m10','m11','m12'].forEach(function(mk){
     DATA[mk].blocks.forEach(function(b,i){
       idx.push({module:mk,moduleLabel:mlabel(mk),kind:'block',id:i,snippet:b.h,textN:normalizeVN(b.h+' '+stripTags(b.body))});
     });
@@ -1603,7 +2111,7 @@ function applyPending(){
 
 /* ---- rail ---- */
 function buildRail(){
-  var h='<div class="rail-title">8 module đào tạo</div>';
+  var h='<div class="rail-title">'+ORDER.length+' module đào tạo</div>';
   ORDER.forEach(function(k,i){
     h+='<button type="button" class="tab" data-m="'+k+'" onclick="go(\''+k+'\')"><span class="num">'+ROMAN[i]+'</span><span>'+META[k].s+'</span><span class="tk">'+ic('check')+'</span></button>';
   });
@@ -1624,25 +2132,26 @@ function renderHome(){
   currentModule='home'; setActive(null);
   var nQa=qaAll().length, nSo=DATA.m8.so.length, nErr=DATA.m4.errors.length;
   var done=ORDER.filter(function(k){return VIS[k]}).length;
-  var h='<section class="hero"><span class="hi">Cẩm nang cho ĐTV và giảng viên</span><h1>Nghiệp vụ kế toán VNPT HKD</h1>'
-   +'<p>Học nhanh, tra cứu nhanh và luyện trả lời khách hàng theo Thông tư 152/2025/TT-BTC: pháp lý, mẫu sổ, thao tác trên phần mềm, lỗi thường gặp và kịch bản cuộc gọi.</p>'
-   +'<div class="cta"><button type="button" class="btn sun" onclick="go(\'m1\')">Bắt đầu học</button><button type="button" class="btn ghost" onclick="go(\'m7\')">Luyện giải đáp</button><button type="button" class="btn ghost" onclick="go(\'m4\')">Tra lỗi nhanh</button></div></section>';
-  h+='<div class="stats">'
-   +'<div class="stat"><b>'+ORDER.length+'</b><span>module<br>đào tạo</span></div>'
-   +'<div class="stat"><b>'+nQa+'</b><span>tình huống<br>giải đáp</span></div>'
-   +'<div class="stat"><b>'+nSo+'</b><span>mẫu sổ có<br>biểu mẫu</span></div>'
-   +'<div class="stat"><b>'+nErr+'</b><span>ca lỗi<br>thường gặp</span></div></div>';
+  var h='<section class="hero"><div class="hero-t"><span class="hi">Cẩm nang cho ĐTV và giảng viên</span><h1>Nghiệp vụ kế toán VNPT HKD</h1>'
+   +'<p>Học nhanh, tra cứu nhanh và luyện trả lời khách hàng theo Thông tư 152/2025/TT-BTC: nguyên lý kế toán, mẫu sổ, thao tác trên phần mềm, khóa sổ, tính thuế, mẫu tờ khai theo Thông tư 50/2026, lỗi thường gặp và kịch bản cuộc gọi.</p>'
+   +'<div class="cta"><button type="button" class="btn sun" onclick="go(\'m1\')">Bắt đầu học</button><button type="button" class="btn ghost" onclick="go(\'m7\')">Luyện giải đáp</button><button type="button" class="btn ghost" onclick="go(\'m4\')">Tra lỗi nhanh</button></div></div>'
+   +'<div class="hero-art" aria-hidden="true">'+HERO_ART+'</div></section>';
+  function stat(ico,n,t){return '<div class="stat"><span class="si">'+ic(ico)+'</span><div class="st"><b>'+n+'</b><span>'+t+'</span></div></div>'}
+  h+='<div class="stats">'+stat('layers',ORDER.length,'module<br>đào tạo')+stat('chat',nQa,'tình huống<br>giải đáp')+stat('book',nSo,'mẫu sổ có<br>biểu mẫu')+stat('alert',nErr,'ca lỗi<br>thường gặp')+'</div>';
   h+='<div class="sec-t">Truy cập nhanh</div><div class="quick">'
    +'<a href="#m8" data-hot="so:0">'+ic('book')+'Sổ S1a-HKD</a>'
    +'<a href="#m8">'+ic('book')+'Chọn sổ theo nhóm hộ</a>'
+   +'<a href="#m11">'+ic('calc')+'Máy tính thuế</a>'
+   +'<a href="#m12">'+ic('form')+'Mẫu tờ khai</a>'
+   +'<a href="#m10">'+ic('lock')+'Khóa sổ</a>'
    +'<a href="#m7">'+ic('chat')+'Luyện nhanh tình huống</a>'
    +'<a href="#m4">'+ic('alert')+'Tra lỗi thường gặp</a>'
    +'<a href="#m5">'+ic('phone')+'Quy trình cuộc gọi</a>'
    +'<a href="#m6">'+ic('check')+'Làm bài kiểm tra</a></div>';
-  h+='<div class="sec-t">Tám module <span class="prog"><span class="pbar"><i style="width:'+Math.round(done/ORDER.length*100)+'%"></i></span>Đã xem '+done+'/'+ORDER.length+'</span></div><div class="mods">';
+  h+='<div class="sec-t">'+ORDER.length+' module <span class="prog"><span class="pbar"><i style="width:'+Math.round(done/ORDER.length*100)+'%"></i></span>Đã xem '+done+'/'+ORDER.length+'</span></div><div class="mods">';
   ORDER.forEach(function(k,i){
     var m=META[k], d=DATA[k];
-    h+='<button type="button" class="mcard '+m.c+(VIS[k]?' done':'')+'" onclick="go(\''+k+'\')"><span class="ok">'+ic('check')+'</span>'
+    h+='<button type="button" class="mcard '+m.c+(VIS[k]?' done':'')+'" data-n="'+ROMAN[i]+'" onclick="go(\''+k+'\')"><span class="ok">'+ic('check')+'</span>'
      +'<span class="mi">'+ic(m.ic)+'</span><span class="me">Module '+ROMAN[i]+'</span><h3>'+esc(d.title)+'</h3><p>'+esc(d.goal)+'</p></button>';
   });
   h+='</div>';
@@ -1664,7 +2173,7 @@ function gvNoteHTML(gv){
 function showModule(key,filterTerm){
   currentModule=key; setActive(key); VIS[key]=1; saveP(); markDone();
   var d=DATA[key];
-  var html='<div class="module-head"><div class="module-eyebrow">'+d.eyebrow+'</div><h1 class="module-title">'+d.title+'</h1><p class="module-goal">'+d.goal+'</p>'+gvNoteHTML(d.gv)+'</div>';
+  var html='<div class="module-head"><span class="mh-ic">'+ic(META[key].ic)+'</span><div class="module-eyebrow">'+d.eyebrow+'</div><h1 class="module-title">'+d.title+'</h1><p class="module-goal">'+d.goal+'</p>'+gvNoteHTML(d.gv)+'</div>';
   if(!PEND) window.scrollTo({top:0,behavior:'instant'});
 
   if(d.isErrorModule){
@@ -1702,7 +2211,7 @@ function showModule(key,filterTerm){
   }
   if(d.isQA){ $('#content').innerHTML=html+qaHTML(d); qaInit(); return }
   if(d.isSo){ $('#content').innerHTML=html+soHTML(d); soInit(); return }
-  d.blocks.forEach(function(b,i){html+='<section class="block" data-idx="'+i+'"><h3>'+b.h+'</h3>'+b.body+'</section>'});
+  d.blocks.forEach(function(b,i){html+='<section class="block" data-idx="'+i+'"><h3 class="hasic"><span class="hic">'+ic(xBlkIc(b))+'</span>'+b.h+'</h3>'+b.body+'</section>'});
   $('#content').innerHTML=html;
 }
 
